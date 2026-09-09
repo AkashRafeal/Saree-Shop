@@ -22,7 +22,7 @@ public class CorsConfig {
         config.setAllowCredentials(true);
 
         List<String> origins = Arrays.stream(allowedOrigins.split(","))
-                .map(String::trim)
+                .map(s -> s.trim())
                 .toList();
         config.setAllowedOrigins(origins);
 
