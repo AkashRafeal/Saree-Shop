@@ -1,0 +1,42 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDE & Editor files
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+*.iml
+*.iws
+*.ipr
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backend (Maven & Java)
+backend/target/
+backend/*.log
+backend/logs/
+target/
+*.log
+
+# Frontend (Node & Vite)
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.eslintcache
+frontend/*.tsbuildinfo
+node_modules/
+dist/
+
+# Test & Coverage
+coverage/
+*.lcov
+.nyc_output/

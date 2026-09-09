@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-maroon: 107 29 47;
+    --color-gold: 212 175 55;
+    --color-emerald: 14 77 62;
+    --color-silk: 250 246 240;
+    --color-charcoal: 26 26 26;
+  }
+
+  body {
+    background-color: #FAF6F0;
+    color: #1A1A1A;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom Luxury Gradients & Accents */
+.gold-shimmer {
+  background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA820A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border {
+  border-image: linear-gradient(to right, #D4AF37, #F3E5AB, #D4AF37) 1;
+}
+
+.silk-shadow {
+  box-shadow: 0 10px 30px -10px rgba(107, 29, 47, 0.08);
+}

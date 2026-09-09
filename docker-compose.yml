@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: sareeaura-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: sareeaura_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - sareeaura-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sareeaura-backend
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: sareeaura_db
+      DB_USER: root
+      DB_PASSWORD: root
+      JWT_SECRET: ${JWT_SECRET:-SareeAuraSuperSecretLuxurySilkAndZariKey2026WithSufficientLengthHMACSHA256}
+      RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID:-rzp_test_sareeaura2026}
+      RAZORPAY_KEY_SECRET: ${RAZORPAY_KEY_SECRET:-secret_sareeaura_test_key_2026}
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME:-sareeaura-demo}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY:-123456789012345}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET:-abcdefghijklmnopqrstuvwxyz12345}
+    ports:
+      - "8080:8080"
+    networks:
+      - sareeaura-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sareeaura-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+    networks:
+      - sareeaura-net
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  sareeaura-net:
+    driver: bridge
