@@ -366,7 +366,7 @@ export const AdminCustomersPage: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-xs">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-[#D81B60]/10 text-[#D81B60]">
+            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-[#0A5C44]/10 text-[#0A5C44]">
               Customer Directory
             </span>
             <span className="text-xs text-stone-400">•</span>
@@ -393,7 +393,7 @@ export const AdminCustomersPage: React.FC = () => {
 
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer active:scale-95"
+            className="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-semibold bg-[#0A5C44] text-white hover:bg-[#064E3B] transition shadow-xs cursor-pointer active:scale-95"
           >
             <UserPlus className="w-3.5 h-3.5 mr-1.5" />
             <span>Add Customer</span>
@@ -406,7 +406,7 @@ export const AdminCustomersPage: React.FC = () => {
               justRefreshed
                 ? 'bg-emerald-50 text-emerald-700 border border-emerald-300'
                 : isRefreshing
-                ? 'bg-[#FFF0F5] text-[#D81B60] border border-[#D81B60]/30'
+                ? 'bg-[#ECFDF5] text-[#0A5C44] border border-[#0A5C44]/30'
                 : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
             }`}
           >
@@ -417,7 +417,7 @@ export const AdminCustomersPage: React.FC = () => {
               </>
             ) : (
               <>
-                <RefreshCw className={`w-3.5 h-3.5 mr-1.5 text-[#D81B60] ${isRefreshing ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`w-3.5 h-3.5 mr-1.5 text-[#0A5C44] ${isRefreshing ? 'animate-spin' : ''}`} />
                 <span>{isRefreshing ? 'Syncing...' : 'Sync Directory'}</span>
               </>
             )}
@@ -428,15 +428,15 @@ export const AdminCustomersPage: React.FC = () => {
       {/* Top Shimmer Progress Bar during Directory Refresh */}
       {isRefreshing && (
         <div className="w-full h-1 bg-stone-100 rounded-full overflow-hidden relative -mt-3 animate-fadeIn">
-          <div className="absolute inset-y-0 left-0 right-0 bg-gradient-to-r from-transparent via-[#D81B60] to-transparent animate-pulse" />
+          <div className="absolute inset-y-0 left-0 right-0 bg-gradient-to-r from-transparent via-[#0A5C44] to-transparent animate-pulse" />
         </div>
       )}
 
       {/* Floating Centered Refresh Overlay Pill */}
       {isRefreshing && (
         <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none animate-fadeIn">
-          <div className="bg-white/95 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-2xl border border-[#D81B60]/20 flex items-center space-x-3 text-stone-900 text-sm font-semibold animate-scaleUp">
-            <RefreshCw className="w-4 h-4 text-[#D81B60] animate-spin" />
+          <div className="bg-white/95 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-2xl border border-[#0A5C44]/20 flex items-center space-x-3 text-stone-900 text-sm font-semibold animate-scaleUp">
+            <RefreshCw className="w-4 h-4 text-[#0A5C44] animate-spin" />
             <span>Synchronizing Customer Directory...</span>
           </div>
         </div>
@@ -459,7 +459,7 @@ export const AdminCustomersPage: React.FC = () => {
         <div className="bg-white p-5 rounded-2xl border border-stone-200/80 shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-stone-500">Total Customers</span>
-            <div className="w-8 h-8 rounded-xl bg-[#D81B60]/10 flex items-center justify-center text-[#D81B60]">
+            <div className="w-8 h-8 rounded-xl bg-[#0A5C44]/10 flex items-center justify-center text-[#0A5C44]">
               <Users className="w-4 h-4" />
             </div>
           </div>
@@ -530,7 +530,7 @@ export const AdminCustomersPage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name, email, or phone..."
-            className="w-full pl-9 pr-4 py-2 text-xs bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-[#D81B60] focus:ring-2 focus:ring-[#D81B60]/10 transition"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-[#0A5C44] focus:ring-2 focus:ring-[#0A5C44]/10 transition"
           />
           {searchQuery && (
             <button
@@ -556,7 +556,7 @@ export const AdminCustomersPage: React.FC = () => {
               onClick={() => setTierFilter(tab.value)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition cursor-pointer ${
                 tierFilter === tab.value
-                  ? 'bg-[#D81B60] text-white shadow-xs'
+                  ? 'bg-[#0A5C44] text-white shadow-xs'
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
@@ -592,7 +592,7 @@ export const AdminCustomersPage: React.FC = () => {
               {loading ? (
                 <tr>
                   <td colSpan={6} className="py-12 text-center text-stone-500">
-                    <RefreshCw className="w-6 h-6 animate-spin text-[#D81B60] mx-auto mb-2" />
+                    <RefreshCw className="w-6 h-6 animate-spin text-[#0A5C44] mx-auto mb-2" />
                     <span>Loading customer directory...</span>
                   </td>
                 </tr>
@@ -619,7 +619,7 @@ export const AdminCustomersPage: React.FC = () => {
                         <div className="flex items-center space-x-3">
                           <div className={`w-9 h-9 rounded-full flex items-center justify-center font-serif font-bold text-xs text-white shadow-xs shrink-0 ${
                             cust.loyaltyTier === 'Royal Atelier'
-                              ? 'bg-gradient-to-br from-[#D81B60] to-[#D4AF37]'
+                              ? 'bg-gradient-to-br from-[#0A5C44] to-[#D4AF37]'
                               : cust.loyaltyTier === 'Bridal VIP'
                               ? 'bg-gradient-to-br from-rose-500 to-amber-500'
                               : 'bg-gradient-to-br from-stone-600 to-stone-800'
@@ -628,7 +628,7 @@ export const AdminCustomersPage: React.FC = () => {
                           </div>
                           <div className="min-w-0 truncate">
                             <div className="flex items-center space-x-1.5">
-                              <span className="font-semibold text-stone-900 group-hover:text-[#D81B60] transition truncate">
+                              <span className="font-semibold text-stone-900 group-hover:text-[#0A5C44] transition truncate">
                                 {cust.firstName} {cust.lastName}
                               </span>
                             </div>
@@ -661,7 +661,7 @@ export const AdminCustomersPage: React.FC = () => {
                           cust.loyaltyTier === 'Royal Atelier'
                             ? 'bg-gradient-to-r from-amber-50 to-rose-50 text-amber-900 border-amber-300'
                             : cust.loyaltyTier === 'Bridal VIP'
-                            ? 'bg-rose-50 text-[#D81B60] border-rose-200'
+                            ? 'bg-emerald-50 text-[#0A5C44] border-emerald-200'
                             : cust.loyaltyTier === 'Gold Connoisseur'
                             ? 'bg-amber-50 text-amber-800 border-amber-200'
                             : 'bg-stone-50 text-stone-700 border-stone-200'
@@ -697,7 +697,7 @@ export const AdminCustomersPage: React.FC = () => {
                               e.stopPropagation();
                               setSelectedCustomer(cust);
                             }}
-                            className="inline-flex items-center px-2 py-1 rounded-lg text-[11px] font-medium text-[#D81B60] hover:bg-[#D81B60]/10 transition cursor-pointer"
+                            className="inline-flex items-center px-2 py-1 rounded-lg text-[11px] font-medium text-[#0A5C44] hover:bg-[#0A5C44]/10 transition cursor-pointer"
                           >
                             <span>View</span>
                             <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
@@ -705,7 +705,7 @@ export const AdminCustomersPage: React.FC = () => {
                           <button
                             onClick={(e) => handleDeleteCustomer(e, cust.id, `${cust.firstName} ${cust.lastName}`)}
                             title="Delete Customer"
-                            className="p-1.5 text-stone-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition cursor-pointer"
+                            className="p-1.5 text-stone-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition cursor-pointer"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
@@ -733,7 +733,7 @@ export const AdminCustomersPage: React.FC = () => {
             </button>
 
             <div className="flex items-center space-x-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-[#D81B60]/10 text-[#D81B60] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-[#0A5C44]/10 text-[#0A5C44] flex items-center justify-center">
                 <UserPlus className="w-5 h-5" />
               </div>
               <div>
@@ -743,7 +743,7 @@ export const AdminCustomersPage: React.FC = () => {
             </div>
 
             {addError && (
-              <div className="mb-4 p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs">
+              <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-xs">
                 {addError}
               </div>
             )}
@@ -758,7 +758,7 @@ export const AdminCustomersPage: React.FC = () => {
                     placeholder="e.g. Radhika"
                     value={addFormData.firstName}
                     onChange={(e) => setAddFormData({ ...addFormData, firstName: e.target.value })}
-                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:border-[#D81B60] focus:outline-none"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:border-[#0A5C44] focus:outline-none"
                   />
                 </div>
                 <div>
@@ -768,7 +768,7 @@ export const AdminCustomersPage: React.FC = () => {
                     placeholder="e.g. Kapoor"
                     value={addFormData.lastName}
                     onChange={(e) => setAddFormData({ ...addFormData, lastName: e.target.value })}
-                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:border-[#D81B60] focus:outline-none"
+                    className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:border-[#0A5C44] focus:outline-none"
                   />
                 </div>
               </div>
@@ -790,8 +790,8 @@ export const AdminCustomersPage: React.FC = () => {
                       : emailValidation?.isValid
                       ? 'border-emerald-400 bg-emerald-50/30 text-emerald-900 focus:border-emerald-500'
                       : addFormData.email && !emailValidation?.isValid
-                      ? 'border-rose-300 bg-rose-50/30 text-rose-900 focus:border-[#D81B60]'
-                      : 'border-stone-200 focus:border-[#D81B60]'
+                      ? 'border-emerald-300 bg-emerald-50/30 text-rose-900 focus:border-[#0A5C44]'
+                      : 'border-stone-200 focus:border-[#0A5C44]'
                   }`}
                 />
                 {/* Real-time Email Helper & Spelling Warning */}
@@ -802,7 +802,7 @@ export const AdminCustomersPage: React.FC = () => {
                   </div>
                 )}
                 {!emailValidation?.isTypo && addFormData.email && !emailValidation?.isValid && (
-                  <p className="mt-1 text-[11px] text-rose-600 flex items-center gap-1">
+                  <p className="mt-1 text-[11px] text-emerald-700 flex items-center gap-1">
                     <AlertCircle className="w-3 h-3 shrink-0" />
                     <span>Email must end with @gmail.com (e.g. name@gmail.com)</span>
                   </p>
@@ -847,7 +847,7 @@ export const AdminCustomersPage: React.FC = () => {
                         ? 'border-emerald-400 bg-emerald-50/30 text-emerald-900 focus:border-emerald-500'
                         : addFormData.phone.length > 0
                         ? 'border-amber-300 bg-amber-50/30 text-amber-900 focus:border-amber-400'
-                        : 'border-stone-200 focus:border-[#D81B60]'
+                        : 'border-stone-200 focus:border-[#0A5C44]'
                     }`}
                   />
                 </div>
@@ -873,7 +873,7 @@ export const AdminCustomersPage: React.FC = () => {
                   required
                   value={addFormData.password}
                   onChange={(e) => setAddFormData({ ...addFormData, password: e.target.value })}
-                  className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:border-[#D81B60] focus:outline-none"
+                  className="w-full px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:border-[#0A5C44] focus:outline-none"
                 />
               </div>
 
@@ -888,7 +888,7 @@ export const AdminCustomersPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={addingCustomer}
-                  className="inline-flex items-center px-5 py-2 rounded-full text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer"
+                  className="inline-flex items-center px-5 py-2 rounded-full text-xs font-semibold bg-[#0A5C44] text-white hover:bg-[#064E3B] transition shadow-xs cursor-pointer"
                 >
                   {addingCustomer ? 'Creating...' : 'Create Customer'}
                 </button>
@@ -912,7 +912,7 @@ export const AdminCustomersPage: React.FC = () => {
 
             {/* Modal Header */}
             <div className="flex items-center space-x-4 pb-5 border-b border-stone-100">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D81B60] to-[#D4AF37] flex items-center justify-center font-serif text-xl font-bold text-white shadow-md">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#0A5C44] to-[#D4AF37] flex items-center justify-center font-serif text-xl font-bold text-white shadow-md">
                 {`${selectedCustomer.firstName?.[0] || 'C'}${selectedCustomer.lastName?.[0] || ''}`}
               </div>
               <div>
@@ -936,7 +936,7 @@ export const AdminCustomersPage: React.FC = () => {
               </div>
               <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-100">
                 <span className="text-[11px] text-stone-500">Total Purchases</span>
-                <p className="font-bold text-xs text-[#D81B60] mt-0.5 font-mono">
+                <p className="font-bold text-xs text-[#0A5C44] mt-0.5 font-mono">
                   {formatRupees(selectedCustomer.totalSpent)} ({selectedCustomer.totalOrders} orders)
                 </p>
               </div>
@@ -951,7 +951,7 @@ export const AdminCustomersPage: React.FC = () => {
                 </span>
                 <a
                   href={`mailto:${selectedCustomer.email}`}
-                  className="font-mono font-medium text-stone-800 hover:text-[#D81B60] underline"
+                  className="font-mono font-medium text-stone-800 hover:text-[#0A5C44] underline"
                 >
                   {selectedCustomer.email}
                 </a>
@@ -964,7 +964,7 @@ export const AdminCustomersPage: React.FC = () => {
                 </span>
                 <a
                   href={`tel:${selectedCustomer.phone}`}
-                  className="font-mono font-medium text-stone-800 hover:text-[#D81B60]"
+                  className="font-mono font-medium text-stone-800 hover:text-[#0A5C44]"
                 >
                   {selectedCustomer.phone}
                 </a>
@@ -985,7 +985,7 @@ export const AdminCustomersPage: React.FC = () => {
             <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
               <button
                 onClick={(e) => handleDeleteCustomer(e, selectedCustomer.id, `${selectedCustomer.firstName} ${selectedCustomer.lastName}`)}
-                className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 transition cursor-pointer"
+                className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition cursor-pointer"
               >
                 <Trash2 className="w-3.5 h-3.5 mr-1.5" />
                 <span>Delete Customer</span>
@@ -1000,7 +1000,7 @@ export const AdminCustomersPage: React.FC = () => {
                 </button>
                 <a
                   href={`mailto:${selectedCustomer.email}?subject=Exclusive Atelier Invitation from SareeAura`}
-                  className="inline-flex items-center px-5 py-2 rounded-full text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer"
+                  className="inline-flex items-center px-5 py-2 rounded-full text-xs font-semibold bg-[#0A5C44] text-white hover:bg-[#064E3B] transition shadow-xs cursor-pointer"
                 >
                   <Mail className="w-3.5 h-3.5 mr-1.5" />
                   <span>Contact Customer</span>

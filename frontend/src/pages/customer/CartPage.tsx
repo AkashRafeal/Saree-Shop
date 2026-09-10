@@ -93,7 +93,7 @@ export const CartPage: React.FC = () => {
         <div>
           <Link
             to="/shop"
-            className="inline-flex items-center space-x-2 bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs py-3.5 px-8 rounded-full uppercase tracking-wider transition shadow-lg shadow-[#D81B60]/20"
+            className="inline-flex items-center space-x-2 bg-[#0A5C44] hover:bg-[#064E3B] text-white font-bold text-xs py-3.5 px-8 rounded-full uppercase tracking-wider transition shadow-lg shadow-[#0A5C44]/20 cursor-pointer"
           >
             <span>Explore Sarees</span>
             <ArrowRight className="w-4 h-4" />
@@ -108,7 +108,7 @@ export const CartPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       <div>
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-maroon">
+        <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
           Review Selection
         </span>
         <h1 className="font-serif text-3xl font-bold text-stone-900 mt-1">
@@ -131,7 +131,7 @@ export const CartPage: React.FC = () => {
                   <div>
                     <Link
                       to={`/product/${item.productId}`}
-                      className="font-serif text-sm font-semibold text-stone-900 hover:text-brand-maroon transition line-clamp-1"
+                      className="font-serif text-sm font-semibold text-stone-900 hover:text-[#0A5C44] transition line-clamp-1"
                     >
                       {item.productName}
                     </Link>
@@ -147,14 +147,14 @@ export const CartPage: React.FC = () => {
                   <div className="flex items-center border border-stone-300 rounded-full overflow-hidden bg-white px-1">
                     <button
                       onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                      className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 hover:text-[#D81B60] hover:bg-stone-100 text-xs font-bold transition cursor-pointer"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 hover:text-[#0A5C44] hover:bg-emerald-50 text-xs font-bold transition cursor-pointer"
                     >
                       -
                     </button>
                     <span className="px-2.5 py-1 text-xs font-bold text-stone-800">{item.quantity}</span>
                     <button
                       onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                      className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 hover:text-[#D81B60] hover:bg-stone-100 text-xs font-bold transition cursor-pointer"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 hover:text-[#0A5C44] hover:bg-emerald-50 text-xs font-bold transition cursor-pointer"
                     >
                       +
                     </button>
@@ -168,7 +168,7 @@ export const CartPage: React.FC = () => {
                   {/* Remove Item */}
                   <button
                     onClick={() => handleRemoveItem(item.id)}
-                    className="text-stone-400 hover:text-red-600 transition p-1"
+                    className="text-stone-400 hover:text-red-600 transition p-1 cursor-pointer"
                     aria-label="Remove item"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -179,7 +179,7 @@ export const CartPage: React.FC = () => {
           </div>
 
           <div className="flex justify-between items-center text-xs">
-            <Link to="/shop" className="text-brand-maroon font-semibold hover:underline">
+            <Link to="/shop" className="text-[#0A5C44] font-semibold hover:underline">
               ← Continue Exploring Sarees
             </Link>
           </div>
@@ -203,11 +203,11 @@ export const CartPage: React.FC = () => {
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                   placeholder="e.g. WELCOME10, FESTIVE20"
-                  className="w-full text-xs pl-4 pr-20 py-2.5 rounded-full border border-stone-300 focus:outline-none focus:border-[#D81B60] uppercase font-semibold transition shadow-inner"
+                  className="w-full text-xs pl-4 pr-20 py-2.5 rounded-full border border-stone-300 focus:outline-none focus:border-[#0A5C44] uppercase font-semibold transition shadow-inner"
                 />
                 <button
                   type="submit"
-                  className="absolute right-1 bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs px-4 py-1.5 rounded-full transition shadow-sm cursor-pointer"
+                  className="absolute right-1 bg-[#0A5C44] hover:bg-[#064E3B] text-white font-bold text-xs px-4 py-1.5 rounded-full transition shadow-sm cursor-pointer"
                 >
                   Apply
                 </button>
@@ -249,7 +249,7 @@ export const CartPage: React.FC = () => {
 
             <button
               onClick={() => navigate('/checkout', { state: { appliedCoupon, discountAmount } })}
-              className="w-full bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs py-4 rounded-full shadow-lg shadow-[#D81B60]/25 hover:shadow-xl hover:shadow-[#D81B60]/35 transition uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+              className="w-full bg-[#0A5C44] hover:bg-[#064E3B] text-white font-bold text-xs py-4 rounded-full shadow-lg shadow-[#0A5C44]/25 hover:shadow-xl hover:shadow-[#0A5C44]/35 transition uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
             >
               <span>Proceed To Checkout</span>
               <ArrowRight className="w-4 h-4" />

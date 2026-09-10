@@ -276,7 +276,7 @@ export const ShopPage: React.FC = () => {
       {/* Title & Custom Theme Dropdown Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200 pb-6">
         <div>
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-[#D81B60]">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-[#D4AF37]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{pageHeader.badge}</span>
           </span>
@@ -291,7 +291,7 @@ export const ShopPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Custom Brand-Themed Sort Dropdown (No Windows Blue) */}
+        {/* Custom Brand-Themed Sort Dropdown */}
         <div className="relative self-start sm:self-center" ref={dropdownRef}>
           <div className="flex items-center space-x-2">
             <span className="text-xs text-stone-500 font-medium hidden sm:inline">
@@ -300,11 +300,11 @@ export const ShopPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-              className="inline-flex items-center justify-between gap-3 bg-white border border-stone-300 hover:border-[#D81B60] focus:border-[#D81B60] text-stone-800 text-xs font-semibold rounded-full px-5 py-2.5 shadow-sm transition-all focus:outline-none min-w-[170px]"
+              className="inline-flex items-center justify-between gap-3 bg-white border border-stone-300 hover:border-[#0A5C44] focus:border-[#0A5C44] text-stone-800 text-xs font-semibold rounded-full px-5 py-2.5 shadow-sm transition-all focus:outline-none min-w-[170px] cursor-pointer"
             >
               <span>{currentSortLabel}</span>
               <ChevronDown
-                className={`w-4 h-4 text-[#D81B60] transition-transform duration-200 ${
+                className={`w-4 h-4 text-[#0A5C44] transition-transform duration-200 ${
                   sortDropdownOpen ? 'rotate-180' : ''
                 }`}
               />
@@ -324,10 +324,10 @@ export const ShopPage: React.FC = () => {
                       updateParam('sort', opt.value);
                       setSortDropdownOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs text-left transition-colors ${
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs text-left transition-colors cursor-pointer ${
                       isSelected
-                        ? 'bg-[#D81B60] text-white font-semibold'
-                        : 'text-stone-700 hover:bg-rose-50 hover:text-[#D81B60]'
+                        ? 'bg-[#0A5C44] text-white font-semibold'
+                        : 'text-stone-700 hover:bg-emerald-50 hover:text-[#0A5C44]'
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -371,7 +371,7 @@ export const ShopPage: React.FC = () => {
             <button
               disabled={page === 0}
               onClick={() => updateParam('page', (page - 1).toString())}
-              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#D81B60] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
+              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#0A5C44] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -381,7 +381,7 @@ export const ShopPage: React.FC = () => {
             <button
               disabled={page >= totalPages - 1}
               onClick={() => updateParam('page', (page + 1).toString())}
-              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#D81B60] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
+              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#0A5C44] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

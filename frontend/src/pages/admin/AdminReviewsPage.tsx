@@ -196,7 +196,7 @@ export const AdminReviewsPage: React.FC = () => {
             <p className="font-sans text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight tabular-nums mt-1">{totalReviews}</p>
             <p className="text-[11px] text-stone-500 font-medium mt-0.5">Across all saree weaves</p>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-rose-50 text-[#D81B60] flex items-center justify-center">
+          <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#0A5C44] flex items-center justify-center">
             <MessageSquare className="w-6 h-6" />
           </div>
         </div>
@@ -234,7 +234,7 @@ export const AdminReviewsPage: React.FC = () => {
               placeholder="Search patron, product, or review..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60] transition"
+              className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] transition"
             />
           </div>
 
@@ -302,7 +302,7 @@ export const AdminReviewsPage: React.FC = () => {
                     </span>
                   </div>
 
-                  <p className="text-xs font-semibold text-[#D81B60]">{r.productTitle}</p>
+                  <p className="text-xs font-semibold text-[#0A5C44]">{r.productTitle}</p>
 
                   <div className="flex items-center gap-1 text-[#D4AF37]">
                     {[...Array(5)].map((_, i) => (

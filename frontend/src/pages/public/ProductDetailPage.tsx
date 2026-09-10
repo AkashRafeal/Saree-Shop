@@ -126,7 +126,7 @@ export const ProductDetailPage: React.FC = () => {
         <p className="text-stone-500 text-xs sm:text-sm">The selected saree drape may have been archived or unlisted.</p>
         <Link
           to="/shop"
-          className="inline-flex items-center gap-2 bg-[#D81B60] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full hover:bg-[#C2185B] transition shadow-md"
+          className="inline-flex items-center gap-2 bg-[#0A5C44] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full hover:bg-[#064E3B] transition shadow-md cursor-pointer"
         >
           <span>Return to All Sarees</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -159,7 +159,7 @@ export const ProductDetailPage: React.FC = () => {
 
             {/* Discount Badge */}
             {product.discountPercentage > 0 && (
-              <span className="absolute top-5 left-5 bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white font-extrabold text-[11px] px-3.5 py-1.5 rounded-full shadow-lg shadow-[#D81B60]/30 tracking-widest uppercase">
+              <span className="absolute top-5 left-5 bg-gradient-to-r from-[#0A5C44] to-[#064E3B] text-white font-extrabold text-[11px] px-3.5 py-1.5 rounded-full shadow-lg shadow-[#064E3B]/30 tracking-widest uppercase">
                 {product.discountPercentage}% OFF
               </span>
             )}
@@ -168,7 +168,7 @@ export const ProductDetailPage: React.FC = () => {
             <button
               onClick={handleShare}
               title="Copy share link"
-              className="absolute top-5 right-5 w-9 h-9 bg-white/90 hover:bg-white text-stone-700 hover:text-[#D81B60] rounded-full flex items-center justify-center shadow-md backdrop-blur-xs transition"
+              className="absolute top-5 right-5 w-9 h-9 bg-white/90 hover:bg-white text-stone-700 hover:text-[#0A5C44] rounded-full flex items-center justify-center shadow-md backdrop-blur-xs transition cursor-pointer"
             >
               <Share2 className="w-4 h-4" />
             </button>
@@ -189,10 +189,10 @@ export const ProductDetailPage: React.FC = () => {
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(img)}
-                    className={`relative w-20 h-24 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
+                    className={`relative w-20 h-24 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
                       isSelected
-                        ? 'border-[#D81B60] ring-2 ring-[#D81B60]/30 shadow-md scale-102'
-                        : 'border-stone-200 hover:border-rose-300 opacity-70 hover:opacity-100'
+                        ? 'border-[#0A5C44] ring-2 ring-[#0A5C44]/30 shadow-md scale-102'
+                        : 'border-stone-200 hover:border-emerald-300 opacity-70 hover:opacity-100'
                     }`}
                   >
                     <img
@@ -219,7 +219,7 @@ export const ProductDetailPage: React.FC = () => {
             {/* Category Pill & Rating */}
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
-                <span className="bg-rose-50 text-[#D81B60] border border-rose-200/80 font-bold px-3 py-1 rounded-full text-[10px] tracking-widest uppercase">
+                <span className="bg-emerald-50 text-[#0A5C44] border border-emerald-200/80 font-bold px-3 py-1 rounded-full text-[10px] tracking-widest uppercase">
                   {product.categoryName}
                 </span>
                 <span className="text-[11px] text-stone-400 font-medium">SKU: {product.sku}</span>
@@ -238,7 +238,7 @@ export const ProductDetailPage: React.FC = () => {
           </div>
 
           {/* Luxury Pricing Box (Theme Matched) */}
-          <div className="p-5 rounded-2xl bg-[#FFF9FA] border border-rose-100/90 shadow-xs space-y-2">
+          <div className="p-5 rounded-2xl bg-[#F4F9F6] border border-emerald-100/90 shadow-xs space-y-2">
             <div className="flex flex-wrap items-baseline gap-3">
               <span className="text-3xl sm:text-4xl font-extrabold text-stone-900 font-sans tracking-tight tabular-nums">
                 ₹{product.sellingPrice.toLocaleString('en-IN')}
@@ -248,7 +248,7 @@ export const ProductDetailPage: React.FC = () => {
                   <span className="text-base font-medium text-stone-400 line-through font-sans tabular-nums">
                     ₹{product.mrp.toLocaleString('en-IN')}
                   </span>
-                  <span className="text-xs font-bold text-[#D81B60] bg-rose-100/80 border border-rose-200 px-3 py-1 rounded-full font-sans tabular-nums">
+                  <span className="text-xs font-bold text-[#0A5C44] bg-emerald-100/80 border border-emerald-200 px-3 py-1 rounded-full font-sans tabular-nums">
                     Save ₹{discountAmount.toLocaleString('en-IN')} ({product.discountPercentage}% OFF)
                   </span>
                 </>
@@ -257,7 +257,7 @@ export const ProductDetailPage: React.FC = () => {
             <p className="text-[11px] text-stone-500 flex items-center gap-1.5">
               <span>Inclusive of all taxes</span>
               <span>•</span>
-              <span className="text-[#D81B60] font-semibold">Silk Mark Certified Authentic Pure Silk</span>
+              <span className="text-[#0A5C44] font-semibold">Silk Mark Certified Authentic Pure Silk</span>
             </p>
           </div>
 
@@ -296,7 +296,7 @@ export const ProductDetailPage: React.FC = () => {
               <div className="flex items-center border border-stone-200 rounded-full bg-white overflow-hidden shadow-xs px-1">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-8 h-8 rounded-full text-stone-600 hover:text-[#D81B60] hover:bg-rose-50/60 font-bold transition text-sm flex items-center justify-center cursor-pointer"
+                  className="w-8 h-8 rounded-full text-stone-600 hover:text-[#0A5C44] hover:bg-emerald-50/60 font-bold transition text-sm flex items-center justify-center cursor-pointer"
                   aria-label="Decrease quantity"
                 >
                   -
@@ -304,7 +304,7 @@ export const ProductDetailPage: React.FC = () => {
                 <span className="px-3 py-1.5 text-xs font-bold text-stone-900 select-none">{quantity}</span>
                 <button
                   onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-                  className="w-8 h-8 rounded-full text-stone-600 hover:text-[#D81B60] hover:bg-rose-50/60 font-bold transition text-sm flex items-center justify-center cursor-pointer"
+                  className="w-8 h-8 rounded-full text-stone-600 hover:text-[#0A5C44] hover:bg-emerald-50/60 font-bold transition text-sm flex items-center justify-center cursor-pointer"
                   aria-label="Increase quantity"
                 >
                   +
@@ -330,7 +330,7 @@ export const ProductDetailPage: React.FC = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock || adding}
-                className="flex-1 bg-[#D81B60] hover:bg-[#C2185B] disabled:bg-stone-300 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-[#D81B60]/25 hover:shadow-xl hover:shadow-[#D81B60]/35 transition-all duration-200 flex items-center justify-center gap-2.5 text-xs uppercase tracking-wider active:scale-[0.99] cursor-pointer"
+                className="flex-1 bg-[#0A5C44] hover:bg-[#064E3B] disabled:bg-stone-300 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-[#0A5C44]/25 hover:shadow-xl hover:shadow-[#0A5C44]/35 transition-all duration-200 flex items-center justify-center gap-2.5 text-xs uppercase tracking-wider active:scale-[0.99] cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>{adding ? 'Adding to Bag...' : 'Add To Cart'}</span>
@@ -349,17 +349,17 @@ export const ProductDetailPage: React.FC = () => {
 
           {/* Value Propositions Trust Cards */}
           <div className="grid grid-cols-3 gap-3 pt-4 border-t border-stone-200 text-center">
-            <div className="p-3.5 bg-[#FFF9FA] border border-rose-100 rounded-2xl hover:border-rose-300 transition-colors">
-              <Award className="w-5 h-5 mx-auto text-[#D81B60] mb-1.5" />
+            <div className="p-3.5 bg-[#F4F9F6] border border-emerald-100 rounded-2xl hover:border-emerald-300 transition-colors">
+              <Award className="w-5 h-5 mx-auto text-[#0A5C44] mb-1.5" />
               <span className="text-[11px] font-bold text-stone-800 block">Silk Mark</span>
               <span className="text-[9.5px] text-stone-500">100% Pure Silk</span>
             </div>
-            <div className="p-3.5 bg-stone-50 border border-stone-200/80 rounded-2xl hover:border-rose-200 transition-colors">
+            <div className="p-3.5 bg-stone-50 border border-stone-200/80 rounded-2xl hover:border-emerald-200 transition-colors">
               <Truck className="w-5 h-5 mx-auto text-[#D4AF37] mb-1.5" />
               <span className="text-[11px] font-bold text-stone-800 block">Free Shipping</span>
               <span className="text-[9.5px] text-stone-500">Insured Delivery</span>
             </div>
-            <div className="p-3.5 bg-stone-50 border border-stone-200/80 rounded-2xl hover:border-rose-200 transition-colors">
+            <div className="p-3.5 bg-stone-50 border border-stone-200/80 rounded-2xl hover:border-emerald-200 transition-colors">
               <ShieldCheck className="w-5 h-5 mx-auto text-emerald-600 mb-1.5" />
               <span className="text-[11px] font-bold text-stone-800 block">Authentic</span>
               <span className="text-[9.5px] text-stone-500">Master Weavers</span>
@@ -410,7 +410,7 @@ export const ProductDetailPage: React.FC = () => {
                 value={reviewTitle}
                 onChange={(e) => setReviewTitle(e.target.value)}
                 placeholder="e.g. Majestic drape and vibrant gold zari borders!"
-                className="w-full text-xs p-3.5 rounded-xl border border-stone-200 bg-stone-50/50 focus:bg-white focus:outline-none focus:border-[#D81B60] focus:ring-2 focus:ring-[#D81B60]/20 transition"
+                className="w-full text-xs p-3.5 rounded-xl border border-stone-200 bg-stone-50/50 focus:bg-white focus:outline-none focus:border-[#0A5C44] focus:ring-2 focus:ring-[#0A5C44]/20 transition"
               />
             </div>
 
@@ -422,14 +422,14 @@ export const ProductDetailPage: React.FC = () => {
                 required
                 rows={3}
                 placeholder="Share your thoughts on the silk texture, authenticity, and overall drape experience..."
-                className="w-full text-xs p-3.5 rounded-xl border border-stone-200 bg-stone-50/50 focus:bg-white focus:outline-none focus:border-[#D81B60] focus:ring-2 focus:ring-[#D81B60]/20 transition"
+                className="w-full text-xs p-3.5 rounded-xl border border-stone-200 bg-stone-50/50 focus:bg-white focus:outline-none focus:border-[#0A5C44] focus:ring-2 focus:ring-[#0A5C44]/20 transition"
               />
             </div>
 
             <button
               type="submit"
               disabled={submittingReview}
-              className="bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs py-3.5 px-8 rounded-full shadow-md shadow-[#D81B60]/20 transition uppercase tracking-wider cursor-pointer"
+              className="bg-[#0A5C44] hover:bg-[#064E3B] text-white font-bold text-xs py-3.5 px-8 rounded-full shadow-md shadow-[#0A5C44]/20 transition uppercase tracking-wider cursor-pointer"
             >
               {submittingReview ? 'Submitting...' : 'Post Review'}
             </button>
@@ -474,7 +474,7 @@ export const ProductDetailPage: React.FC = () => {
         <section className="space-y-6 pt-12 border-t border-stone-200">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#D81B60] block mb-1">
+              <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#D4AF37] block mb-1">
                 HANDCRAFTED EDITS
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
@@ -483,7 +483,7 @@ export const ProductDetailPage: React.FC = () => {
             </div>
             <Link
               to="/shop"
-              className="text-xs font-semibold text-[#D81B60] hover:text-[#C2185B] flex items-center gap-1 transition"
+              className="text-xs font-semibold text-[#0A5C44] hover:text-[#064E3B] flex items-center gap-1 transition"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />

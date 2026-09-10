@@ -4,16 +4,16 @@
 
 @layer base {
   :root {
-    --color-maroon: 107 29 47;
+    --color-maroon: 10 92 68;
     --color-gold: 212 175 55;
-    --color-emerald: 14 77 62;
-    --color-silk: 250 246 240;
-    --color-charcoal: 26 26 26;
+    --color-emerald: 6 78 59;
+    --color-silk: 250 248 245;
+    --color-charcoal: 20 30 26;
   }
 
   body {
-    background-color: #FAF6F0;
-    color: #1A1A1A;
+    background-color: #FAF8F5;
+    color: #141E1A;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -29,7 +29,10 @@
     @apply rounded-full inline-flex items-center justify-center font-semibold transition-all duration-200 shadow-sm active:scale-[0.98];
   }
   .btn-pill-primary {
-    @apply rounded-full inline-flex items-center justify-center font-semibold text-white bg-[#D81B60] hover:bg-[#C2185B] shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98];
+    @apply rounded-full inline-flex items-center justify-center font-semibold text-white bg-[#0A5C44] hover:bg-[#064E3B] shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98];
+  }
+  .btn-pill-gold {
+    @apply rounded-full inline-flex items-center justify-center font-semibold text-stone-900 bg-gradient-to-r from-[#DFB742] via-[#D4AF37] to-[#C99E2A] hover:brightness-105 shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98];
   }
   .btn-pill-dark {
     @apply rounded-full inline-flex items-center justify-center font-semibold text-white bg-stone-900 hover:bg-stone-950 shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98];

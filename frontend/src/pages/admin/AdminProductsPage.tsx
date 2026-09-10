@@ -358,7 +358,7 @@ export const AdminProductsPage: React.FC = () => {
             <h2 className="font-serif text-2xl font-bold text-stone-900 tracking-tight">
               Saree Catalog Management
             </h2>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D81B60]"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0A5C44]"></span>
           </div>
           <p className="text-xs text-stone-500 mt-1">
             Maintain luxury inventory, pricing, fabric descriptions, and stock quantities
@@ -367,7 +367,7 @@ export const AdminProductsPage: React.FC = () => {
 
         <button
           onClick={handleOpenAddModal}
-          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#D81B60] hover:bg-[#C2185B] text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-md shadow-[#D81B60]/25 hover:shadow-lg active:scale-95 cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0A5C44] hover:bg-[#064E3B] text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-md shadow-[#0A5C44]/25 hover:shadow-lg active:scale-95 cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Saree</span>
@@ -383,12 +383,12 @@ export const AdminProductsPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by title, SKU, or category..."
-            className="w-full pl-10 pr-4 py-2 bg-[#FAF8F5] border border-stone-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60] focus:bg-white transition-all"
+            className="w-full pl-10 pr-4 py-2 bg-[#FAF8F5] border border-stone-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white transition-all"
           />
         </div>
 
         <span className="text-xs text-stone-500 font-medium">
-          Showing <strong className="text-[#D81B60]">{filteredProducts.length}</strong> of {products.length} Sarees
+          Showing <strong className="text-[#0A5C44]">{filteredProducts.length}</strong> of {products.length} Sarees
         </span>
       </div>
 
@@ -396,7 +396,7 @@ export const AdminProductsPage: React.FC = () => {
       <div className="bg-white rounded-2xl border border-stone-200/80 shadow-xs overflow-hidden">
         {loading ? (
           <div className="py-20 text-center">
-            <div className="w-10 h-10 border-4 border-[#D81B60] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+            <div className="w-10 h-10 border-4 border-[#0A5C44] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
             <p className="text-xs text-stone-500">Loading catalog...</p>
           </div>
         ) : filteredProducts.length === 0 ? (
@@ -434,7 +434,7 @@ export const AdminProductsPage: React.FC = () => {
                             className="w-11 h-14 object-cover rounded-lg border border-stone-200/80 shadow-xs shrink-0 bg-stone-100"
                           />
                           <div className="max-w-xs">
-                            <span className="font-serif font-bold text-stone-900 line-clamp-1 hover:text-[#D81B60] transition-colors">
+                            <span className="font-serif font-bold text-stone-900 line-clamp-1 hover:text-[#0A5C44] transition-colors">
                               {product.name}
                             </span>
                             <span className="text-[10px] text-stone-400 font-medium">
@@ -470,7 +470,7 @@ export const AdminProductsPage: React.FC = () => {
                         <div className="flex items-center justify-end space-x-1">
                           <button
                             onClick={() => handleOpenEditModal(product)}
-                            className="p-2 text-stone-400 hover:text-[#D81B60] hover:bg-[#FFF0F5] rounded-xl transition cursor-pointer"
+                            className="p-2 text-stone-400 hover:text-[#0A5C44] hover:bg-[#ECFDF5] rounded-xl transition cursor-pointer"
                             title="Edit Saree Details"
                           >
                             <Edit className="w-4 h-4" />
@@ -532,7 +532,7 @@ export const AdminProductsPage: React.FC = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Royal Emerald Green Kanchipuram Brocade Saree"
-                  className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                  className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                 />
               </div>
 
@@ -547,7 +547,7 @@ export const AdminProductsPage: React.FC = () => {
                     value={formData.sku}
                     onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
                     placeholder="e.g. SA-KNC-999"
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs font-mono focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs font-mono focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                   />
                 </div>
 
@@ -560,15 +560,15 @@ export const AdminProductsPage: React.FC = () => {
                     onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
                     className={`w-full flex items-center justify-between px-3 py-2 bg-white border rounded-xl text-xs transition-all cursor-pointer text-left ${
                       categoryDropdownOpen
-                        ? 'border-[#D81B60] ring-2 ring-[#D81B60]/20'
-                        : 'border-stone-300 hover:border-[#D81B60]'
+                        ? 'border-[#0A5C44] ring-2 ring-[#0A5C44]/20'
+                        : 'border-stone-300 hover:border-[#0A5C44]'
                     }`}
                   >
                     <span className="text-stone-800 font-medium truncate">
                       {categories.find((c) => String(c.id) === String(formData.categoryId))?.name || 'Select Category'}
                     </span>
                     <ChevronDown
-                      className={`w-4 h-4 text-[#D81B60] shrink-0 ml-1 transition-transform duration-200 ${
+                      className={`w-4 h-4 text-[#0A5C44] shrink-0 ml-1 transition-transform duration-200 ${
                         categoryDropdownOpen ? 'rotate-180' : ''
                       }`}
                     />
@@ -589,8 +589,8 @@ export const AdminProductsPage: React.FC = () => {
                             }}
                             className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs text-left transition-colors cursor-pointer ${
                               isSelected
-                                ? 'bg-[#D81B60] text-white font-semibold'
-                                : 'text-stone-700 hover:bg-[#FFF0F5] hover:text-[#D81B60]'
+                                ? 'bg-[#0A5C44] text-white font-semibold'
+                                : 'text-stone-700 hover:bg-[#ECFDF5] hover:text-[#0A5C44]'
                             }`}
                           >
                             <span className="truncate">{cat.name}</span>
@@ -615,7 +615,7 @@ export const AdminProductsPage: React.FC = () => {
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                     placeholder="28500"
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                   />
                 </div>
 
@@ -628,7 +628,7 @@ export const AdminProductsPage: React.FC = () => {
                     value={formData.discountPrice}
                     onChange={(e) => setFormData({ ...formData, discountPrice: e.target.value })}
                     placeholder="25000"
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                   />
                 </div>
 
@@ -642,7 +642,7 @@ export const AdminProductsPage: React.FC = () => {
                     min="1"
                     value={formData.stockQuantity}
                     onChange={(e) => setFormData({ ...formData, stockQuantity: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                   />
                 </div>
               </div>
@@ -657,7 +657,7 @@ export const AdminProductsPage: React.FC = () => {
                     value={formData.fabric}
                     onChange={(e) => setFormData({ ...formData, fabric: e.target.value })}
                     placeholder="Pure Mulberry Silk"
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                   />
                 </div>
 
@@ -670,7 +670,7 @@ export const AdminProductsPage: React.FC = () => {
                     value={formData.zariType}
                     onChange={(e) => setFormData({ ...formData, zariType: e.target.value })}
                     placeholder="Pure Silver/Gold Zari"
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                   />
                 </div>
 
@@ -683,7 +683,7 @@ export const AdminProductsPage: React.FC = () => {
                     value={formData.occasion}
                     onChange={(e) => setFormData({ ...formData, occasion: e.target.value })}
                     placeholder="Bridal / Festive"
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                   />
                 </div>
               </div>
@@ -698,7 +698,7 @@ export const AdminProductsPage: React.FC = () => {
                     <span className={`text-[11px] font-extrabold px-2.5 py-0.5 rounded-full ${
                       images.length >= MAX_IMAGES 
                         ? 'bg-amber-100 text-amber-800 border border-amber-300' 
-                        : 'bg-[#D81B60]/10 text-[#D81B60] border border-[#D81B60]/20'
+                        : 'bg-[#0A5C44]/10 text-[#0A5C44] border border-[#0A5C44]/20'
                     }`}>
                       {images.length} / {MAX_IMAGES} {images.length >= MAX_IMAGES ? '(Max 10)' : ''}
                     </span>
@@ -711,7 +711,7 @@ export const AdminProductsPage: React.FC = () => {
                       onClick={() => setImageInputMode('local')}
                       className={`px-3 py-1 rounded-md transition cursor-pointer flex items-center gap-1.5 ${
                         imageInputMode === 'local'
-                          ? 'bg-[#D81B60] text-white shadow-xs'
+                          ? 'bg-[#0A5C44] text-white shadow-xs'
                           : 'text-stone-500 hover:text-stone-800'
                       }`}
                     >
@@ -723,7 +723,7 @@ export const AdminProductsPage: React.FC = () => {
                       onClick={() => setImageInputMode('url')}
                       className={`px-3 py-1 rounded-md transition cursor-pointer flex items-center gap-1.5 ${
                         imageInputMode === 'url'
-                          ? 'bg-[#D81B60] text-white shadow-xs'
+                          ? 'bg-[#0A5C44] text-white shadow-xs'
                           : 'text-stone-500 hover:text-stone-800'
                       }`}
                     >
@@ -747,7 +747,7 @@ export const AdminProductsPage: React.FC = () => {
                       <label
                         onDragOver={(e) => e.preventDefault()}
                         onDrop={handleDrop}
-                        className="border-2 border-dashed border-stone-300 hover:border-[#D81B60] bg-white hover:bg-[#FFF0F5]/30 rounded-xl p-5 flex flex-col items-center justify-center cursor-pointer transition-all duration-200 group"
+                        className="border-2 border-dashed border-stone-300 hover:border-[#0A5C44] bg-white hover:bg-[#ECFDF5]/30 rounded-xl p-5 flex flex-col items-center justify-center cursor-pointer transition-all duration-200 group"
                       >
                         <input
                           ref={fileInputRef}
@@ -758,10 +758,10 @@ export const AdminProductsPage: React.FC = () => {
                           disabled={uploadingImage}
                           className="hidden"
                         />
-                        <div className="w-10 h-10 rounded-xl bg-[#D81B60]/10 text-[#D81B60] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                        <div className="w-10 h-10 rounded-xl bg-[#0A5C44]/10 text-[#0A5C44] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
                           <ImagePlus className="w-5 h-5" />
                         </div>
-                        <span className="text-xs font-bold text-stone-800 group-hover:text-[#D81B60] transition-colors">
+                        <span className="text-xs font-bold text-stone-800 group-hover:text-[#0A5C44] transition-colors">
                           {uploadingImage ? 'Uploading selected images...' : 'Click to select multiple images or drag here'}
                         </span>
                         <span className="text-[10px] text-stone-400 mt-0.5">
@@ -793,13 +793,13 @@ export const AdminProductsPage: React.FC = () => {
                             ? "Limit reached (10/10 images)"
                             : "Paste image URL (e.g. https://images.unsplash.com/...)"
                         }
-                        className="flex-1 px-3 py-2 bg-white border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60] disabled:bg-stone-100"
+                        className="flex-1 px-3 py-2 bg-white border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] disabled:bg-stone-100"
                       />
                       <button
                         type="button"
                         onClick={() => handleAddWebUrl()}
                         disabled={!webUrlInput.trim() || images.length >= MAX_IMAGES}
-                        className="px-4 py-2 bg-[#D81B60] hover:bg-[#C2185B] disabled:bg-stone-300 text-white rounded-xl text-xs font-bold transition cursor-pointer shrink-0"
+                        className="px-4 py-2 bg-[#0A5C44] hover:bg-[#064E3B] disabled:bg-stone-300 text-white rounded-xl text-xs font-bold transition cursor-pointer shrink-0"
                       >
                         + Add Image
                       </button>
@@ -812,8 +812,8 @@ export const AdminProductsPage: React.FC = () => {
 
                 {/* Uploading progress indicator */}
                 {uploadingImage && (
-                  <div className="flex items-center gap-2 text-xs text-[#D81B60] font-semibold py-1">
-                    <div className="w-3.5 h-3.5 border-2 border-[#D81B60] border-t-transparent rounded-full animate-spin" />
+                  <div className="flex items-center gap-2 text-xs text-[#0A5C44] font-semibold py-1">
+                    <div className="w-3.5 h-3.5 border-2 border-[#0A5C44] border-t-transparent rounded-full animate-spin" />
                     <span>Processing & uploading images to server...</span>
                   </div>
                 )}
@@ -836,7 +836,7 @@ export const AdminProductsPage: React.FC = () => {
                           key={idx}
                           className={`group relative rounded-xl overflow-hidden border bg-white shadow-xs transition-all ${
                             idx === 0
-                              ? 'border-[#D81B60] ring-2 ring-[#D81B60]/20'
+                              ? 'border-[#0A5C44] ring-2 ring-[#0A5C44]/20'
                               : 'border-stone-200 hover:border-stone-300'
                           }`}
                         >
@@ -854,7 +854,7 @@ export const AdminProductsPage: React.FC = () => {
                             {/* Badge */}
                             <div className="absolute top-1.5 left-1.5 flex items-center gap-1">
                               {idx === 0 ? (
-                                <span className="bg-[#D81B60] text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-xs flex items-center gap-0.5">
+                                <span className="bg-[#0A5C44] text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-xs flex items-center gap-0.5">
                                   <Star className="w-2.5 h-2.5 fill-white" />
                                   Cover
                                 </span>
@@ -904,7 +904,7 @@ export const AdminProductsPage: React.FC = () => {
                                 <button
                                   type="button"
                                   onClick={() => handleMakePrimary(idx)}
-                                  className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-white/90 hover:bg-[#D81B60] hover:text-white text-stone-800 transition cursor-pointer"
+                                  className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-white/90 hover:bg-[#0A5C44] hover:text-white text-stone-800 transition cursor-pointer"
                                 >
                                   Set Cover
                                 </button>
@@ -927,7 +927,7 @@ export const AdminProductsPage: React.FC = () => {
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Describe the weave, pallu motifs, border craftsmanship, and drape..."
-                  className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60]"
+                  className="w-full px-3 py-2 border border-stone-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
                 />
               </div>
 
@@ -942,7 +942,7 @@ export const AdminProductsPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-7 py-2.5 bg-[#D81B60] text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#C2185B] shadow-md shadow-[#D81B60]/25 transition disabled:opacity-50 cursor-pointer"
+                  className="px-7 py-2.5 bg-[#0A5C44] text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#064E3B] shadow-md shadow-[#0A5C44]/25 transition disabled:opacity-50 cursor-pointer"
                 >
                   {submitting 
                     ? (editingProductId ? 'Updating Saree...' : 'Adding Saree...') 

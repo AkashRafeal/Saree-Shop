@@ -77,7 +77,7 @@ export const AdminOrdersPage: React.FC = () => {
             onClick={() => setFilterStatus(st)}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
               filterStatus === st
-                ? 'bg-[#D81B60] text-white shadow-md shadow-[#D81B60]/25'
+                ? 'bg-[#0A5C44] text-white shadow-md shadow-[#0A5C44]/25'
                 : 'bg-white text-stone-600 hover:bg-[#FAF8F5] border border-stone-200'
             }`}
           >
@@ -90,7 +90,7 @@ export const AdminOrdersPage: React.FC = () => {
       <div className="bg-white rounded-2xl border border-stone-200/80 shadow-xs overflow-hidden">
         {loading ? (
           <div className="py-20 text-center">
-            <div className="w-10 h-10 border-4 border-[#D81B60] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+            <div className="w-10 h-10 border-4 border-[#0A5C44] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
             <p className="text-xs text-stone-500">Loading orders...</p>
           </div>
         ) : filteredOrders.length === 0 ? (
@@ -150,7 +150,7 @@ export const AdminOrdersPage: React.FC = () => {
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <span className="font-bold text-[#D81B60] text-sm">
+                      <span className="font-bold text-[#0A5C44] text-sm">
                         ₹{Number(order.totalAmount).toLocaleString('en-IN')}
                       </span>
                     </td>
@@ -180,7 +180,7 @@ export const AdminOrdersPage: React.FC = () => {
                         value={order.status}
                         disabled={updatingId === order.id || order.status === 'CANCELLED'}
                         onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                        className="text-xs bg-[#FAF8F5] border border-stone-200 rounded-full px-3.5 py-1.5 font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60] disabled:opacity-50 cursor-pointer"
+                        className="text-xs bg-[#FAF8F5] border border-stone-200 rounded-full px-3.5 py-1.5 font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] disabled:opacity-50 cursor-pointer"
                       >
                         <option value="PENDING">PENDING</option>
                         <option value="CONFIRMED">CONFIRMED</option>

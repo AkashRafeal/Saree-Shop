@@ -73,7 +73,7 @@ export const OrderDetailPage: React.FC = () => {
           <p className="text-stone-500 text-sm mt-2 mb-6">{error || 'The requested order could not be located.'}</p>
           <Link
             to="/my-orders"
-            className="inline-flex items-center px-4 py-2 bg-brand-maroon text-white text-xs font-semibold rounded-lg hover:bg-brand-maroon-dark transition"
+            className="inline-flex items-center px-5 py-2.5 bg-[#0A5C44] text-white text-xs font-semibold rounded-full hover:bg-[#064E3B] transition shadow-md shadow-[#0A5C44]/20"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Orders

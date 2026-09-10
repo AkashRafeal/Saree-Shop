@@ -29,7 +29,7 @@ const MONTHLY_DATA: MonthlyReportRow[] = [
 ];
 
 const CATEGORY_SHARE = [
-  { name: 'Kanchipuram Silk', share: 45, revenue: '₹1,038,000', color: 'bg-[#D81B60]' },
+  { name: 'Kanchipuram Silk', share: 45, revenue: '₹1,038,000', color: 'bg-[#0A5C44]' },
   { name: 'Banarasi Brocade', share: 25, revenue: '₹576,000', color: 'bg-[#D4AF37]' },
   { name: 'Chanderi Handloom', share: 15, revenue: '₹345,000', color: 'bg-emerald-600' },
   { name: 'Tussar & Kalamkari', share: 10, revenue: '₹230,000', color: 'bg-purple-600' },
@@ -70,7 +70,7 @@ export const AdminReportsPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#D81B60]"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0A5C44]"></span>
             <span className="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold">
               Executive Intelligence
             </span>
@@ -88,7 +88,7 @@ export const AdminReportsPage: React.FC = () => {
             <select
               value={selectedPeriod}
               onChange={(e) => setSelectedPeriod(e.target.value)}
-              className="pl-3 pr-8 py-2.5 text-xs font-semibold rounded-xl border border-stone-200 bg-white text-stone-700 focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 cursor-pointer"
+              className="pl-3 pr-8 py-2.5 text-xs font-semibold rounded-xl border border-stone-200 bg-white text-stone-700 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 cursor-pointer"
             >
               <option value="FY 2026-27">Fiscal Year 2026-27</option>
               <option value="Q2 2026">Q2 2026 (Jul - Sep)</option>
@@ -129,7 +129,7 @@ export const AdminReportsPage: React.FC = () => {
               <ArrowUpRight className="w-3 h-3" /> +19.4% vs previous cycle
             </p>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-rose-50 text-[#D81B60] flex items-center justify-center">
+          <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#0A5C44] flex items-center justify-center">
             <IndianRupee className="w-6 h-6" />
           </div>
         </div>
@@ -178,7 +178,7 @@ export const AdminReportsPage: React.FC = () => {
             <h3 className="font-serif text-base font-bold text-stone-900">
               Revenue by Weave Heritage
             </h3>
-            <span className="text-[11px] font-semibold text-[#D81B60] bg-rose-50 px-2 py-0.5 rounded-full">
+            <span className="text-[11px] font-semibold text-[#0A5C44] bg-emerald-50 px-2 py-0.5 rounded-full">
               Volume Distribution
             </span>
           </div>
@@ -205,7 +205,7 @@ export const AdminReportsPage: React.FC = () => {
         <div className="lg:col-span-2 bg-white rounded-2xl border border-stone-200/80 shadow-xs overflow-hidden flex flex-col justify-between">
           <div className="p-5 border-b border-stone-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <FileSpreadsheet className="w-4 h-4 text-[#D81B60]" />
+              <FileSpreadsheet className="w-4 h-4 text-[#0A5C44]" />
               <h3 className="font-serif text-base font-bold text-stone-900">
                 Monthly Commercial Performance
               </h3>

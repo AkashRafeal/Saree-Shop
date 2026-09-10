@@ -46,10 +46,23 @@ export const LoginPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FAF8F5] flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900 tracking-tight">
+        <Link to="/" className="inline-flex flex-col items-center mb-4 group">
+          <img 
+            src="/images/nivi_couture_logo.png" 
+            alt="NiVi Couture" 
+            className="w-16 h-16 rounded-full object-cover shadow-md border border-[#D4AF37]/50 ring-2 ring-[#D4AF37]/30 group-hover:scale-105 transition-transform"
+          />
+          <span className="font-serif text-2xl font-bold tracking-widest text-stone-900 uppercase mt-2">
+            NiVi <span className="text-[#0A5C44]">Couture</span>
+          </span>
+          <span className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-bold">
+            Elegance Refined, Soul Defined
+          </span>
+        </Link>
+        <h2 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 tracking-tight">
           Welcome to Your Account
         </h2>
-        <p className="mt-2 text-xs sm:text-sm text-stone-500 font-sans">
+        <p className="mt-1 text-xs sm:text-sm text-stone-500 font-sans">
           Sign in to access your orders, saved wishlists, and VIP privileges
         </p>
       </div>
@@ -78,7 +91,7 @@ export const LoginPage: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60] focus:bg-white transition"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -92,9 +105,9 @@ export const LoginPage: React.FC = () => {
                   href="#forgot"
                   onClick={(e) => {
                     e.preventDefault();
-                    alert('Please reset your password or contact support at care@sareeaura.com');
+                    alert('Please reset your password or contact support at care@nivicouture.com');
                   }}
-                  className="text-xs text-[#D81B60] hover:underline font-medium"
+                  className="text-xs text-[#0A5C44] hover:underline font-medium"
                 >
                   Forgot password?
                 </a>
@@ -109,7 +122,7 @@ export const LoginPage: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60] focus:bg-white transition"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -117,9 +130,9 @@ export const LoginPage: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center py-3.5 px-6 rounded-full shadow-lg shadow-[#D81B60]/25 text-xs sm:text-sm font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#D81B60] to-[#C2185B] hover:from-[#C2185B] hover:to-[#AD1457] hover:shadow-xl active:scale-[0.99] disabled:opacity-50 transition-all duration-200 cursor-pointer"
+              className="w-full flex items-center justify-center py-3.5 px-6 rounded-full shadow-lg shadow-[#0A5C44]/25 text-xs sm:text-sm font-bold uppercase tracking-widest text-white bg-[#0A5C44] hover:bg-[#064E3B] hover:shadow-xl active:scale-[0.99] disabled:opacity-50 transition-all duration-200 cursor-pointer"
             >
-              {loading ? 'Authenticating...' : 'Sign In to SareeAura'}
+              {loading ? 'Authenticating...' : 'Sign In to NiVi Couture'}
               {!loading && <ArrowRight className="ml-2 w-4 h-4" />}
             </button>
           </form>
@@ -127,7 +140,7 @@ export const LoginPage: React.FC = () => {
           <div className="mt-8 pt-6 border-t border-stone-100 text-center">
             <p className="text-xs text-stone-500">
               Don't have an account yet?{' '}
-              <Link to="/register" className="font-semibold text-[#D81B60] hover:underline ml-1">
+              <Link to="/register" className="font-semibold text-[#0A5C44] hover:underline ml-1">
                 Create Account
               </Link>
             </p>

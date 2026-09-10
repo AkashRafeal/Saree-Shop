@@ -13,7 +13,7 @@ import {
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, Cell } from 'recharts';
 import api from '@/services/api';
 
-const COLORS = ['#D81B60', '#D4AF37', '#1E4D2B', '#E5DCC3', '#9C27B0', '#2C3E50'];
+const COLORS = ['#0A5C44', '#D4AF37', '#1E4D2B', '#E5DCC3', '#9C27B0', '#2C3E50'];
 
 export const AdminDashboardPage: React.FC = () => {
   const [stats, setStats] = useState<any>(null);
@@ -84,7 +84,7 @@ export const AdminDashboardPage: React.FC = () => {
   if (loading && !stats) {
     return (
       <div className="py-32 flex flex-col items-center justify-center">
-        <div className="w-10 h-10 border-4 border-[#D81B60] border-t-transparent rounded-full animate-spin mb-4" />
+        <div className="w-10 h-10 border-4 border-[#0A5C44] border-t-transparent rounded-full animate-spin mb-4" />
         <p className="text-xs font-semibold text-stone-500 uppercase tracking-widest font-sans">
           Loading executive dashboard...
         </p>
@@ -101,7 +101,7 @@ export const AdminDashboardPage: React.FC = () => {
             <h2 className="font-serif text-2xl font-bold text-stone-900 tracking-tight">
               Executive Commerce Dashboard
             </h2>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D81B60]"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0A5C44]"></span>
           </div>
           <p className="text-xs text-stone-500 mt-1 font-sans">
             Real-time performance analytics, revenue tracking, and inventory status
@@ -123,7 +123,7 @@ export const AdminDashboardPage: React.FC = () => {
               justRefreshed
                 ? 'bg-emerald-50 text-emerald-700 border border-emerald-300 shadow-emerald-100 scale-102'
                 : isRefreshing
-                ? 'bg-[#FFF0F5] text-[#D81B60] border border-[#D81B60]/30 shadow-[#D81B60]/10'
+                ? 'bg-[#ECFDF5] text-[#0A5C44] border border-[#0A5C44]/30 shadow-[#0A5C44]/10'
                 : 'bg-white border border-stone-200 text-stone-700 hover:bg-[#FAF8F5] hover:border-stone-300'
             }`}
           >
@@ -134,7 +134,7 @@ export const AdminDashboardPage: React.FC = () => {
               </>
             ) : (
               <>
-                <RefreshCw className={`w-3.5 h-3.5 mr-1.5 text-[#D81B60] ${isRefreshing ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`w-3.5 h-3.5 mr-1.5 text-[#0A5C44] ${isRefreshing ? 'animate-spin' : ''}`} />
                 <span>{isRefreshing ? 'Refreshing...' : 'Refresh Data'}</span>
               </>
             )}
@@ -145,15 +145,15 @@ export const AdminDashboardPage: React.FC = () => {
       {/* Top Animated Shimmer Progress Bar when refreshing */}
       {isRefreshing && (
         <div className="w-full h-1 bg-stone-100 rounded-full overflow-hidden relative -mt-4 animate-fadeIn">
-          <div className="absolute inset-y-0 left-0 right-0 bg-gradient-to-r from-transparent via-[#D81B60] to-transparent animate-pulse" />
+          <div className="absolute inset-y-0 left-0 right-0 bg-gradient-to-r from-transparent via-[#0A5C44] to-transparent animate-pulse" />
         </div>
       )}
 
       {/* Floating Centered Refresh Overlay Pill */}
       {isRefreshing && (
         <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none animate-fadeIn">
-          <div className="bg-white/95 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-2xl border border-[#D81B60]/20 flex items-center space-x-3 text-stone-900 text-sm font-semibold animate-scaleUp">
-            <RefreshCw className="w-4 h-4 text-[#D81B60] animate-spin" />
+          <div className="bg-white/95 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-2xl border border-[#0A5C44]/20 flex items-center space-x-3 text-stone-900 text-sm font-semibold animate-scaleUp">
+            <RefreshCw className="w-4 h-4 text-[#0A5C44] animate-spin" />
             <span>Refreshing Executive Dashboard...</span>
           </div>
         </div>
@@ -188,7 +188,7 @@ export const AdminDashboardPage: React.FC = () => {
               <TrendingUp className="w-3.5 h-3.5 mr-1 text-emerald-600" /> +18.4% vs last month
             </p>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-[#D81B60]/10 text-[#D81B60] flex items-center justify-center font-bold text-lg shadow-xs">
+          <div className="w-12 h-12 rounded-2xl bg-[#0A5C44]/10 text-[#0A5C44] flex items-center justify-center font-bold text-lg shadow-xs">
             <IndianRupee className="w-5 h-5" />
           </div>
         </div>
@@ -255,7 +255,7 @@ export const AdminDashboardPage: React.FC = () => {
               </h3>
               <p className="text-xs text-stone-500">Gross saree merchandise value</p>
             </div>
-            <span className="text-xs font-bold text-[#D81B60] bg-[#FFF0F5] border border-[#D81B60]/20 px-3 py-1 rounded-full">
+            <span className="text-xs font-bold text-[#0A5C44] bg-[#ECFDF5] border border-[#0A5C44]/20 px-3 py-1 rounded-full">
               FY 2026
             </span>
           </div>
@@ -275,7 +275,7 @@ export const AdminDashboardPage: React.FC = () => {
                   formatter={(value: any) => [`₹${Number(value).toLocaleString('en-IN')}`, 'Sales Revenue']}
                   contentStyle={{ borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
                 />
-                <Bar dataKey="sales" fill="#D81B60" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="sales" fill="#0A5C44" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -337,7 +337,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
           <Link
             to="/admin/orders"
-            className="text-xs font-bold text-[#D81B60] hover:text-[#C2185B] inline-flex items-center gap-1 transition"
+            className="text-xs font-bold text-[#0A5C44] hover:text-[#064E3B] inline-flex items-center gap-1 transition"
           >
             <span>View All Orders</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -371,7 +371,7 @@ export const AdminDashboardPage: React.FC = () => {
                     </td>
                     <td className="py-3 px-4 font-medium">{ord.shippingAddress?.fullName || 'Customer'}</td>
                     <td className="py-3 px-4">{ord.totalItems || ord.items?.length || 1} saree(s)</td>
-                    <td className="py-3 px-4 font-bold text-[#D81B60]">
+                    <td className="py-3 px-4 font-bold text-[#0A5C44]">
                       ₹{Number(ord.totalAmount).toLocaleString('en-IN')}
                     </td>
                     <td className="py-3 px-4">
@@ -382,7 +382,7 @@ export const AdminDashboardPage: React.FC = () => {
                     <td className="py-3 px-4 text-right">
                       <Link
                         to="/admin/orders"
-                        className="text-xs font-bold text-[#D81B60] hover:underline"
+                        className="text-xs font-bold text-[#0A5C44] hover:underline"
                       >
                         Manage
                       </Link>

@@ -116,11 +116,11 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      {/* Top Announcement Bar in Soft Rose Blush */}
-      <div className="bg-[#FFF1F2] border-b border-rose-100 text-[#D81B60] text-xs font-medium py-1.5 px-4 text-center tracking-wide flex items-center justify-center space-x-2">
-        <PhoneCall className="w-3 h-3 text-[#D81B60] shrink-0" />
+      {/* Top Announcement Bar in Silk Emerald & Gold Accent */}
+      <div className="bg-[#064E3B] text-[#F3E5AB] text-xs font-medium py-2 px-4 text-center tracking-wide flex items-center justify-center space-x-2 shadow-sm">
+        <PhoneCall className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
         <span className="truncate">
-          For styling assistance & custom bridal orders, WhatsApp us at <strong>+91 98765 43210</strong> • Insured Pan-India Express Delivery
+          For styling assistance & custom bridal orders, WhatsApp us at <strong className="text-white">+91 98765 43210</strong> • Insured Pan-India Express Delivery
         </span>
       </div>
 
@@ -131,31 +131,38 @@ export const Header: React.FC = () => {
             {/* Mobile Menu Trigger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-stone-700 hover:text-[#D81B60]"
+              className="lg:hidden p-2 text-stone-700 hover:text-[#0A5C44]"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
 
-            {/* Brand Logo */}
+            {/* Brand Logo & Name */}
             <Link
               to="/"
               onClick={() => {
                 setMobileMenuOpen(false);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              aria-label="SareeAura Home"
-              className="flex flex-col shrink-0 cursor-pointer select-none no-underline hover:no-underline border-none bg-transparent outline-none focus:outline-none focus-visible:outline-none transition-opacity duration-200 hover:opacity-90 group"
+              aria-label="NiVi Couture Home"
+              className="flex items-center gap-3 shrink-0 cursor-pointer select-none no-underline hover:no-underline border-none bg-transparent outline-none focus:outline-none focus-visible:outline-none transition-opacity duration-200 hover:opacity-95 group"
             >
-              <span className="font-serif text-2xl sm:text-3xl tracking-widest font-extrabold text-stone-900 uppercase leading-tight select-none">
-                Saree<span className="text-[#D81B60]">Aura</span>
-              </span>
-              <span className="text-[9px] tracking-[0.3em] uppercase text-stone-400 font-sans -mt-1 font-semibold select-none">
-                The Festive & Bridal Edit
-              </span>
+              <img 
+                src="/images/nivi_couture_logo.png" 
+                alt="NiVi Couture" 
+                className="w-12 h-12 rounded-full object-cover shadow-sm border border-[#D4AF37]/50 ring-2 ring-[#D4AF37]/20"
+              />
+              <div className="flex flex-col">
+                <span className="font-serif text-2xl sm:text-3xl tracking-widest font-extrabold text-stone-900 uppercase leading-tight select-none">
+                  NiVi <span className="text-[#0A5C44]">Couture</span>
+                </span>
+                <span className="text-[9px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans -mt-0.5 font-bold select-none">
+                  Elegance Refined, Soul Defined
+                </span>
+              </div>
             </Link>
 
-            {/* Center Pill Search Bar (Matching Reference Image) */}
+            {/* Center Pill Search Bar */}
             <div className="hidden sm:flex flex-1 max-w-lg mx-4">
               <form onSubmit={handleSearchSubmit} className="w-full relative flex items-center">
                 <Search className="w-4 h-4 text-stone-400 absolute left-4 pointer-events-none" />
@@ -164,11 +171,11 @@ export const Header: React.FC = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search for embroidery, Banarasi, Kanchipuram and more..."
-                  className="w-full pl-10 pr-20 py-2.5 bg-stone-100 hover:bg-stone-100/80 focus:bg-white border border-transparent focus:border-[#D81B60] rounded-full text-xs text-stone-800 placeholder-stone-400 focus:outline-none transition shadow-inner"
+                  className="w-full pl-10 pr-24 py-2.5 bg-stone-100 hover:bg-stone-100/80 focus:bg-white border border-transparent focus:border-[#0A5C44] rounded-full text-xs text-stone-800 placeholder-stone-400 focus:outline-none transition shadow-inner"
                 />
                 <button
                   type="submit"
-                  className="absolute right-1.5 bg-[#D81B60] hover:bg-[#C2185B] text-white text-[11px] font-semibold px-3 py-1.5 rounded-full transition shadow-sm"
+                  className="absolute right-1.5 bg-[#0A5C44] hover:bg-[#064E3B] text-white text-[11px] font-semibold px-4 py-1.5 rounded-full transition shadow-sm"
                 >
                   Search
                 </button>
@@ -181,11 +188,11 @@ export const Header: React.FC = () => {
               <Link
                 to="/wishlist"
                 aria-label="Wishlist"
-                className="text-stone-700 hover:text-[#D81B60] transition-colors relative"
+                className="text-stone-700 hover:text-[#0A5C44] transition-colors relative"
               >
                 <Heart className="w-5 h-5" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 bg-[#D81B60] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                  <span className="absolute -top-1.5 -right-2 bg-[#0A5C44] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-sm">
                     {wishlistCount}
                   </span>
                 )}
@@ -195,11 +202,11 @@ export const Header: React.FC = () => {
               <Link
                 to="/cart"
                 aria-label="Cart"
-                className="text-stone-700 hover:text-[#D81B60] transition-colors relative"
+                className="text-stone-700 hover:text-[#0A5C44] transition-colors relative"
               >
                 <ShoppingBag className="w-5 h-5" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 bg-[#D81B60] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                  <span className="absolute -top-1.5 -right-2 bg-[#0A5C44] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-sm">
                     {cartCount}
                   </span>
                 )}
@@ -211,9 +218,9 @@ export const Header: React.FC = () => {
                   <div>
                     <button
                       onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                      className="flex items-center space-x-1.5 text-stone-700 hover:text-[#D81B60] focus:outline-none"
+                      className="flex items-center space-x-1.5 text-stone-700 hover:text-[#0A5C44] focus:outline-none"
                     >
-                      <div className="w-8 h-8 rounded-full bg-rose-50 border border-rose-200 text-[#D81B60] font-serif text-sm font-bold flex items-center justify-center shadow-sm">
+                      <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 text-[#0A5C44] font-serif text-sm font-bold flex items-center justify-center shadow-sm">
                         {user?.firstName?.charAt(0) || 'U'}
                       </div>
                     </button>
@@ -231,7 +238,7 @@ export const Header: React.FC = () => {
                           <Link
                             to="/my-orders"
                             onClick={() => setUserDropdownOpen(false)}
-                            className="flex items-center px-4 py-2 text-stone-700 hover:bg-stone-50 hover:text-[#D81B60]"
+                            className="flex items-center px-4 py-2 text-stone-700 hover:bg-stone-50 hover:text-[#0A5C44]"
                           >
                             <ShoppingCart className="w-4 h-4 mr-2.5 text-stone-400" />
                             My Orders & Tracking
@@ -240,9 +247,9 @@ export const Header: React.FC = () => {
                             <Link
                               to="/admin"
                               onClick={() => setUserDropdownOpen(false)}
-                              className="flex items-center px-4 py-2 text-[#D81B60] font-semibold hover:bg-rose-50"
+                              className="flex items-center px-4 py-2 text-[#0A5C44] font-semibold hover:bg-emerald-50"
                             >
-                              <ShieldCheck className="w-4 h-4 mr-2.5 text-[#D81B60]" />
+                              <ShieldCheck className="w-4 h-4 mr-2.5 text-[#0A5C44]" />
                               Admin Portal
                             </Link>
                           )}
@@ -267,7 +274,7 @@ export const Header: React.FC = () => {
                 ) : (
                   <Link
                     to="/login"
-                    className="text-stone-700 hover:text-[#D81B60] transition-colors"
+                    className="text-stone-700 hover:text-[#0A5C44] transition-colors"
                     aria-label="Login"
                   >
                     <User className="w-5 h-5" />
@@ -287,13 +294,13 @@ export const Header: React.FC = () => {
                   to={item.href}
                   className={`relative transition-all uppercase py-1.5 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 select-none ${
                     active
-                      ? 'text-[#D81B60] font-bold'
-                      : 'text-stone-700 font-semibold hover:text-[#D81B60]'
+                      ? 'text-[#0A5C44] font-bold'
+                      : 'text-stone-700 font-semibold hover:text-[#0A5C44]'
                   }`}
                 >
                   <span>{item.name}</span>
                   {active && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-[#D81B60] rounded-full shadow-sm shadow-[#D81B60]/30" />
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-[#0A5C44] rounded-full shadow-sm shadow-[#0A5C44]/30" />
                   )}
                 </Link>
               );
@@ -327,15 +334,15 @@ export const Header: React.FC = () => {
                   }}
                   className={`flex items-center justify-between py-2 px-3 rounded-lg text-xs font-semibold tracking-wider transition outline-none focus:outline-none focus-visible:outline-none focus:ring-0 select-none ${
                     active
-                      ? 'bg-rose-50 text-[#D81B60] font-bold border-l-4 border-[#D81B60]'
-                      : 'text-stone-800 hover:bg-stone-50 hover:text-[#D81B60]'
+                      ? 'bg-emerald-50 text-[#0A5C44] font-bold border-l-4 border-[#0A5C44]'
+                      : 'text-stone-800 hover:bg-stone-50 hover:text-[#0A5C44]'
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    {link.name === 'HOME' && <Home className={`w-4 h-4 ${active ? 'text-[#D81B60]' : 'text-stone-400'}`} />}
+                    {link.name === 'HOME' && <Home className={`w-4 h-4 ${active ? 'text-[#0A5C44]' : 'text-stone-400'}`} />}
                     <span>{link.name}</span>
                   </div>
-                  {active && <span className="w-1.5 h-1.5 rounded-full bg-[#D81B60]" />}
+                  {active && <span className="w-1.5 h-1.5 rounded-full bg-[#0A5C44]" />}
                 </Link>
               );
             })}
@@ -344,7 +351,7 @@ export const Header: React.FC = () => {
               <Link
                 to="/admin"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 text-xs font-bold text-[#D81B60]"
+                className="block py-2 text-xs font-bold text-[#0A5C44]"
               >
                 Admin Portal
               </Link>
