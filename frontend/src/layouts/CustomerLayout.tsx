@@ -29,7 +29,7 @@ export const CustomerLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-stone-800 antialiased">
+    <div className="min-h-screen flex flex-col bg-white text-stone-800 antialiased overflow-x-clip w-full">
       {/* Main Website Header */}
       <Header />
 
