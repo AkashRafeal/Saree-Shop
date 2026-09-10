@@ -1,18 +1,18 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 spring:
   application:
     name: sareeaura-backend
   datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:sareeaura_db}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:root}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL:${DB_URL:jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:sareeaura_db}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}}
+    username: ${SPRING_DATASOURCE_USERNAME:${DB_USER:root}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:root}}
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
+    open-in-view: false
     properties:
       hibernate:
         format_sql: false
@@ -31,7 +31,7 @@ app:
     key-id: ${RAZORPAY_KEY_ID:rzp_test_sareeshop2026}
     key-secret: ${RAZORPAY_KEY_SECRET:secret_sareeshop_key_2026}
     currency: INR
-    company-name: SareeShop Luxury Indian Silks
+    company-name: NiVi Couture Luxury Indian Silks
   cloudinary:
     cloud-name: ${CLOUDINARY_CLOUD_NAME:demo}
     api-key: ${CLOUDINARY_API_KEY:1234567890}
