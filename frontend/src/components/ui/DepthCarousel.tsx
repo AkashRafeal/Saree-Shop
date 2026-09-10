@@ -206,107 +206,6 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
 
   const navigateBy = useCallback((step: number) => setFocus(focusRef.current + step, true), [setFocus]);
 
-  useEffect(() => {
-    if (activeIndex !== undefined && activeIndex !== focusRef.current) {
-      setFocus(activeIndex, true);
-    }
-  }, [activeIndex, setFocus]);
-
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    const ro = new ResizeObserver(entries => {
-      const w = entries[0].contentRect.width;
-      const cfg = cfgRef.current;
-      const needed = cfg.cardWidth + Math.abs(cfg.spread) * 2 + 120;
-      scaleRef.current = clamp(w / needed, 0.4, 1);
-      layout(posRef.current);
-    });
-    ro.observe(root);
-    return () => ro.disconnect();
-  }, [layout]);
-
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      const cfg = cfgRef.current;
-      if (cfg.count < 2) return;
-      e.preventDefault();
-      tweenRef.current?.kill();
-      const raw = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      const delta = e.deltaMode === 1 ? raw * 24 : raw;
-      const step = clamp(delta / (cfg.cardWidth * 0.9), -0.6, 0.6);
-      posRef.current += step;
-      layout(posRef.current);
-      if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
-      wheelTimerRef.current = setTimeout(() => setFocus(Math.round(posRef.current), true), 130);
-    };
-    el.addEventListener('wheel', onWheel, { passive: false });
-    return () => {
-      el.removeEventListener('wheel', onWheel);
-      if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
-    };
-  }, [layout, setFocus]);
-
-  const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
-    const cfg = cfgRef.current;
-    if (cfg.count < 2) return;
-    tweenRef.current?.kill();
-    dragRef.current = {
-      x: e.clientX,
-      startPos: posRef.current,
-      lastX: e.clientX,
-      lastT: performance.now(),
-      v: 0,
-      moved: false,
-      id: e.pointerId
-    };
-  }, []);
-
-  const onPointerMove = useCallback(
-    (e: React.PointerEvent<HTMLDivElement>) => {
-      const drag = dragRef.current;
-      if (!drag) return;
-      const cfg = cfgRef.current;
-      const stepPx = Math.max(cfg.cardWidth * 0.55 * scaleRef.current, 40);
-      const dx = e.clientX - drag.x;
-      if (!drag.moved && Math.abs(dx) > 4) {
-        drag.moved = true;
-        rootRef.current?.setPointerCapture(drag.id);
-      }
-      if (!drag.moved) return;
-      const now = performance.now();
-      const dt = Math.max(now - drag.lastT, 1);
-      drag.v = (e.clientX - drag.lastX) / dt;
-      drag.lastX = e.clientX;
-      drag.lastT = now;
-      posRef.current = drag.startPos - dx / stepPx;
-      layout(posRef.current);
-    },
-    [layout]
-  );
-
-  const onPointerEnd = useCallback(() => {
-    const drag = dragRef.current;
-    if (!drag) return;
-    dragRef.current = null;
-    if (!drag.moved) return;
-    const cfg = cfgRef.current;
-    const stepPx = Math.max(cfg.cardWidth * 0.55 * scaleRef.current, 40);
-    const projected = posRef.current - (drag.v * 180) / stepPx;
-    setFocus(Math.round(projected), true);
-  }, [setFocus]);
-
-  const onCardClick = useCallback(
-    (index: number) => {
-      if (dragRef.current?.moved) return;
-      resetAutoplayTimer();
-      setFocus(index, true);
-    },
-    [setFocus]
-  );
-
   const navigateByRef = useRef(navigateBy);
   navigateByRef.current = navigateBy;
 
@@ -327,7 +226,7 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
     }, delay);
   }, [autoplay, autoplayDelay, count]);
 
-  // Rock-solid 5-second auto-advance timer
+  // Rock-solid auto-advance timer
   useEffect(() => {
     resetAutoplayTimer();
     return () => {
@@ -336,6 +235,151 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
       }
     };
   }, [resetAutoplayTimer]);
+
+  useEffect(() => {
+    if (activeIndex !== undefined && activeIndex !== focusRef.current) {
+      setFocus(activeIndex, true);
+    }
+  }, [activeIndex, setFocus]);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const ro = new ResizeObserver(entries => {
+      const w = entries[0].contentRect.width;
+      const cfg = cfgRef.current;
+      const needed = cfg.cardWidth + Math.abs(cfg.spread) * 2 + 120;
+      scaleRef.current = clamp(w / needed, 0.4, 1);
+      layout(posRef.current);
+    });
+    ro.observe(root);
+    return () => ro.disconnect();
+  }, [layout]);
+
+  // Wheel navigation debounced to advance strictly 1 card at a time
+  const lastWheelTimeRef = useRef(0);
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      const cfg = cfgRef.current;
+      if (cfg.count < 2) return;
+      e.preventDefault();
+      const now = performance.now();
+      // Cooldown of 400ms between wheel triggers so rapid scrolls change only 1 card
+      if (now - lastWheelTimeRef.current < 400) return;
+      const raw = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (Math.abs(raw) < 15) return;
+      lastWheelTimeRef.current = now;
+      const step = raw > 0 ? 1 : -1;
+      resetAutoplayTimer();
+      navigateBy(step);
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      el.removeEventListener('wheel', onWheel);
+    };
+  }, [navigateBy, resetAutoplayTimer]);
+
+  const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const cfg = cfgRef.current;
+    if (cfg.count < 2) return;
+    tweenRef.current?.kill();
+    resetAutoplayTimer();
+    dragRef.current = {
+      startX: e.clientX,
+      startPos: posRef.current,
+      startFocus: focusRef.current,
+      lastX: e.clientX,
+      lastT: performance.now(),
+      v: 0,
+      moved: false,
+      id: e.pointerId
+    };
+  }, [resetAutoplayTimer]);
+
+  const onPointerMove = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      const drag = dragRef.current;
+      if (!drag) return;
+      const cfg = cfgRef.current;
+      const stepPx = Math.max(cfg.cardWidth * 0.65 * scaleRef.current, 50);
+      const dx = e.clientX - drag.startX;
+
+      if (!drag.moved && Math.abs(dx) > 5) {
+        drag.moved = true;
+        try {
+          rootRef.current?.setPointerCapture(drag.id);
+        } catch (_) {}
+      }
+      if (!drag.moved) return;
+
+      const now = performance.now();
+      const dt = Math.max(now - drag.lastT, 1);
+      drag.v = (e.clientX - drag.lastX) / dt;
+      drag.lastX = e.clientX;
+      drag.lastT = now;
+
+      // Restrict drag offset to at most 1 card with gentle elastic resistance
+      const normalizedOffset = -dx / stepPx;
+      const maxDrag = 1.0;
+      let clampedOffset = normalizedOffset;
+      if (Math.abs(normalizedOffset) > maxDrag) {
+        const excess = Math.abs(normalizedOffset) - maxDrag;
+        const damped = maxDrag + Math.tanh(excess * 0.4) * 0.15;
+        clampedOffset = Math.sign(normalizedOffset) * damped;
+      }
+
+      posRef.current = drag.startFocus + clampedOffset;
+      layout(posRef.current);
+    },
+    [layout]
+  );
+
+  const onPointerEnd = useCallback((e?: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    dragRef.current = null;
+
+    if (drag.id !== undefined && rootRef.current?.hasPointerCapture(drag.id)) {
+      try {
+        rootRef.current?.releasePointerCapture(drag.id);
+      } catch (_) {}
+    }
+
+    if (!drag.moved) {
+      // Not dragged, stay on current focus
+      return;
+    }
+
+    resetAutoplayTimer();
+
+    const endX = e ? e.clientX : drag.lastX;
+    const totalDx = endX - drag.startX;
+    const velocity = drag.v;
+
+    // ALWAYS change by AT MOST 1 card (-1, 0, or +1), no matter how fast user swiped!
+    let step = 0;
+    // Drag/flick left (cursor moved left) -> advance to next card (+1)
+    // Drag/flick right (cursor moved right) -> advance to previous card (-1)
+    if (totalDx < -30 || velocity < -0.2) {
+      step = 1;
+    } else if (totalDx > 30 || velocity > 0.2) {
+      step = -1;
+    }
+
+    // Advance strictly by at most 1 card from startFocus
+    setFocus(drag.startFocus + step, true);
+  }, [setFocus, resetAutoplayTimer]);
+
+  const onCardClick = useCallback(
+    (index: number) => {
+      if (dragRef.current?.moved) return;
+      resetAutoplayTimer();
+      setFocus(index, true);
+    },
+    [setFocus, resetAutoplayTimer]
+  );
 
   // Debounced keyboard navigation ensuring EXACTLY 1 card changes per keypress
   const lastNavTimeRef = useRef(0);
