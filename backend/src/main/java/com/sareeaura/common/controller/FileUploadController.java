@@ -1,6 +1,8 @@
 package com.sareeaura.common.controller;
 
 import com.sareeaura.common.api.ApiResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +20,24 @@ import java.util.UUID;
 @RequestMapping("/api/upload")
 public class FileUploadController {
 
+    private static final Logger log = LoggerFactory.getLogger(FileUploadController.class);
     private final Path fileStorageLocation;
 
     public FileUploadController() {
-        this.fileStorageLocation = Paths.get("uploads").toAbsolutePath().normalize();
+        Path location;
         try {
-            Files.createDirectories(this.fileStorageLocation);
+            location = Paths.get("uploads").toAbsolutePath().normalize();
+            Files.createDirectories(location);
+            log.info("Initialized local uploads directory at: {}", location);
         } catch (Exception ex) {
-            throw new RuntimeException("Could not create the upload directory: " + ex.getMessage(), ex);
+            log.warn("Could not create uploads in current dir, falling back to temp directory: {}", ex.getMessage());
+            location = Paths.get(System.getProperty("java.io.tmpdir"), "uploads").toAbsolutePath().normalize();
+            try {
+                Files.createDirectories(location);
+                log.info("Initialized fallback uploads directory at: {}", location);
+            } catch (Exception ignored) {}
         }
+        this.fileStorageLocation = location;
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -52,7 +63,7 @@ public class FileUploadController {
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-            String fileUrl = "http://localhost:8080/uploads/" + fileName;
+            String fileUrl = "/uploads/" + fileName;
             return ResponseEntity.ok(ApiResponse.success("Image uploaded successfully", fileUrl));
         } catch (IOException ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

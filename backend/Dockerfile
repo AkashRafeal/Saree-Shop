@@ -14,8 +14,12 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-# Security: run as non-root user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# Create app directory, uploads folder, and appuser with ownership
+RUN addgroup -S appgroup && \
+    adduser -S appuser -G appgroup && \
+    mkdir -p /app/uploads && \
+    chown -R appuser:appgroup /app
+
 USER appuser
 
 # Copy jar from builder
