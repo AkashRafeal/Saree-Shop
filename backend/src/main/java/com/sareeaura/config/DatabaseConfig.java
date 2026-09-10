@@ -25,45 +25,64 @@ public class DatabaseConfig {
             @Value("${spring.datasource.password:}") String defaultPassword
     ) {
         HikariConfig config = new HikariConfig();
-        String databaseUrlEnv = System.getenv("DATABASE_URL");
 
-        if (databaseUrlEnv != null && !databaseUrlEnv.isBlank() && 
-            (databaseUrlEnv.startsWith("postgres://") || databaseUrlEnv.startsWith("postgresql://"))) {
+        // 1. Check all possible URL sources
+        String rawUrl = System.getenv("DATABASE_URL");
+        if (rawUrl == null || rawUrl.isBlank()) {
+            rawUrl = System.getenv("SPRING_DATASOURCE_URL");
+        }
+        if (rawUrl == null || rawUrl.isBlank()) {
+            rawUrl = defaultUrl;
+        }
+
+        log.info("Resolving DataSource. Raw URL pattern: {}", sanitizeUrl(rawUrl));
+
+        String finalJdbcUrl = rawUrl;
+        String finalUsername = defaultUsername;
+        String finalPassword = defaultPassword;
+
+        // Handle raw postgres:// or postgresql:// from Render/Railway/Heroku
+        if (rawUrl != null && (rawUrl.startsWith("postgres://") || rawUrl.startsWith("postgresql://"))) {
             try {
-                log.info("Render DATABASE_URL detected. Converting to PostgreSQL JDBC configuration.");
-                String cleanUrl = databaseUrlEnv.replaceFirst("^postgres(ql)?://", "http://");
+                String cleanUrl = rawUrl.replaceFirst("^postgres(ql)?://", "http://");
                 URI uri = new URI(cleanUrl);
 
                 String host = uri.getHost();
                 int port = uri.getPort() == -1 ? 5432 : uri.getPort();
                 String path = uri.getPath();
-                String userInfo = uri.getUserInfo();
-
-                String dbUser = defaultUsername;
-                String dbPass = defaultPassword;
-
-                if (userInfo != null && userInfo.contains(":")) {
-                    String[] parts = userInfo.split(":", 2);
-                    dbUser = parts[0];
-                    dbPass = parts[1];
+                if (path != null && !path.startsWith("/")) {
+                    path = "/" + path;
                 }
 
-                String jdbcUrl = "jdbc:postgresql://" + host + ":" + port + path;
-                config.setJdbcUrl(jdbcUrl);
-                config.setUsername(dbUser);
-                config.setPassword(dbPass);
+                String userInfo = uri.getUserInfo();
+                if (userInfo != null && userInfo.contains(":")) {
+                    String[] parts = userInfo.split(":", 2);
+                    finalUsername = parts[0];
+                    finalPassword = parts[1];
+                }
+
+                finalJdbcUrl = "jdbc:postgresql://" + host + ":" + port + (path != null ? path : "/sareeaura_db");
                 config.setDriverClassName("org.postgresql.Driver");
-                log.info("Configured PostgreSQL DataSource for host: {}, database: {}", host, path);
+                log.info("Successfully converted to PostgreSQL JDBC URL: {}:{}", host, port);
             } catch (Exception e) {
-                log.error("Failed to parse DATABASE_URL, falling back to default configuration: {}", e.getMessage());
-                config.setJdbcUrl(defaultUrl);
-                config.setUsername(defaultUsername);
-                config.setPassword(defaultPassword);
+                log.error("Failed to parse URI, falling back to prefixing jdbc: {}", e.getMessage());
+                finalJdbcUrl = "jdbc:" + rawUrl;
+                config.setDriverClassName("org.postgresql.Driver");
             }
-        } else {
-            config.setJdbcUrl(defaultUrl);
-            config.setUsername(defaultUsername);
-            config.setPassword(defaultPassword);
+        } else if (rawUrl != null && rawUrl.startsWith("jdbc:postgresql:")) {
+            finalJdbcUrl = rawUrl;
+            config.setDriverClassName("org.postgresql.Driver");
+        } else if (rawUrl != null && rawUrl.startsWith("jdbc:mysql:")) {
+            finalJdbcUrl = rawUrl;
+            config.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        }
+
+        config.setJdbcUrl(finalJdbcUrl);
+        if (finalUsername != null && !finalUsername.isBlank()) {
+            config.setUsername(finalUsername);
+        }
+        if (finalPassword != null && !finalPassword.isBlank()) {
+            config.setPassword(finalPassword);
         }
 
         config.setMaximumPoolSize(10);
@@ -73,5 +92,10 @@ public class DatabaseConfig {
         config.setMaxLifetime(1800000);
 
         return new HikariDataSource(config);
+    }
+
+    private String sanitizeUrl(String url) {
+        if (url == null) return "null";
+        return url.replaceAll(":[^:@/]+@", ":***@");
     }
 }
