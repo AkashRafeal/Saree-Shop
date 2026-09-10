@@ -93,7 +93,7 @@ export const CartPage: React.FC = () => {
         <div>
           <Link
             to="/shop"
-            className="inline-flex items-center space-x-2 bg-brand-maroon hover:bg-brand-maroon-dark text-white font-bold text-xs py-3.5 px-8 rounded-xl uppercase tracking-wider transition shadow-lg"
+            className="inline-flex items-center space-x-2 bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs py-3.5 px-8 rounded-full uppercase tracking-wider transition shadow-lg shadow-[#D81B60]/20"
           >
             <span>Explore Sarees</span>
             <ArrowRight className="w-4 h-4" />
@@ -144,17 +144,17 @@ export const CartPage: React.FC = () => {
 
                 <div className="flex items-center justify-between w-full sm:w-auto space-x-6">
                   {/* Quantity Controls */}
-                  <div className="flex items-center border border-stone-300 rounded-lg overflow-hidden bg-white">
+                  <div className="flex items-center border border-stone-300 rounded-full overflow-hidden bg-white px-1">
                     <button
                       onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                      className="px-2.5 py-1 text-stone-600 hover:bg-stone-100 text-xs font-bold"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 hover:text-[#D81B60] hover:bg-stone-100 text-xs font-bold transition cursor-pointer"
                     >
                       -
                     </button>
-                    <span className="px-3 py-1 text-xs font-bold text-stone-800">{item.quantity}</span>
+                    <span className="px-2.5 py-1 text-xs font-bold text-stone-800">{item.quantity}</span>
                     <button
                       onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                      className="px-2.5 py-1 text-stone-600 hover:bg-stone-100 text-xs font-bold"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-stone-600 hover:text-[#D81B60] hover:bg-stone-100 text-xs font-bold transition cursor-pointer"
                     >
                       +
                     </button>
@@ -197,17 +197,17 @@ export const CartPage: React.FC = () => {
               <label className="text-[11px] font-bold uppercase tracking-wider text-stone-500 block">
                 Promotional Coupon
               </label>
-              <div className="flex gap-2">
+              <div className="relative flex items-center">
                 <input
                   type="text"
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                   placeholder="e.g. WELCOME10, FESTIVE20"
-                  className="flex-1 text-xs p-2.5 rounded-lg border border-stone-300 focus:outline-none focus:border-brand-maroon uppercase font-semibold"
+                  className="w-full text-xs pl-4 pr-20 py-2.5 rounded-full border border-stone-300 focus:outline-none focus:border-[#D81B60] uppercase font-semibold transition shadow-inner"
                 />
                 <button
                   type="submit"
-                  className="bg-stone-900 hover:bg-brand-maroon text-white font-bold text-xs px-4 py-2.5 rounded-lg transition"
+                  className="absolute right-1 bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs px-4 py-1.5 rounded-full transition shadow-sm cursor-pointer"
                 >
                   Apply
                 </button>
@@ -249,7 +249,7 @@ export const CartPage: React.FC = () => {
 
             <button
               onClick={() => navigate('/checkout', { state: { appliedCoupon, discountAmount } })}
-              className="w-full bg-brand-maroon hover:bg-brand-maroon-dark text-white font-bold text-xs py-4 rounded-xl shadow-lg transition uppercase tracking-wider flex items-center justify-center gap-2"
+              className="w-full bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs py-4 rounded-full shadow-lg shadow-[#D81B60]/25 hover:shadow-xl hover:shadow-[#D81B60]/35 transition uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
             >
               <span>Proceed To Checkout</span>
               <ArrowRight className="w-4 h-4" />

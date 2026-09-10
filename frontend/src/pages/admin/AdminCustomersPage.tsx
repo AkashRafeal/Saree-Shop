@@ -393,7 +393,7 @@ export const AdminCustomersPage: React.FC = () => {
 
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer active:scale-95"
+            className="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer active:scale-95"
           >
             <UserPlus className="w-3.5 h-3.5 mr-1.5" />
             <span>Add Customer</span>
@@ -402,7 +402,7 @@ export const AdminCustomersPage: React.FC = () => {
           <button
             onClick={() => fetchCustomers(true)}
             disabled={isRefreshing || loading}
-            className={`inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold transition-all duration-300 shadow-xs cursor-pointer active:scale-95 ${
+            className={`inline-flex items-center px-5 py-2.5 rounded-full text-xs font-semibold transition-all duration-300 shadow-xs cursor-pointer active:scale-95 ${
               justRefreshed
                 ? 'bg-emerald-50 text-emerald-700 border border-emerald-300'
                 : isRefreshing
@@ -881,14 +881,14 @@ export const AdminCustomersPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer"
+                  className="px-5 py-2 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={addingCustomer}
-                  className="inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer"
+                  className="inline-flex items-center px-5 py-2 rounded-full text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer"
                 >
                   {addingCustomer ? 'Creating...' : 'Create Customer'}
                 </button>
@@ -985,7 +985,7 @@ export const AdminCustomersPage: React.FC = () => {
             <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
               <button
                 onClick={(e) => handleDeleteCustomer(e, selectedCustomer.id, `${selectedCustomer.firstName} ${selectedCustomer.lastName}`)}
-                className="inline-flex items-center px-3 py-2 rounded-xl text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 transition cursor-pointer"
+                className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 transition cursor-pointer"
               >
                 <Trash2 className="w-3.5 h-3.5 mr-1.5" />
                 <span>Delete Customer</span>
@@ -994,13 +994,13 @@ export const AdminCustomersPage: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <button
                   onClick={() => setSelectedCustomer(null)}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer"
+                  className="px-5 py-2 rounded-full text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer"
                 >
                   Close
                 </button>
                 <a
                   href={`mailto:${selectedCustomer.email}?subject=Exclusive Atelier Invitation from SareeAura`}
-                  className="inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer"
+                  className="inline-flex items-center px-5 py-2 rounded-full text-xs font-semibold bg-[#D81B60] text-white hover:bg-[#c2185b] transition shadow-xs cursor-pointer"
                 >
                   <Mail className="w-3.5 h-3.5 mr-1.5" />
                   <span>Contact Customer</span>

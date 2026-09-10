@@ -119,7 +119,7 @@ export const AdminDashboardPage: React.FC = () => {
           <button
             onClick={() => fetchDashboardData(true)}
             disabled={isRefreshing || loading}
-            className={`inline-flex items-center px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 shadow-xs cursor-pointer active:scale-95 ${
+            className={`inline-flex items-center px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 shadow-xs cursor-pointer active:scale-95 ${
               justRefreshed
                 ? 'bg-emerald-50 text-emerald-700 border border-emerald-300 shadow-emerald-100 scale-102'
                 : isRefreshing

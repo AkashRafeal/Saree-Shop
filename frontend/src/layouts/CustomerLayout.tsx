@@ -131,18 +131,18 @@ export const CustomerLayout: React.FC = () => {
                   <span>Subscribed to VIP previews!</span>
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="flex">
+                <form onSubmit={handleSubscribe} className="relative flex items-center">
                   <input
                     type="email"
                     required
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="flex-1 px-2.5 py-1.5 bg-white border border-stone-300 rounded-l-lg text-[11px] focus:outline-none focus:border-[#D81B60]"
+                    className="w-full pl-3.5 pr-16 py-2 bg-white border border-stone-300 focus:border-[#D81B60] rounded-full text-[11px] focus:outline-none transition shadow-inner"
                   />
                   <button
                     type="submit"
-                    className="px-3 py-1.5 bg-[#D81B60] hover:bg-[#C2185B] text-white font-semibold text-[10px] rounded-r-lg transition tracking-wider"
+                    className="absolute right-1 bg-[#D81B60] hover:bg-[#C2185B] text-white font-semibold text-[10px] px-3.5 py-1.5 rounded-full transition shadow-sm tracking-wider cursor-pointer"
                   >
                     JOIN
                   </button>

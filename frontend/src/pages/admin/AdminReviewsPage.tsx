@@ -327,7 +327,7 @@ export const AdminReviewsPage: React.FC = () => {
               <div className="flex items-center gap-2 shrink-0 self-end md:self-center">
                 <button
                   onClick={() => handleToggleStatus(r)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer ${
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition cursor-pointer ${
                     r.approved
                       ? 'bg-emerald-50 text-emerald-700 border-emerald-200/80 hover:bg-emerald-100'
                       : 'bg-amber-50 text-amber-700 border-amber-200/80 hover:bg-amber-100'
@@ -340,7 +340,7 @@ export const AdminReviewsPage: React.FC = () => {
 
                 <button
                   onClick={() => handleDelete(r.id)}
-                  className="p-2 text-stone-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition cursor-pointer"
+                  className="w-8 h-8 flex items-center justify-center text-stone-400 hover:text-red-600 hover:bg-red-50 rounded-full transition cursor-pointer"
                   title="Delete Review"
                 >
                   <Trash2 className="w-4 h-4" />

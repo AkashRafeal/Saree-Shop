@@ -273,7 +273,7 @@ export const AdminCouponsPage: React.FC = () => {
 
         <button
           onClick={handleOpenAddModal}
-          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white text-sm font-semibold shadow-md shadow-[#D81B60]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#D81B60]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Create New Coupon</span>
@@ -602,14 +602,14 @@ export const AdminCouponsPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="px-4 py-2.5 rounded-xl border border-stone-200 text-xs font-semibold text-stone-600 hover:bg-stone-50 cursor-pointer"
+                    className="px-5 py-2.5 rounded-full border border-stone-200 text-xs font-semibold text-stone-600 hover:bg-stone-50 transition cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white text-xs font-semibold shadow-md shadow-[#D81B60]/20 hover:scale-[1.02] cursor-pointer disabled:opacity-50"
+                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#D81B60]/20 hover:scale-[1.02] cursor-pointer disabled:opacity-50 transition"
                   >
                     {loading ? 'Saving...' : editingId ? 'Update Coupon' : 'Create Voucher'}
                   </button>

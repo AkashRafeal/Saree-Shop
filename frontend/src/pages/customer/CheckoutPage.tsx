@@ -274,13 +274,13 @@ export const CheckoutPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setShowNewAddressModal(false)}
-                    className="px-3 py-1.5 text-xs text-stone-600"
+                    className="px-4 py-2 text-xs text-stone-600 hover:text-stone-900 rounded-full cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="bg-brand-maroon text-white font-bold text-xs px-4 py-1.5 rounded"
+                    className="bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs px-5 py-2 rounded-full transition shadow-sm cursor-pointer"
                   >
                     Save Address
                   </button>
@@ -371,7 +371,7 @@ export const CheckoutPage: React.FC = () => {
             <button
               onClick={handlePlaceOrder}
               disabled={placingOrder || !selectedAddressId}
-              className="w-full bg-brand-maroon hover:bg-brand-maroon-dark text-white font-bold text-xs py-4 rounded-xl shadow-lg transition uppercase tracking-wider flex items-center justify-center gap-2"
+              className="w-full bg-[#D81B60] hover:bg-[#C2185B] disabled:bg-stone-300 text-white font-bold text-xs py-4 rounded-full shadow-lg shadow-[#D81B60]/25 hover:shadow-xl hover:shadow-[#D81B60]/35 transition uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
             >
               <Sparkles className="w-4 h-4" />
               <span>{placingOrder ? 'Confirming Order...' : `Pay ₹${grandTotal.toLocaleString('en-IN')} & Confirm`}</span>

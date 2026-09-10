@@ -96,7 +96,7 @@ export const AdminSettingsPage: React.FC = () => {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white text-sm font-semibold shadow-md shadow-[#D81B60]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer disabled:opacity-50"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#D81B60]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
           <span>{saving ? 'Saving...' : 'Save Changes'}</span>
@@ -320,7 +320,7 @@ export const AdminSettingsPage: React.FC = () => {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white text-sm font-semibold shadow-md shadow-[#D81B60]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-[#D81B60] to-[#E11D48] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#D81B60]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? 'Saving...' : 'Save Atelier Settings'}</span>

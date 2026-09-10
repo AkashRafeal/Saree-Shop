@@ -367,7 +367,7 @@ export const AdminProductsPage: React.FC = () => {
 
         <button
           onClick={handleOpenAddModal}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D81B60] hover:bg-[#C2185B] text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-md shadow-[#D81B60]/25 hover:shadow-lg active:scale-95 cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#D81B60] hover:bg-[#C2185B] text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-md shadow-[#D81B60]/25 hover:shadow-lg active:scale-95 cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Saree</span>
@@ -935,14 +935,14 @@ export const AdminProductsPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 border border-stone-300 rounded-xl text-xs font-semibold text-stone-700 hover:bg-stone-50 cursor-pointer"
+                  className="px-5 py-2 border border-stone-300 rounded-full text-xs font-semibold text-stone-700 hover:bg-stone-50 transition cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-6 py-2.5 bg-[#D81B60] text-white rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-[#C2185B] shadow-md shadow-[#D81B60]/25 transition disabled:opacity-50 cursor-pointer"
+                  className="px-7 py-2.5 bg-[#D81B60] text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#C2185B] shadow-md shadow-[#D81B60]/25 transition disabled:opacity-50 cursor-pointer"
                 >
                   {submitting 
                     ? (editingProductId ? 'Updating Saree...' : 'Adding Saree...') 

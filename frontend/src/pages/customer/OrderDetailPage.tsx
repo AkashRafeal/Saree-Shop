@@ -113,7 +113,7 @@ export const OrderDetailPage: React.FC = () => {
             <button
               onClick={handleCancelOrder}
               disabled={cancelling}
-              className="text-xs font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 px-3.5 py-1.5 rounded-lg transition disabled:opacity-50"
+              className="text-xs font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 px-4 py-1.5 rounded-full transition shadow-xs cursor-pointer disabled:opacity-50"
             >
               {cancelling ? 'Cancelling...' : 'Cancel Order'}
             </button>

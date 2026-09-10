@@ -279,7 +279,7 @@ export const RegisterPage: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 flex items-center justify-center py-3.5 px-4 rounded-xl shadow-lg shadow-[#D81B60]/25 text-xs sm:text-sm font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#D81B60] to-[#C2185B] hover:from-[#C2185B] hover:to-[#AD1457] hover:shadow-xl active:scale-[0.99] disabled:opacity-50 transition-all duration-200 cursor-pointer"
+              className="w-full mt-2 flex items-center justify-center py-3.5 px-6 rounded-full shadow-lg shadow-[#D81B60]/25 text-xs sm:text-sm font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#D81B60] to-[#C2185B] hover:from-[#C2185B] hover:to-[#AD1457] hover:shadow-xl active:scale-[0.99] disabled:opacity-50 transition-all duration-200 cursor-pointer"
             >
               {loading ? 'Creating Account...' : 'Complete Registration'}
               {!loading && <ArrowRight className="ml-2 w-4 h-4" />}

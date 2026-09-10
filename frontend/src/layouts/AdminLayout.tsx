@@ -134,7 +134,7 @@ export const AdminLayout: React.FC = () => {
             <Link
               to="/"
               target="_blank"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-stone-700 hover:text-[#D81B60] bg-stone-100 hover:bg-[#FFF0F5] border border-stone-200/80 hover:border-[#D81B60]/30 rounded-xl transition-all duration-200 shadow-xs group"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-stone-700 hover:text-[#D81B60] bg-stone-100 hover:bg-[#FFF0F5] border border-stone-200/80 hover:border-[#D81B60]/30 rounded-full transition-all duration-200 shadow-xs group"
               title="Open customer storefront in a new tab"
             >
               <span>View Storefront</span>
@@ -146,7 +146,7 @@ export const AdminLayout: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                className="flex items-center gap-2.5 p-1 rounded-xl hover:bg-stone-50 transition cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20"
+                className="flex items-center gap-2.5 p-1 pr-2 rounded-full hover:bg-stone-50 transition cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20"
                 aria-expanded={isProfileDropdownOpen}
                 aria-haspopup="true"
               >

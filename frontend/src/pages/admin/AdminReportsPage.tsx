@@ -99,7 +99,7 @@ export const AdminReportsPage: React.FC = () => {
 
           <button
             onClick={handleExportCSV}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm transition cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm transition cursor-pointer"
             title="Download CSV Spreadsheet"
           >
             <Download className="w-3.5 h-3.5" />
@@ -108,7 +108,7 @@ export const AdminReportsPage: React.FC = () => {
 
           <button
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 text-xs font-semibold shadow-xs transition cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 text-xs font-semibold shadow-xs transition cursor-pointer"
             title="Print Executive Summary"
           >
             <Printer className="w-3.5 h-3.5 text-stone-500" />

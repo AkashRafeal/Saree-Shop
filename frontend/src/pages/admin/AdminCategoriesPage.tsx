@@ -252,7 +252,7 @@ export const AdminCategoriesPage: React.FC = () => {
 
         <button
           onClick={handleOpenAddModal}
-          className="inline-flex items-center space-x-2 bg-[#D81B60] hover:bg-[#C2185B] text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-md shadow-[#D81B60]/20 transition cursor-pointer self-start sm:self-auto"
+          className="inline-flex items-center space-x-2 bg-[#D81B60] hover:bg-[#C2185B] text-white px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-md shadow-[#D81B60]/20 transition cursor-pointer self-start sm:self-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Category</span>
@@ -601,14 +601,14 @@ export const AdminCategoriesPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="px-4 py-2 border border-stone-200 text-stone-600 rounded-xl text-xs font-bold hover:bg-stone-50 transition cursor-pointer"
+                    className="px-5 py-2 border border-stone-200 text-stone-600 rounded-full text-xs font-bold hover:bg-stone-50 transition cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="px-5 py-2 bg-[#D81B60] hover:bg-[#C2185B] text-white rounded-xl text-xs font-bold transition shadow-md shadow-[#D81B60]/20 disabled:opacity-50 cursor-pointer flex items-center gap-1.5"
+                    className="px-6 py-2 bg-[#D81B60] hover:bg-[#C2185B] text-white rounded-full text-xs font-bold transition shadow-md shadow-[#D81B60]/20 disabled:opacity-50 cursor-pointer flex items-center gap-1.5"
                   >
                     {submitting ? (
                       <>

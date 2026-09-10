@@ -62,7 +62,7 @@ export const AdminOrdersPage: React.FC = () => {
         <button
           onClick={fetchOrders}
           disabled={loading}
-          className="inline-flex items-center px-3.5 py-2 rounded-lg text-xs font-semibold bg-white border border-stone-300 text-stone-700 hover:bg-stone-50 transition shadow-sm"
+          className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-white border border-stone-300 text-stone-700 hover:bg-stone-50 transition shadow-sm cursor-pointer"
         >
           <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${loading ? 'animate-spin' : ''}`} />
           <span>Refresh Orders</span>
@@ -75,7 +75,7 @@ export const AdminOrdersPage: React.FC = () => {
           <button
             key={st}
             onClick={() => setFilterStatus(st)}
-            className={`px-4 py-1.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
               filterStatus === st
                 ? 'bg-[#D81B60] text-white shadow-md shadow-[#D81B60]/25'
                 : 'bg-white text-stone-600 hover:bg-[#FAF8F5] border border-stone-200'
@@ -180,7 +180,7 @@ export const AdminOrdersPage: React.FC = () => {
                         value={order.status}
                         disabled={updatingId === order.id || order.status === 'CANCELLED'}
                         onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                        className="text-xs bg-[#FAF8F5] border border-stone-200 rounded-xl px-3 py-1.5 font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60] disabled:opacity-50"
+                        className="text-xs bg-[#FAF8F5] border border-stone-200 rounded-full px-3.5 py-1.5 font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#D81B60]/20 focus:border-[#D81B60] disabled:opacity-50 cursor-pointer"
                       >
                         <option value="PENDING">PENDING</option>
                         <option value="CONFIRMED">CONFIRMED</option>

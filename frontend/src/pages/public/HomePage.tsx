@@ -219,7 +219,7 @@ export const HomePage: React.FC = () => {
               <div className="mt-8 flex items-center space-x-4">
                 <Link
                   to={heroSlides[heroSlide].href}
-                  className="inline-flex items-center px-8 py-3.5 bg-[#D81B60] hover:bg-[#C2185B] text-white text-xs font-semibold uppercase tracking-widest transition-all shadow-md group"
+                  className="inline-flex items-center px-8 py-3.5 bg-[#D81B60] hover:bg-[#C2185B] text-white text-xs font-semibold uppercase tracking-widest rounded-full transition-all shadow-md group"
                 >
                   <span>{heroSlides[heroSlide].cta}</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

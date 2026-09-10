@@ -73,7 +73,7 @@ export const WishlistPage: React.FC = () => {
         <div>
           <Link
             to="/shop"
-            className="inline-flex items-center space-x-2 bg-brand-maroon hover:bg-brand-maroon-dark text-white font-bold text-xs py-3.5 px-8 rounded-xl uppercase tracking-wider transition shadow-lg"
+            className="inline-flex items-center space-x-2 bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs py-3.5 px-8 rounded-full uppercase tracking-wider transition shadow-lg shadow-[#D81B60]/20"
           >
             <span>Explore Sarees</span>
             <ArrowRight className="w-4 h-4" />
@@ -121,14 +121,14 @@ export const WishlistPage: React.FC = () => {
               <div className="flex gap-2 pt-2 border-t border-stone-100">
                 <button
                   onClick={() => handleMoveToCart(product.id)}
-                  className="flex-1 bg-brand-maroon hover:bg-brand-maroon-dark text-white text-[11px] font-bold py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition"
+                  className="flex-1 bg-[#D81B60] hover:bg-[#C2185B] text-white text-[11px] font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-1.5 transition shadow-sm cursor-pointer"
                 >
                   <ShoppingBag className="w-3.5 h-3.5" />
                   <span>Move To Cart</span>
                 </button>
                 <button
                   onClick={() => handleRemove(product.id)}
-                  className="p-2.5 rounded-lg border border-stone-200 text-stone-400 hover:text-red-600 transition"
+                  className="w-9 h-9 rounded-full border border-stone-200 text-stone-400 hover:text-red-600 hover:bg-red-50 flex items-center justify-center transition cursor-pointer"
                   aria-label="Remove"
                 >
                   <Trash2 className="w-4 h-4" />

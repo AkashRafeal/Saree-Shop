@@ -300,7 +300,7 @@ export const ShopPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-              className="inline-flex items-center justify-between gap-3 bg-white border border-stone-300 hover:border-[#D81B60] focus:border-[#D81B60] text-stone-800 text-xs font-semibold rounded-lg px-4 py-2.5 shadow-sm transition-all focus:outline-none min-w-[170px]"
+              className="inline-flex items-center justify-between gap-3 bg-white border border-stone-300 hover:border-[#D81B60] focus:border-[#D81B60] text-stone-800 text-xs font-semibold rounded-full px-5 py-2.5 shadow-sm transition-all focus:outline-none min-w-[170px]"
             >
               <span>{currentSortLabel}</span>
               <ChevronDown
@@ -371,7 +371,7 @@ export const ShopPage: React.FC = () => {
             <button
               disabled={page === 0}
               onClick={() => updateParam('page', (page - 1).toString())}
-              className="p-2.5 rounded-lg border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#D81B60] disabled:opacity-40 transition-colors"
+              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#D81B60] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -381,7 +381,7 @@ export const ShopPage: React.FC = () => {
             <button
               disabled={page >= totalPages - 1}
               onClick={() => updateParam('page', (page + 1).toString())}
-              className="p-2.5 rounded-lg border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#D81B60] disabled:opacity-40 transition-colors"
+              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#D81B60] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

@@ -354,7 +354,7 @@ export const ReviewsPage: React.FC = () => {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-[#D81B60] to-[#AD1457] hover:from-[#AD1457] hover:to-[#880E4F] text-white px-6 py-3.5 rounded-xl font-semibold text-sm shadow-lg shadow-rose-950/40 hover:shadow-rose-900/60 transition-all transform active:scale-98 whitespace-nowrap self-start md:self-auto"
+              className="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-[#D81B60] to-[#AD1457] hover:from-[#AD1457] hover:to-[#880E4F] text-white px-7 py-3.5 rounded-full font-semibold text-sm shadow-lg shadow-rose-950/40 hover:shadow-rose-900/60 transition-all transform active:scale-98 whitespace-nowrap self-start md:self-auto cursor-pointer"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Share Your Story</span>
@@ -464,12 +464,12 @@ export const ReviewsPage: React.FC = () => {
               placeholder="Search by occasion, fabric, city, or patron name..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-stone-50 border border-stone-200 rounded-lg text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#D81B60]/30 focus:border-[#D81B60] transition"
+              className="w-full pl-9 pr-4 py-2 bg-stone-50 border border-stone-200 rounded-full text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#D81B60]/30 focus:border-[#D81B60] transition"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -487,7 +487,7 @@ export const ReviewsPage: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setSelectedTag(tab.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer ${
                   selectedTag === tab.id
                     ? 'bg-[#D81B60] text-white shadow-sm'
                     : 'bg-stone-100 text-stone-600 hover:bg-stone-200/80 hover:text-stone-900'
@@ -500,7 +500,7 @@ export const ReviewsPage: React.FC = () => {
             {selectedRating !== 'all' && (
               <button
                 onClick={() => setSelectedRating('all')}
-                className="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-rose-100 text-[#D81B60] rounded-lg text-xs font-semibold"
+                className="inline-flex items-center space-x-1 px-3 py-1.5 bg-rose-100 text-[#D81B60] rounded-full text-xs font-semibold cursor-pointer"
               >
                 <span>{selectedRating} Stars</span>
                 <X className="w-3 h-3" />
@@ -515,7 +515,7 @@ export const ReviewsPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-                className="inline-flex items-center justify-between gap-2.5 bg-white border border-stone-300 hover:border-[#D81B60] focus:border-[#D81B60] text-stone-800 text-xs font-semibold rounded-lg px-3.5 py-2 shadow-sm transition-all focus:outline-none min-w-[145px]"
+                className="inline-flex items-center justify-between gap-2.5 bg-white border border-stone-300 hover:border-[#D81B60] focus:border-[#D81B60] text-stone-800 text-xs font-semibold rounded-full px-4 py-2 shadow-sm transition-all focus:outline-none min-w-[145px] cursor-pointer"
               >
                 <span>{currentSortLabel}</span>
                 <ChevronDown
@@ -571,7 +571,7 @@ export const ReviewsPage: React.FC = () => {
                 setSelectedRating('all');
                 setSelectedTag('all');
               }}
-              className="px-4 py-2 bg-[#D81B60] text-white rounded-lg text-xs font-semibold hover:bg-[#AD1457] transition"
+              className="px-6 py-2.5 bg-[#D81B60] text-white rounded-full text-xs font-semibold hover:bg-[#AD1457] transition shadow-sm cursor-pointer"
             >
               Reset Filters
             </button>
@@ -835,7 +835,7 @@ export const ReviewsPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 bg-gradient-to-r from-[#D81B60] to-[#AD1457] hover:from-[#AD1457] hover:to-[#880E4F] text-white font-bold rounded-xl text-xs flex items-center justify-center space-x-2 shadow-md transition disabled:opacity-50"
+                    className="w-full py-3.5 px-6 bg-gradient-to-r from-[#D81B60] to-[#AD1457] hover:from-[#AD1457] hover:to-[#880E4F] text-white font-bold rounded-full text-xs flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition cursor-pointer disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

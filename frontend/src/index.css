@@ -23,6 +23,19 @@
   }
 }
 
+@layer components {
+  /* Pill Button Preset matching the reference Search Pill style */
+  .btn-pill {
+    @apply rounded-full inline-flex items-center justify-center font-semibold transition-all duration-200 shadow-sm active:scale-[0.98];
+  }
+  .btn-pill-primary {
+    @apply rounded-full inline-flex items-center justify-center font-semibold text-white bg-[#D81B60] hover:bg-[#C2185B] shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98];
+  }
+  .btn-pill-dark {
+    @apply rounded-full inline-flex items-center justify-center font-semibold text-white bg-stone-900 hover:bg-stone-950 shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.98];
+  }
+}
+
 /* Custom Luxury Gradients & Accents */
 .gold-shimmer {
   background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA820A 100%);

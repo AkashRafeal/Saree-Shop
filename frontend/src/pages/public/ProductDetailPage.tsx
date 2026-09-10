@@ -293,18 +293,18 @@ export const ProductDetailPage: React.FC = () => {
           {/* Quantity & Add to Cart Controls */}
           <div className="space-y-4 pt-4 border-t border-stone-200">
             <div className="flex items-center space-x-4">
-              <div className="flex items-center border border-stone-200 rounded-xl bg-white overflow-hidden shadow-xs">
+              <div className="flex items-center border border-stone-200 rounded-full bg-white overflow-hidden shadow-xs px-1">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-3.5 py-2 text-stone-600 hover:text-[#D81B60] hover:bg-rose-50/60 font-bold transition text-sm"
+                  className="w-8 h-8 rounded-full text-stone-600 hover:text-[#D81B60] hover:bg-rose-50/60 font-bold transition text-sm flex items-center justify-center cursor-pointer"
                   aria-label="Decrease quantity"
                 >
                   -
                 </button>
-                <span className="px-4 py-2 text-xs font-bold text-stone-900 select-none">{quantity}</span>
+                <span className="px-3 py-1.5 text-xs font-bold text-stone-900 select-none">{quantity}</span>
                 <button
                   onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-                  className="px-3.5 py-2 text-stone-600 hover:text-[#D81B60] hover:bg-rose-50/60 font-bold transition text-sm"
+                  className="w-8 h-8 rounded-full text-stone-600 hover:text-[#D81B60] hover:bg-rose-50/60 font-bold transition text-sm flex items-center justify-center cursor-pointer"
                   aria-label="Increase quantity"
                 >
                   +
@@ -325,12 +325,12 @@ export const ProductDetailPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Action Buttons (Strictly Themed) */}
+            {/* Action Buttons (Strictly Themed Pill Buttons) */}
             <div className="flex flex-col sm:flex-row gap-3.5 pt-1">
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock || adding}
-                className="flex-1 bg-[#D81B60] hover:bg-[#C2185B] disabled:bg-stone-300 text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-[#D81B60]/25 hover:shadow-xl hover:shadow-[#D81B60]/35 transition-all duration-200 flex items-center justify-center gap-2.5 text-xs uppercase tracking-wider active:scale-[0.99] cursor-pointer"
+                className="flex-1 bg-[#D81B60] hover:bg-[#C2185B] disabled:bg-stone-300 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-[#D81B60]/25 hover:shadow-xl hover:shadow-[#D81B60]/35 transition-all duration-200 flex items-center justify-center gap-2.5 text-xs uppercase tracking-wider active:scale-[0.99] cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>{adding ? 'Adding to Bag...' : 'Add To Cart'}</span>
@@ -339,7 +339,7 @@ export const ProductDetailPage: React.FC = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock || adding}
-                className="flex-1 bg-stone-900 hover:bg-stone-950 disabled:bg-stone-300 text-white font-bold py-4 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2.5 text-xs uppercase tracking-wider border border-stone-800 active:scale-[0.99] cursor-pointer"
+                className="flex-1 bg-stone-900 hover:bg-stone-950 disabled:bg-stone-300 text-white font-bold py-4 px-8 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2.5 text-xs uppercase tracking-wider border border-stone-800 active:scale-[0.99] cursor-pointer"
               >
                 <Sparkles className="w-4 h-4 text-[#D4AF37]" />
                 <span>Buy Now</span>
@@ -429,7 +429,7 @@ export const ProductDetailPage: React.FC = () => {
             <button
               type="submit"
               disabled={submittingReview}
-              className="bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs py-3 px-7 rounded-xl shadow-md shadow-[#D81B60]/20 transition uppercase tracking-wider cursor-pointer"
+              className="bg-[#D81B60] hover:bg-[#C2185B] text-white font-bold text-xs py-3.5 px-8 rounded-full shadow-md shadow-[#D81B60]/20 transition uppercase tracking-wider cursor-pointer"
             >
               {submittingReview ? 'Submitting...' : 'Post Review'}
             </button>

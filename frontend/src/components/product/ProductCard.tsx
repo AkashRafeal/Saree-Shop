@@ -80,7 +80,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Top Badges */}
         {product.discountPercentage > 0 && (
           <div className="absolute top-2 left-2 z-10">
-            <span className="bg-[#D81B60] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm tracking-wider uppercase">
+            <span className="bg-[#D81B60] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm tracking-wider uppercase">
               {product.discountPercentage}% OFF
             </span>
           </div>
@@ -104,7 +104,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <button
             onClick={handleAddToCartClick}
             disabled={!product.inStock || adding}
-            className="w-full bg-white/95 hover:bg-[#D81B60] text-stone-900 hover:text-white font-semibold text-xs py-2 px-3 rounded shadow-md flex items-center justify-center gap-1.5 transition-colors uppercase tracking-wider"
+            className="w-full bg-white/95 hover:bg-[#D81B60] text-stone-900 hover:text-white font-semibold text-xs py-2 px-3 rounded-full shadow-md flex items-center justify-center gap-1.5 transition-colors uppercase tracking-wider"
           >
             <ShoppingBag className="w-3.5 h-3.5" />
             <span>{adding ? 'Added to Bag!' : product.inStock ? 'Quick Add' : 'Sold Out'}</span>
