@@ -5,7 +5,9 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
-  role: 'ROLE_ADMIN' | 'ROLE_CUSTOMER';
+  phone?: string;
+  role?: string;
+  roles?: string[];
 }
 
 interface AuthState {
@@ -26,9 +28,11 @@ export const useAuthStore = create<AuthState>((set) => {
     isAuthenticated: !!savedToken,
 
     login: (user: User, token: string) => {
+      const normalizedRole = user.role || (user.roles?.includes('ROLE_ADMIN') ? 'ROLE_ADMIN' : 'ROLE_CUSTOMER');
+      const normalizedUser = { ...user, role: normalizedRole };
       localStorage.setItem('sareeaura_token', token);
-      localStorage.setItem('sareeaura_user', JSON.stringify(user));
-      set({ user, token, isAuthenticated: true });
+      localStorage.setItem('sareeaura_user', JSON.stringify(normalizedUser));
+      set({ user: normalizedUser, token, isAuthenticated: true });
     },
 
     logout: () => {

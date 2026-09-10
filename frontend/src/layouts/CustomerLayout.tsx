@@ -1,142 +1,185 @@
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
-import { ShoppingBag, Heart, Search, User, Menu, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Header } from '@/components/layout/Header';
+import { 
+  Instagram, 
+  Facebook, 
+  Youtube, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Check
+} from 'lucide-react';
 
 export const CustomerLayout: React.FC = () => {
+  const location = useLocation();
+  const hideFooter = location.pathname === '/login' || location.pathname === '/register';
+
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newsletterEmail.trim()) {
+      setSubscribed(true);
+      setNewsletterEmail('');
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-brand-silk text-brand-charcoal">
-      {/* Luxury Announcement Bar */}
-      <div className="bg-brand-maroon text-brand-gold-light text-xs tracking-widest uppercase text-center py-2 px-4 flex items-center justify-center space-x-2 font-medium">
-        <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
-        <span>Complimentary Express Shipping on Orders Above ₹5,000 • Authentic Handloom Guarantee</span>
-        <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
-      </div>
+    <div className="min-h-screen flex flex-col bg-white text-stone-800">
+      <Header />
 
-      {/* Main Luxury Header */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-brand-cream/80 transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Mobile Menu Trigger */}
-            <button className="md:hidden p-2 text-brand-charcoal hover:text-brand-maroon focus:outline-none">
-              <Menu className="w-6 h-6" />
-            </button>
-
-            {/* Brand Logo */}
-            <div className="flex-shrink-0 flex items-center">
-              <Link to="/" className="flex flex-col items-center">
-                <span className="font-serif text-2xl sm:text-3xl tracking-widest font-bold text-brand-maroon uppercase">
-                  Saree<span className="text-brand-gold">Aura</span>
-                </span>
-                <span className="text-[9px] tracking-[0.3em] uppercase text-stone-500 font-sans -mt-1">
-                  Heritage • Elegance
-                </span>
-              </Link>
-            </div>
-
-            {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-              <Link to="/" className="text-brand-maroon font-semibold hover:text-brand-gold transition-colors">
-                Home
-              </Link>
-              <Link to="/shop" className="text-stone-700 hover:text-brand-maroon transition-colors">
-                All Sarees
-              </Link>
-              <Link to="/shop?category=kanchipuram" className="text-stone-700 hover:text-brand-maroon transition-colors">
-                Kanchipuram
-              </Link>
-              <Link to="/shop?category=banarasi" className="text-stone-700 hover:text-brand-maroon transition-colors">
-                Banarasi
-              </Link>
-              <Link to="/shop?category=bridal" className="text-stone-700 hover:text-brand-maroon transition-colors">
-                Bridal Edit
-              </Link>
-              <Link to="/about" className="text-stone-700 hover:text-brand-maroon transition-colors">
-                Our Story
-              </Link>
-            </nav>
-
-            {/* Actions: Search, Wishlist, Cart, Profile */}
-            <div className="flex items-center space-x-5">
-              <button aria-label="Search" className="text-stone-600 hover:text-brand-maroon transition-colors">
-                <Search className="w-5 h-5" />
-              </button>
-              <Link to="/wishlist" aria-label="Wishlist" className="text-stone-600 hover:text-brand-maroon transition-colors relative">
-                <Heart className="w-5 h-5" />
-                <span className="absolute -top-1.5 -right-2 bg-brand-maroon text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  0
-                </span>
-              </Link>
-              <Link to="/cart" aria-label="Cart" className="text-stone-600 hover:text-brand-maroon transition-colors relative">
-                <ShoppingBag className="w-5 h-5" />
-                <span className="absolute -top-1.5 -right-2 bg-brand-gold text-brand-charcoal text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  0
-                </span>
-              </Link>
-              <Link to="/login" aria-label="Account" className="text-stone-600 hover:text-brand-maroon transition-colors">
-                <User className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Page Content */}
+      {/* Main Content Area */}
       <main className="flex-1">
         <Outlet />
       </main>
 
-      {/* Luxury Footer */}
-      <footer className="bg-stone-900 text-stone-300 border-t border-brand-gold/30 pt-12 pb-8">
+      {/* Luxury Footer (Hidden on Login & Register Pages) */}
+      {!hideFooter && (
+        <footer className="bg-stone-50 border-t border-stone-200 text-stone-600 text-xs pt-7 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div className="space-y-3">
-              <span className="font-serif text-2xl font-bold text-brand-gold-light uppercase tracking-wider">
-                Saree<span className="text-brand-gold">Aura</span>
-              </span>
-              <p className="text-xs text-stone-400 leading-relaxed">
-                Curating India's finest handloom weaves. From royal Kanchipuram silks to regal Banarasi brocades, we preserve royal heritage with timeless artistry.
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-5">
+            {/* Column 1: About SareeAura */}
+            <div className="space-y-2.5">
+              <Link
+                to="/"
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                aria-label="SareeAura Home"
+                className="inline-flex flex-col cursor-pointer select-none no-underline hover:no-underline border-none bg-transparent outline-none focus:outline-none focus-visible:outline-none transition-opacity duration-200 hover:opacity-90 group"
+              >
+                <span className="font-serif text-lg font-bold text-stone-900 uppercase tracking-wider block leading-tight select-none">
+                  Saree<span className="text-[#D81B60]">Aura</span>
+                </span>
+                <span className="text-[8.5px] uppercase tracking-[0.2em] text-stone-400 block font-sans select-none">
+                  The Festive & Bridal Edit
+                </span>
+              </Link>
+              <p className="text-stone-500 leading-snug text-[10.5px]">
+                Premium artisanal sarees blending traditional craftsmanship with modern silhouettes.
               </p>
+
+              {/* Social Icons */}
+              <div className="flex items-center space-x-2 text-stone-400">
+                <a href="#instagram" aria-label="Instagram" className="w-7 h-7 rounded-full bg-white border border-stone-200 flex items-center justify-center hover:text-[#D81B60] hover:border-[#D81B60] transition shadow-2xs">
+                  <Instagram className="w-3.5 h-3.5" />
+                </a>
+                <a href="#facebook" aria-label="Facebook" className="w-7 h-7 rounded-full bg-white border border-stone-200 flex items-center justify-center hover:text-[#D81B60] hover:border-[#D81B60] transition shadow-2xs">
+                  <Facebook className="w-3.5 h-3.5" />
+                </a>
+                <a href="#youtube" aria-label="YouTube" className="w-7 h-7 rounded-full bg-white border border-stone-200 flex items-center justify-center hover:text-[#D81B60] hover:border-[#D81B60] transition shadow-2xs">
+                  <Youtube className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
+              {/* Payment Methods */}
+              <div className="pt-0.5">
+                <div className="flex items-center space-x-1.5 text-stone-500">
+                  <span className="px-1.5 py-0.5 bg-white border border-stone-200 rounded text-[9px] font-bold font-mono">VISA</span>
+                  <span className="px-1.5 py-0.5 bg-white border border-stone-200 rounded text-[9px] font-bold font-mono">MasterCard</span>
+                  <span className="px-1.5 py-0.5 bg-white border border-stone-200 rounded text-[9px] font-bold font-mono">RuPay</span>
+                  <span className="px-1.5 py-0.5 bg-white border border-stone-200 rounded text-[9px] font-bold font-mono">UPI</span>
+                </div>
+              </div>
             </div>
+
+            {/* Column 2: Shop Online */}
             <div>
-              <h4 className="font-serif text-sm font-semibold text-brand-gold uppercase tracking-wider mb-3">
-                Collections
+              <h4 className="font-serif text-xs font-bold text-stone-900 uppercase tracking-wider mb-2">
+                Shop Online
               </h4>
-              <ul className="space-y-2 text-xs text-stone-400">
-                <li><Link to="/shop?category=kanchipuram" className="hover:text-brand-gold transition">Pure Kanchipuram Silk</Link></li>
-                <li><Link to="/shop?category=banarasi" className="hover:text-brand-gold transition">Banarasi Handloom Weaves</Link></li>
-                <li><Link to="/shop?category=tussar" className="hover:text-brand-gold transition">Tussar & Raw Silk</Link></li>
-                <li><Link to="/shop?category=chanderi" className="hover:text-brand-gold transition">Chanderi & Organza</Link></li>
+              <ul className="space-y-1.5 text-[11px] text-stone-500">
+                <li><Link to="/shop?sort=newest" className="hover:text-[#D81B60] transition">New Arrivals</Link></li>
+                <li><Link to="/shop?category=kanchipuram-silk" className="hover:text-[#D81B60] transition">Pure Silk Sarees</Link></li>
+                <li><Link to="/shop?category=banarasi-silk" className="hover:text-[#D81B60] transition">Designer Banarasi</Link></li>
+                <li><Link to="/shop?category=bridal-sarees" className="hover:text-[#D81B60] transition">Bridal Trousseau</Link></li>
+                <li><Link to="/shop?occasion=Festive" className="hover:text-[#D81B60] transition">Festive Collection</Link></li>
+                <li><Link to="/shop" className="hover:text-[#D81B60] transition">Exclusive Sale</Link></li>
               </ul>
             </div>
+
+            {/* Column 3: Customer Care */}
             <div>
-              <h4 className="font-serif text-sm font-semibold text-brand-gold uppercase tracking-wider mb-3">
+              <h4 className="font-serif text-xs font-bold text-stone-900 uppercase tracking-wider mb-2">
                 Customer Care
               </h4>
-              <ul className="space-y-2 text-xs text-stone-400">
-                <li><Link to="/faq" className="hover:text-brand-gold transition">Shipping & Delivery</Link></li>
-                <li><Link to="/faq" className="hover:text-brand-gold transition">Authenticity Guarantee</Link></li>
-                <li><Link to="/faq" className="hover:text-brand-gold transition">Returns & Exchange</Link></li>
-                <li><Link to="/contact" className="hover:text-brand-gold transition">Contact Concierge</Link></li>
+              <ul className="space-y-1.5 text-[11px] text-stone-500">
+                <li><Link to="/my-orders" className="hover:text-[#D81B60] transition">Track Order</Link></li>
+                <li><Link to="/my-orders" className="hover:text-[#D81B60] transition">Return & Exchange</Link></li>
+                <li><Link to="/shop" className="hover:text-[#D81B60] transition">Shipping Policy</Link></li>
+                <li><Link to="/shop" className="hover:text-[#D81B60] transition">Terms & Conditions</Link></li>
+                <li><Link to="/shop" className="hover:text-[#D81B60] transition">Privacy Policy</Link></li>
+                <li><a href="mailto:care@sareeaura.com" className="hover:text-[#D81B60] transition">Contact Us</a></li>
               </ul>
             </div>
-            <div>
-              <h4 className="font-serif text-sm font-semibold text-brand-gold uppercase tracking-wider mb-3">
-                System Status
+
+            {/* Column 4: Stay Connected */}
+            <div className="space-y-2">
+              <h4 className="font-serif text-xs font-bold text-stone-900 uppercase tracking-wider">
+                Stay Connected
               </h4>
-              <div className="p-3 rounded bg-stone-800 border border-stone-700 text-xs">
-                <div className="flex items-center space-x-2 text-emerald-400 font-medium mb-1">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>Phase 1 Architecture Ready</span>
+              <p className="text-[10.5px] text-stone-500 leading-snug">
+                Receive exclusive festive previews & VIP discounts.
+              </p>
+
+              {/* Subscribe Box */}
+              {subscribed ? (
+                <div className="p-2 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg text-[10px] flex items-center space-x-1.5 font-medium">
+                  <Check className="w-3 h-3 text-emerald-600" />
+                  <span>Subscribed to VIP previews!</span>
                 </div>
-                <p className="text-[11px] text-stone-400">Modular Monolith Backend • React 18 SPA • MySQL 8 Persistence</p>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex">
+                  <input
+                    type="email"
+                    required
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="flex-1 px-2.5 py-1.5 bg-white border border-stone-300 rounded-l-lg text-[11px] focus:outline-none focus:border-[#D81B60]"
+                  />
+                  <button
+                    type="submit"
+                    className="px-3 py-1.5 bg-[#D81B60] hover:bg-[#C2185B] text-white font-semibold text-[10px] rounded-r-lg transition tracking-wider"
+                  >
+                    JOIN
+                  </button>
+                </form>
+              )}
+
+              <div className="space-y-1 pt-1 text-[10.5px] text-stone-500">
+                <div className="flex items-center space-x-1.5">
+                  <MapPin className="w-3 h-3 text-[#D81B60] shrink-0" />
+                  <span className="truncate">T. Nagar, Chennai - 600017</span>
+                </div>
+                <div className="flex items-center space-x-1.5">
+                  <Phone className="w-3 h-3 text-[#D81B60] shrink-0" />
+                  <span>+91 98765 43210</span>
+                </div>
+                <div className="flex items-center space-x-1.5">
+                  <Mail className="w-3 h-3 text-[#D81B60] shrink-0" />
+                  <span>care@sareeaura.com</span>
+                </div>
               </div>
             </div>
           </div>
-          <div className="border-t border-stone-800 pt-6 text-center text-xs text-stone-500">
-            © {new Date().getFullYear()} SareeAura Luxury Silks. All Rights Reserved. Crafted with Passion & Pride.
+
+          {/* Popular Searches Bar */}
+          <div className="border-t border-stone-200 pt-3 pb-2 text-center">
+            <p className="text-[9px] text-stone-400 leading-snug uppercase tracking-wider">
+              <strong>POPULAR SEARCHES:</strong> Banarasi Silk • Kanchipuram Silk • Party Wear • Organza • Floral Sarees • Daily Cotton • Wedding Lehengas • Chanderi • Tussar • Georgette • Embroidered • Silk Mark
+            </p>
+          </div>
+
+          {/* Copyright */}
+          <div className="border-t border-stone-200 pt-2 text-center text-[10px] text-stone-400">
+            © {new Date().getFullYear()} SareeAura Fashion. All Rights Reserved. Pure Handloom Heritage.
           </div>
         </div>
       </footer>
+      )}
     </div>
   );
 };

@@ -10,6 +10,10 @@ export default {
         brand: {
           maroon: "#6B1D2F",
           "maroon-dark": "#4A121F",
+          rose: "#E11D48",
+          "rose-dark": "#BE123C",
+          "rose-light": "#FFF1F2",
+          ruby: "#D81B60",
           gold: "#D4AF37",
           "gold-light": "#F3E5AB",
           "gold-dark": "#AA820A",
