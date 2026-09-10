@@ -73,7 +73,7 @@ export const WishlistPage: React.FC = () => {
         <div>
           <Link
             to="/shop"
-            className="inline-flex items-center space-x-2 bg-[#0A5C44] hover:bg-[#064E3B] text-white font-bold text-xs py-3.5 px-8 rounded-full uppercase tracking-wider transition shadow-lg shadow-[#0A5C44]/20 cursor-pointer"
+            className="inline-flex items-center space-x-2 bg-[#0A4D40] hover:bg-[#062E28] text-white font-bold text-xs py-3.5 px-8 rounded-full uppercase tracking-wider transition shadow-lg shadow-[#0A4D40]/20"
           >
             <span>Explore Sarees</span>
             <ArrowRight className="w-4 h-4" />
@@ -86,7 +86,7 @@ export const WishlistPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       <div>
-        <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
+        <span className="text-xs font-bold uppercase tracking-widest text-brand-maroon">
           Saved Heirlooms
         </span>
         <h1 className="font-serif text-3xl font-bold text-stone-900 mt-1">
@@ -107,7 +107,7 @@ export const WishlistPage: React.FC = () => {
 
             <div className="p-4 space-y-3">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#0A5C44]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-brand-maroon">
                   {product.categoryName}
                 </span>
                 <h3 className="font-serif text-sm font-semibold text-stone-900 line-clamp-1">
@@ -121,7 +121,7 @@ export const WishlistPage: React.FC = () => {
               <div className="flex gap-2 pt-2 border-t border-stone-100">
                 <button
                   onClick={() => handleMoveToCart(product.id)}
-                  className="flex-1 bg-[#0A5C44] hover:bg-[#064E3B] text-white text-[11px] font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-1.5 transition shadow-sm cursor-pointer"
+                  className="flex-1 bg-[#0A4D40] hover:bg-[#062E28] text-white text-[11px] font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-1.5 transition shadow-sm cursor-pointer"
                 >
                   <ShoppingBag className="w-3.5 h-3.5" />
                   <span>Move To Cart</span>

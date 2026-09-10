@@ -44,7 +44,7 @@ export const AdminLayout: React.FC = () => {
   };
 
   const displayName = user?.firstName ? `${user.firstName} ${user.lastName || ''}`.trim() : 'Administrator';
-  const displayEmail = user?.email || 'admin@sareeaura.com';
+  const displayEmail = user?.email || 'admin@nivicouture.com';
   const avatarLetter = (user?.firstName?.[0] || 'A').toUpperCase();
 
   const navigation = [
@@ -72,22 +72,19 @@ export const AdminLayout: React.FC = () => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             aria-label="Return to Admin Dashboard"
-            className="flex items-center gap-3 group cursor-pointer select-none no-underline hover:no-underline border-none bg-transparent outline-none focus:outline-none focus-visible:outline-none transition-opacity duration-200 hover:opacity-95"
+            className="flex items-center gap-2.5 group cursor-pointer select-none no-underline hover:no-underline border-none bg-transparent outline-none focus:outline-none focus-visible:outline-none transition-opacity duration-200 hover:opacity-90"
           >
-            <img 
-              src="/images/nivi_couture_logo.png" 
-              alt="NiVi Couture" 
-              className="w-10 h-10 rounded-full object-cover shadow-sm border border-[#D4AF37]/50 ring-1 ring-[#D4AF37]/30"
+            <img
+              src="/logo.png"
+              alt="NiVi Couture"
+              className="w-10 h-10 rounded-full object-cover shadow-sm border border-[#D4AF37]"
             />
             <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className="font-serif text-lg font-bold tracking-wider text-white uppercase select-none">
-                  NiVi <span className="text-[#D4AF37]">Couture</span>
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0A5C44]"></span>
-              </div>
-              <span className="text-[8px] tracking-[0.25em] text-[#D4AF37] font-sans uppercase font-medium select-none">
-                Elegance Refined
+              <span className="font-serif text-base font-bold tracking-wider text-white uppercase select-none leading-tight">
+                NiVi <span className="text-[#D4AF37]">Couture</span>
+              </span>
+              <span className="text-[8.5px] tracking-[0.2em] text-[#D4AF37]/80 font-sans uppercase font-medium select-none">
+                Atelier Administration
               </span>
             </div>
           </Link>
@@ -103,7 +100,7 @@ export const AdminLayout: React.FC = () => {
                 to={item.href}
                 className={`flex items-center px-3.5 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#064E3B] to-[#0A5C44] text-white shadow-lg shadow-[#064E3B]/40 scale-[1.02] border-l-2 border-[#D4AF37]'
+                    ? 'bg-gradient-to-r from-[#0A4D40] to-[#062E28] text-[#D4AF37] font-bold shadow-lg shadow-[#062E28]/40 scale-[1.02] border border-[#D4AF37]/30'
                     : 'text-stone-400 hover:text-white hover:bg-stone-900/90'
                 }`}
               >
@@ -121,7 +118,7 @@ export const AdminLayout: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/admin"
-              className="font-serif text-lg font-bold text-stone-900 tracking-tight no-underline hover:text-[#0A5C44] transition-colors cursor-pointer"
+              className="font-serif text-lg font-bold text-stone-900 tracking-tight no-underline hover:text-[#0A4D40] transition-colors cursor-pointer"
             >
               NiVi Couture Administration
             </Link>
@@ -141,11 +138,11 @@ export const AdminLayout: React.FC = () => {
             <Link
               to="/"
               target="_blank"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-stone-700 hover:text-[#0A5C44] bg-stone-100 hover:bg-emerald-50 border border-stone-200/80 hover:border-[#0A5C44]/30 rounded-full transition-all duration-200 shadow-xs group"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-stone-700 hover:text-[#0A4D40] bg-stone-100 hover:bg-[#FFF0F5] border border-stone-200/80 hover:border-[#0A4D40]/30 rounded-full transition-all duration-200 shadow-xs group"
               title="Open customer storefront in a new tab"
             >
               <span>View Storefront</span>
-              <ExternalLink className="w-3.5 h-3.5 text-stone-400 group-hover:text-[#0A5C44] transition-transform group-hover:translate-x-0.5" />
+              <ExternalLink className="w-3.5 h-3.5 text-stone-400 group-hover:text-[#0A4D40] transition-transform group-hover:translate-x-0.5" />
             </Link>
 
             {/* Profile Dropdown Container */}
@@ -153,11 +150,11 @@ export const AdminLayout: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                className="flex items-center gap-2.5 p-1 pr-2 rounded-full hover:bg-stone-50 transition cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20"
+                className="flex items-center gap-2.5 p-1 pr-2 rounded-full hover:bg-stone-50 transition cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20"
                 aria-expanded={isProfileDropdownOpen}
                 aria-haspopup="true"
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#064E3B] to-[#0A5C44] text-white flex items-center justify-center font-bold text-xs shadow-xs border border-[#D4AF37]/30">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0A4D40] to-[#031D19] text-white flex items-center justify-center font-bold text-xs shadow-xs">
                   {avatarLetter}
                 </div>
                 <div className="hidden sm:flex flex-col text-left">
@@ -176,7 +173,7 @@ export const AdminLayout: React.FC = () => {
                 <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-xl border border-stone-200/90 py-2 z-50 animate-fadeIn">
                   {/* User Profile Header */}
                   <div className="px-4 py-2.5 border-b border-stone-100 flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#064E3B] to-[#0A5C44] text-white flex items-center justify-center font-bold text-sm shadow-xs shrink-0 border border-[#D4AF37]/30">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#0A4D40] to-[#031D19] text-white flex items-center justify-center font-bold text-sm shadow-xs shrink-0">
                       {avatarLetter}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -186,7 +183,7 @@ export const AdminLayout: React.FC = () => {
                       <p className="text-[10px] text-stone-400 font-mono truncate">
                         {displayEmail}
                       </p>
-                      <span className="inline-flex items-center gap-1 mt-1 text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#0A5C44]/10 text-[#0A5C44]">
+                      <span className="inline-flex items-center gap-1 mt-1 text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#0A4D40]/10 text-[#0A4D40]">
                         <ShieldCheck className="w-2.5 h-2.5" />
                         {user?.role === 'ROLE_ADMIN' ? 'Super Admin' : 'Admin'}
                       </span>
@@ -198,7 +195,7 @@ export const AdminLayout: React.FC = () => {
                     <Link
                       to="/admin/settings"
                       onClick={() => setIsProfileDropdownOpen(false)}
-                      className="flex items-center px-4 py-2 text-xs font-medium text-stone-700 hover:bg-[#FAF8F5] hover:text-[#0A5C44] transition gap-2.5"
+                      className="flex items-center px-4 py-2 text-xs font-medium text-stone-700 hover:bg-[#FAF8F5] hover:text-[#0A4D40] transition gap-2.5"
                     >
                       <Settings className="w-4 h-4 text-stone-400" />
                       <span>Admin Settings</span>
@@ -207,7 +204,7 @@ export const AdminLayout: React.FC = () => {
                       to="/"
                       target="_blank"
                       onClick={() => setIsProfileDropdownOpen(false)}
-                      className="flex items-center px-4 py-2 text-xs font-medium text-stone-700 hover:bg-[#FAF8F5] hover:text-[#0A5C44] transition gap-2.5"
+                      className="flex items-center px-4 py-2 text-xs font-medium text-stone-700 hover:bg-[#FAF8F5] hover:text-[#0A4D40] transition gap-2.5"
                     >
                       <ExternalLink className="w-4 h-4 text-stone-400" />
                       <span>View Storefront</span>

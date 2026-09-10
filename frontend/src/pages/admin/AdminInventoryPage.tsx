@@ -15,14 +15,20 @@ import {
   Star,
   ChevronLeft,
   ChevronRight,
+  Boxes,
+  AlertTriangle,
+  CheckCircle2,
+  PackageCheck
 } from 'lucide-react';
 import api from '@/services/api';
 
-export const AdminProductsPage: React.FC = () => {
+export const AdminInventoryPage: React.FC = () => {
+  const isInventoryPage = true;
   const [products, setProducts] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [stockFilter, setStockFilter] = useState<'all' | 'in_stock' | 'low_stock' | 'out_of_stock'>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProductId, setEditingProductId] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -343,11 +349,24 @@ export const AdminProductsPage: React.FC = () => {
     }
   };
 
-  const filteredProducts = products.filter((p) =>
-    p.name?.toLowerCase().includes(search.toLowerCase()) ||
-    p.sku?.toLowerCase().includes(search.toLowerCase()) ||
-    p.categoryName?.toLowerCase().includes(search.toLowerCase())
-  );
+  // Inventory Calculations
+  const totalStockUnits = products.reduce((acc, p) => acc + (Number(p.stock) || 0), 0);
+  const inStockCount = products.filter((p) => (Number(p.stock) || 0) > 10).length;
+  const lowStockCount = products.filter((p) => (Number(p.stock) || 0) > 0 && (Number(p.stock) || 0) <= 10).length;
+  const outOfStockCount = products.filter((p) => (Number(p.stock) || 0) === 0).length;
+
+  const filteredProducts = products.filter((p) => {
+    const matchesSearch =
+      p.name?.toLowerCase().includes(search.toLowerCase()) ||
+      p.sku?.toLowerCase().includes(search.toLowerCase()) ||
+      p.categoryName?.toLowerCase().includes(search.toLowerCase());
+
+    const stock = Number(p.stock) || 0;
+    if (stockFilter === 'in_stock') return matchesSearch && stock > 10;
+    if (stockFilter === 'low_stock') return matchesSearch && stock > 0 && stock <= 10;
+    if (stockFilter === 'out_of_stock') return matchesSearch && stock === 0;
+    return matchesSearch;
+  });
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -356,12 +375,12 @@ export const AdminProductsPage: React.FC = () => {
         <div>
           <div className="flex items-center gap-2">
             <h2 className="font-serif text-2xl font-bold text-stone-900 tracking-tight">
-              Saree Catalog Management
+              Saree Inventory & Stock Management
             </h2>
             <span className="w-1.5 h-1.5 rounded-full bg-[#0A4D40]"></span>
           </div>
           <p className="text-xs text-stone-500 mt-1">
-            Maintain luxury catalog, pricing, fabric descriptions, and collection items
+            Track real-time warehouse stock availability, reorder levels, and unit counts
           </p>
         </div>
 
@@ -372,6 +391,71 @@ export const AdminProductsPage: React.FC = () => {
           <Plus className="w-4 h-4" />
           <span>Add New Saree</span>
         </button>
+      </div>
+
+      {/* Inventory KPI Summary Cards */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5">
+        <div className="bg-white p-4 rounded-2xl border border-stone-200/80 shadow-xs flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-xl bg-stone-100 text-[#0A4D40] flex items-center justify-center shrink-0">
+            <Boxes className="w-5 h-5" />
+          </div>
+          <div>
+            <p className="text-[10.5px] font-bold text-stone-400 uppercase tracking-wider">Total Catalog</p>
+            <div className="flex items-baseline gap-1.5 mt-0.5">
+              <span className="font-sans text-2xl font-extrabold text-stone-900 tracking-tight tabular-nums">
+                {products.length}
+              </span>
+              <span className="text-xs font-sans font-medium text-stone-400">Designs</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white p-4 rounded-2xl border border-stone-200/80 shadow-xs flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+            <PackageCheck className="w-5 h-5" />
+          </div>
+          <div>
+            <p className="text-[10.5px] font-bold text-stone-400 uppercase tracking-wider">Total Stock Units</p>
+            <div className="flex items-baseline gap-1.5 mt-0.5">
+              <span className="font-sans text-2xl font-extrabold text-[#0A4D40] tracking-tight tabular-nums">
+                {totalStockUnits.toLocaleString('en-IN')}
+              </span>
+              <span className="text-xs font-sans font-medium text-stone-400">Units</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white p-4 rounded-2xl border border-stone-200/80 shadow-xs flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-xl bg-[#0A4D40]/10 text-[#0A4D40] flex items-center justify-center shrink-0">
+            <CheckCircle2 className="w-5 h-5" />
+          </div>
+          <div>
+            <p className="text-[10.5px] font-bold text-stone-400 uppercase tracking-wider">In Healthy Stock</p>
+            <div className="flex items-baseline gap-1.5 mt-0.5">
+              <span className="font-sans text-2xl font-extrabold text-stone-900 tracking-tight tabular-nums">
+                {inStockCount}
+              </span>
+              <span className="text-xs font-sans font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full border border-emerald-200/60">
+                10+ pcs
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white p-4 rounded-2xl border border-stone-200/80 shadow-xs flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+            <AlertTriangle className="w-5 h-5" />
+          </div>
+          <div>
+            <p className="text-[10.5px] font-bold text-stone-400 uppercase tracking-wider">Low / Out of Stock</p>
+            <div className="flex items-baseline gap-1.5 mt-0.5">
+              <span className="font-sans text-2xl font-extrabold text-amber-600 tracking-tight tabular-nums">
+                {lowStockCount + outOfStockCount}
+              </span>
+              <span className="text-xs font-sans font-medium text-stone-400">Needs Reorder</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Filter and Search Bar */}
@@ -387,9 +471,61 @@ export const AdminProductsPage: React.FC = () => {
           />
         </div>
 
-        <span className="text-xs text-stone-500 font-medium">
-          Showing <strong className="text-[#0A4D40]">{filteredProducts.length}</strong> of {products.length} Sarees
-        </span>
+        {/* Stock Filter Pills */}
+        {isInventoryPage ? (
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
+          <button
+            type="button"
+            onClick={() => setStockFilter('all')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer shrink-0 ${
+              stockFilter === 'all'
+                ? 'bg-[#0A4D40] text-white shadow-xs'
+                : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+            }`}
+          >
+            All ({products.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setStockFilter('in_stock')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer shrink-0 ${
+              stockFilter === 'in_stock'
+                ? 'bg-emerald-700 text-white shadow-xs'
+                : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
+            }`}
+          >
+            In Stock ({inStockCount})
+          </button>
+          <button
+            type="button"
+            onClick={() => setStockFilter('low_stock')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer shrink-0 ${
+              stockFilter === 'low_stock'
+                ? 'bg-amber-600 text-white shadow-xs'
+                : 'bg-amber-50 text-amber-800 hover:bg-amber-100'
+            }`}
+          >
+            Low Stock ({lowStockCount})
+          </button>
+          {outOfStockCount > 0 && (
+            <button
+              type="button"
+              onClick={() => setStockFilter('out_of_stock')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer shrink-0 ${
+                stockFilter === 'out_of_stock'
+                  ? 'bg-rose-700 text-white shadow-xs'
+                  : 'bg-rose-50 text-rose-800 hover:bg-rose-100'
+              }`}
+            >
+              Sold Out ({outOfStockCount})
+            </button>
+          )}
+        </div>
+        ) : (
+          <span className="text-xs text-stone-500 font-medium">
+            Showing <strong className="text-[#0A4D40]">{filteredProducts.length}</strong> of {products.length} Sarees
+          </span>
+        )}
       </div>
 
       {/* Products Table */}
@@ -413,13 +549,17 @@ export const AdminProductsPage: React.FC = () => {
                   <th className="py-3.5 px-4">Category</th>
                   <th className="py-3.5 px-4">Price</th>
                   <th className="py-3.5 px-4">Fabric</th>
-                                    <th className="py-3.5 px-4 text-right">Actions</th>
+                  <th className="py-3.5 px-4">Stock Availability</th>
+                  <th className="py-3.5 px-4 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100 text-stone-700">
                 {filteredProducts.map((product) => {
                   const priceVal = product.sellingPrice ?? product.price ?? product.mrp ?? 0;
                   const defaultImg = 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=300&q=80';
+                  const stockNum = Number(product.stock ?? 0);
+                  const isHealthy = stockNum > 10;
+                  const isLow = stockNum > 0 && stockNum <= 10;
 
                   return (
                     <tr key={product.id} className="hover:bg-[#FAF8F5]/70 transition-colors">
@@ -453,7 +593,7 @@ export const AdminProductsPage: React.FC = () => {
                       </td>
                       <td className="py-3.5 px-4">
                         <div className="flex flex-col">
-                          <span className="font-bold text-stone-900 text-sm">
+                          <span className="font-sans font-bold text-stone-900 text-sm tabular-nums">
                             ₹{Number(priceVal).toLocaleString('en-IN')}
                           </span>
                           {product.mrp && Number(product.mrp) > Number(priceVal) && (
@@ -466,7 +606,45 @@ export const AdminProductsPage: React.FC = () => {
                       <td className="py-3.5 px-4 text-stone-600 font-medium">
                         {product.fabric || 'Pure Silk'}
                       </td>
-                      
+                      <td className="py-3.5 px-4">
+                        <div className="flex flex-col gap-1 min-w-[135px]">
+                          <div className="flex items-center justify-between gap-1.5">
+                            <span className="font-sans font-bold text-stone-900 text-xs tracking-tight tabular-nums">
+                              {stockNum} {stockNum === 1 ? 'Piece' : 'Pieces'}
+                            </span>
+                            <span
+                              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                                isHealthy
+                                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200/80'
+                                  : isLow
+                                  ? 'bg-amber-50 text-amber-800 border border-amber-300/80'
+                                  : 'bg-rose-50 text-rose-700 border border-rose-200/80'
+                              }`}
+                            >
+                              <span
+                                className={`w-1.5 h-1.5 rounded-full ${
+                                  isHealthy
+                                    ? 'bg-emerald-500 animate-pulse'
+                                    : isLow
+                                    ? 'bg-amber-500'
+                                    : 'bg-rose-500'
+                                }`}
+                              />
+                              {isHealthy ? 'In Stock' : isLow ? 'Low Stock' : 'Out of Stock'}
+                            </span>
+                          </div>
+
+                          {/* Inventory progress level bar */}
+                          <div className="w-full bg-stone-100 rounded-full h-1.5 overflow-hidden">
+                            <div
+                              className={`h-full rounded-full transition-all duration-300 ${
+                                isHealthy ? 'bg-[#0A4D40]' : isLow ? 'bg-amber-500' : 'bg-rose-500'
+                              }`}
+                              style={{ width: `${Math.min(100, Math.max(8, (stockNum / 25) * 100))}%` }}
+                            />
+                          </div>
+                        </div>
+                      </td>
                       <td className="py-3.5 px-4 text-right">
                         <div className="flex items-center justify-end space-x-1">
                           <button

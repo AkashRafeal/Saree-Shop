@@ -74,21 +74,41 @@ public class DataInitializer implements CommandLineRunner {
         Role customerRole = roleRepository.findByName(RoleType.ROLE_CUSTOMER)
                 .orElseGet(() -> roleRepository.save(Role.builder().name(RoleType.ROLE_CUSTOMER).build()));
 
-        // 2. Default Admin
-        if (!userRepository.existsByEmail("admin@sareeaura.com")) {
-            User admin = User.builder()
-                    .email("admin@sareeaura.com")
+        // Remove legacy admin@sareeaura.com user if present
+        try {
+            Long legacyAdminId = jdbcTemplate.queryForObject(
+                "SELECT id FROM users WHERE email = 'admin@sareeaura.com'", Long.class
+            );
+            if (legacyAdminId != null) {
+                jdbcTemplate.update("DELETE FROM user_roles WHERE user_id = ?", legacyAdminId);
+                jdbcTemplate.update("DELETE FROM cart_items WHERE cart_id IN (SELECT id FROM carts WHERE user_id = ?)", legacyAdminId);
+                jdbcTemplate.update("DELETE FROM carts WHERE user_id = ?", legacyAdminId);
+                jdbcTemplate.update("DELETE FROM wishlist_items WHERE wishlist_id IN (SELECT id FROM wishlists WHERE user_id = ?)", legacyAdminId);
+                jdbcTemplate.update("DELETE FROM wishlists WHERE user_id = ?", legacyAdminId);
+                jdbcTemplate.update("DELETE FROM addresses WHERE user_id = ?", legacyAdminId);
+                jdbcTemplate.update("DELETE FROM users WHERE id = ?", legacyAdminId);
+                log.info("Successfully removed legacy admin user: admin@sareeaura.com");
+            }
+        } catch (org.springframework.dao.EmptyResultDataAccessException ignored) {
+            // Not present, already removed
+        } catch (Exception e) {
+            log.warn("Note during legacy admin removal: {}", e.getMessage());
+        }
+
+        if (!userRepository.existsByEmail("admin@nivicouture.com")) {
+            User niviAdmin = User.builder()
+                    .email("admin@nivicouture.com")
                     .password(passwordEncoder.encode("Admin@123"))
-                    .firstName("Master")
+                    .firstName("NiVi")
                     .lastName("Administrator")
-                    .phone("+91 9876543210")
+                    .phone("+971 4 345 6789")
                     .active(true)
                     .roles(Set.of(adminRole, customerRole))
                     .build();
-            admin = userRepository.save(admin);
-            cartRepository.save(Cart.builder().user(admin).build());
-            wishlistRepository.save(Wishlist.builder().user(admin).build());
-            log.info("Seeded Admin: admin@sareeaura.com / Admin@123");
+            niviAdmin = userRepository.save(niviAdmin);
+            cartRepository.save(Cart.builder().user(niviAdmin).build());
+            wishlistRepository.save(Wishlist.builder().user(niviAdmin).build());
+            log.info("Seeded Admin: admin@nivicouture.com / Admin@123");
         }
 
         // 3. Default Customer

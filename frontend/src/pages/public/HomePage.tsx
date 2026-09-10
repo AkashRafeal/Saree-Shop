@@ -136,7 +136,7 @@ export const HomePage: React.FC = () => {
     {
       id: 2,
       rating: 5.0,
-      quote: "This is my second order from NiVi Couture. I loved them both! They arrived well packed with authentic Silk Mark certificates, exactly as shown in pictures.",
+      quote: "This is my second order from SareeAura. I loved them both! They arrived well packed with authentic Silk Mark certificates, exactly as shown in pictures.",
       author: 'Indu Vatsala',
       location: 'India',
     },
@@ -199,27 +199,27 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 min-h-[500px] sm:min-h-[540px] items-center py-6 md:py-8">
             {/* Left Content */}
-            <div key={`text-${heroSlide}`} className="md:col-span-6 py-6 md:py-12 pr-0 md:pr-8 z-10 flex flex-col justify-center animate-fadeIn">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-stone-500 font-semibold mb-3 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <div key={`text-${heroSlide}`} className="md:col-span-6 py-6 md:py-12 pr-0 md:pr-8 z-10 flex flex-col justify-center items-center md:items-start text-center md:text-left animate-fadeIn">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-stone-500 font-semibold mb-3 flex items-center justify-center md:justify-start gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#0A4D40]" />
                 {heroSlides[heroSlide].badge}
               </span>
 
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-stone-900 leading-tight">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-stone-900 leading-tight text-center md:text-left">
                 {heroSlides[heroSlide].titlePart1}{' '}
-                <span className="block font-serif font-bold text-[#0A5C44]">
+                <span className="block font-serif font-bold text-[#0A4D40]">
                   {heroSlides[heroSlide].titlePart2}
                 </span>
               </h1>
 
-              <p className="mt-4 text-xs sm:text-sm text-stone-600 max-w-md leading-relaxed">
+              <p className="mt-4 text-xs sm:text-sm text-stone-600 max-w-md leading-relaxed text-center md:text-left mx-auto md:mx-0">
                 {heroSlides[heroSlide].description}
               </p>
 
-              <div className="mt-8 flex items-center space-x-4">
+              <div className="mt-8 flex items-center justify-center md:justify-start space-x-4 w-full md:w-auto">
                 <Link
                   to={heroSlides[heroSlide].href}
-                  className="inline-flex items-center px-8 py-3.5 bg-[#0A5C44] hover:bg-[#064E3B] text-white text-xs font-semibold uppercase tracking-widest rounded-full transition-all shadow-md group cursor-pointer"
+                  className="inline-flex items-center px-8 py-3.5 bg-[#0A4D40] hover:bg-[#062E28] text-white text-xs font-semibold uppercase tracking-widest rounded-full transition-all shadow-md group"
                 >
                   <span>{heroSlides[heroSlide].cta}</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -248,7 +248,7 @@ export const HomePage: React.FC = () => {
                 loop={true}
                 showControls={false}
                 showIndicators={false}
-                tint="#042F24"
+                tint="#20030a"
                 onChange={(idx) => setHeroSlide(idx)}
               />
             </div>
@@ -258,11 +258,11 @@ export const HomePage: React.FC = () => {
 
       {/* 2. CELEBRATE EVERY OCCASION IN STYLE - Shop By Category */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#D4AF37] block">
+        <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-stone-500 block">
           CELEBRATE EVERY OCCASION IN STYLE
         </span>
         <h2 className="font-serif text-2xl sm:text-3xl text-stone-900 mt-1">
-          Shop By <span className="text-[#0A5C44] font-bold">Category</span>
+          Shop By <span className="text-[#0A4D40] font-bold">Category</span>
         </h2>
 
         {/* Circular Avatars Carousel / Grid */}
@@ -273,14 +273,14 @@ export const HomePage: React.FC = () => {
               to={cat.href}
               className="flex flex-col items-center group shrink-0 focus:outline-none"
             >
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden p-0.5 border-2 border-transparent group-hover:border-[#0A5C44] transition-all duration-300 shadow-sm">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden p-0.5 border-2 border-transparent group-hover:border-[#0A4D40] transition-all duration-300 shadow-sm">
                 <img
                   src={cat.image}
                   alt={cat.name}
                   className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <span className="mt-3 text-[10px] sm:text-xs font-bold tracking-wider text-stone-800 uppercase group-hover:text-[#0A5C44] transition-colors">
+              <span className="mt-3 text-[10px] sm:text-xs font-bold tracking-wider text-stone-800 uppercase group-hover:text-[#0A4D40] transition-colors">
                 {cat.name}
               </span>
             </Link>
@@ -292,14 +292,14 @@ export const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-200">
           <h2 className="font-serif text-xl sm:text-2xl text-stone-900">
-            Shop By <span className="text-[#0A5C44] font-bold">Occasion</span>
+            Shop By <span className="text-[#0A4D40] font-bold">Occasion</span>
           </h2>
           <Link
             to="/shop"
-            className="text-[11px] font-bold text-stone-600 hover:text-[#0A5C44] uppercase tracking-wider inline-flex items-center transition"
+            className="text-[11px] font-bold text-stone-600 hover:text-[#0A4D40] uppercase tracking-wider inline-flex items-center transition"
           >
             <span>VIEW ALL OCCASIONS</span>
-            <ChevronRight className="w-3.5 h-3.5 ml-0.5 text-[#0A5C44]" />
+            <ChevronRight className="w-3.5 h-3.5 ml-0.5 text-[#0A4D40]" />
           </Link>
         </div>
 
@@ -406,14 +406,14 @@ export const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-200">
           <h2 className="font-serif text-xl sm:text-2xl text-stone-900">
-            New <span className="text-[#0A5C44] font-bold">Arrivals</span>
+            New <span className="text-[#0A4D40] font-bold">Arrivals</span>
           </h2>
           <Link
             to="/shop?sort=newest"
-            className="text-[11px] font-bold text-stone-600 hover:text-[#0A5C44] uppercase tracking-wider inline-flex items-center transition"
+            className="text-[11px] font-bold text-stone-600 hover:text-[#0A4D40] uppercase tracking-wider inline-flex items-center transition"
           >
             <span>VIEW ALL PRODUCTS</span>
-            <ChevronRight className="w-3.5 h-3.5 ml-0.5 text-[#0A5C44]" />
+            <ChevronRight className="w-3.5 h-3.5 ml-0.5 text-[#0A4D40]" />
           </Link>
         </div>
 
@@ -436,14 +436,14 @@ export const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-200">
           <h2 className="font-serif text-xl sm:text-2xl text-stone-900">
-            Our Featured <span className="text-[#0A5C44] font-bold">Collection</span>
+            Our Featured <span className="text-[#0A4D40] font-bold">Collection</span>
           </h2>
           <Link
             to="/shop?featured=true"
-            className="text-[11px] font-bold text-stone-600 hover:text-[#0A5C44] uppercase tracking-wider inline-flex items-center transition"
+            className="text-[11px] font-bold text-stone-600 hover:text-[#0A4D40] uppercase tracking-wider inline-flex items-center transition"
           >
             <span>VIEW ALL PRODUCTS</span>
-            <ChevronRight className="w-3.5 h-3.5 ml-0.5 text-[#0A5C44]" />
+            <ChevronRight className="w-3.5 h-3.5 ml-0.5 text-[#0A4D40]" />
           </Link>
         </div>
 
@@ -466,14 +466,14 @@ export const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-200">
           <h2 className="font-serif text-xl sm:text-2xl text-stone-900">
-            Reviews & <span className="text-[#0A5C44] font-bold">Ratings</span>
+            Reviews & <span className="text-[#0A4D40] font-bold">Ratings</span>
           </h2>
           <Link
             to="/reviews"
-            className="text-[11px] font-bold text-stone-600 hover:text-[#0A5C44] uppercase tracking-wider inline-flex items-center transition"
+            className="text-[11px] font-bold text-stone-600 hover:text-[#0A4D40] uppercase tracking-wider inline-flex items-center transition"
           >
             <span>VIEW ALL</span>
-            <ChevronRight className="w-3.5 h-3.5 ml-0.5 text-[#0A5C44]" />
+            <ChevronRight className="w-3.5 h-3.5 ml-0.5 text-[#0A4D40]" />
           </Link>
         </div>
 
@@ -482,7 +482,7 @@ export const HomePage: React.FC = () => {
             <Link
               key={rev.id}
               to="/reviews"
-              className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md hover:border-[#0A5C44]/40 transition group"
+              className="bg-white p-6 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md hover:border-[#0A4D40]/30 transition group"
             >
               <div>
                 <div className="flex items-center space-x-1 text-amber-500 mb-2">
@@ -497,11 +497,11 @@ export const HomePage: React.FC = () => {
               </div>
 
               <div className="flex items-center space-x-3 pt-3 border-t border-stone-100">
-                <div className="w-8 h-8 rounded-full bg-emerald-50 text-[#0A5C44] font-serif font-bold text-xs flex items-center justify-center group-hover:bg-[#0A5C44] group-hover:text-white transition shadow-xs">
+                <div className="w-8 h-8 rounded-full bg-rose-50 text-[#0A4D40] font-serif font-bold text-xs flex items-center justify-center group-hover:bg-[#0A4D40] group-hover:text-white transition">
                   {rev.author.charAt(0)}
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-stone-900 group-hover:text-[#0A5C44] transition">{rev.author}</h4>
+                  <h4 className="text-xs font-bold text-stone-900 group-hover:text-[#0A4D40] transition">{rev.author}</h4>
                   <span className="text-[10px] text-stone-400">{rev.location}</span>
                 </div>
               </div>
@@ -516,7 +516,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
             {/* 1. Authentic Quality */}
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A5C44] mb-3 shadow-sm hover:border-[#0A5C44] transition-colors">
+              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A4D40] mb-3 shadow-sm">
                 <Award className="w-6 h-6" />
               </div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900">
@@ -529,7 +529,7 @@ export const HomePage: React.FC = () => {
 
             {/* 2. Modern Tradition */}
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A5C44] mb-3 shadow-sm hover:border-[#0A5C44] transition-colors">
+              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A4D40] mb-3 shadow-sm">
                 <Sparkles className="w-6 h-6" />
               </div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900">
@@ -542,7 +542,7 @@ export const HomePage: React.FC = () => {
 
             {/* 3. Express Delivery */}
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A5C44] mb-3 shadow-sm hover:border-[#0A5C44] transition-colors">
+              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A4D40] mb-3 shadow-sm">
                 <Truck className="w-6 h-6" />
               </div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900">
@@ -555,7 +555,7 @@ export const HomePage: React.FC = () => {
 
             {/* 4. Easy Returns */}
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A5C44] mb-3 shadow-sm hover:border-[#0A5C44] transition-colors">
+              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A4D40] mb-3 shadow-sm">
                 <RotateCcw className="w-6 h-6" />
               </div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900">
@@ -568,7 +568,7 @@ export const HomePage: React.FC = () => {
 
             {/* 5. 100% Secure Payment */}
             <div className="flex flex-col items-center col-span-2 md:col-span-1">
-              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A5C44] mb-3 shadow-sm hover:border-[#0A5C44] transition-colors">
+              <div className="w-12 h-12 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0A4D40] mb-3 shadow-sm">
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-stone-900">

@@ -85,8 +85,8 @@
 }
 
 .depth-carousel__arrow:hover {
-  background: rgba(10, 92, 68, 0.9);
-  border-color: rgba(212, 175, 55, 0.6);
+  background: rgba(216, 27, 96, 0.85);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .depth-carousel__arrow:active {
@@ -130,7 +130,7 @@
 
 .depth-carousel__dot.is-active {
   width: 20px;
-  background: #D4AF37;
+  background: #D81B60;
 }
 
 @media (prefers-reduced-motion: reduce) {

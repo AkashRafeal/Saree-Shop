@@ -93,14 +93,14 @@ export const MyOrdersPage: React.FC = () => {
             <p className="text-red-700 font-medium text-sm mb-4">{error}</p>
             <button
               onClick={fetchOrders}
-              className="px-5 py-2 bg-[#0A5C44] hover:bg-[#064E3B] text-white text-xs font-semibold rounded-full shadow-sm transition cursor-pointer"
+              className="px-5 py-2 bg-[#0A4D40] hover:bg-[#062E28] text-white text-xs font-semibold rounded-full shadow-sm transition cursor-pointer"
             >
               Try Again
             </button>
           </div>
         ) : orders.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
-            <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 text-[#0A5C44]">
+            <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mx-auto mb-4 text-[#0A4D40]">
               <ShoppingBag className="w-8 h-8" />
             </div>
             <h3 className="font-serif text-xl font-bold text-stone-800">No Orders Yet</h3>
@@ -109,7 +109,7 @@ export const MyOrdersPage: React.FC = () => {
             </p>
             <Link
               to="/shop"
-              className="mt-6 inline-flex items-center px-7 py-3 rounded-full bg-[#0A5C44] hover:bg-[#064E3B] text-white text-xs font-semibold uppercase tracking-wider transition shadow-md shadow-[#0A5C44]/20 cursor-pointer"
+              className="mt-6 inline-flex items-center px-7 py-3 rounded-full bg-[#0A4D40] hover:bg-[#062E28] text-white text-xs font-semibold uppercase tracking-wider transition shadow-md shadow-[#0A4D40]/20 cursor-pointer"
             >
               <span>Explore Collection</span>
               <ChevronRight className="w-4 h-4 ml-1" />
@@ -149,7 +149,7 @@ export const MyOrdersPage: React.FC = () => {
                       <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block">
                         Total Amount
                       </span>
-                      <span className="text-sm font-bold text-[#0A5C44]">
+                      <span className="text-sm font-bold text-brand-maroon">
                         ₹{Number(order.totalAmount).toLocaleString('en-IN')}
                       </span>
                     </div>
@@ -159,7 +159,7 @@ export const MyOrdersPage: React.FC = () => {
                     {getStatusBadge(order.status)}
                     <Link
                       to={`/my-orders/${order.id}`}
-                      className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold text-[#0A5C44] bg-emerald-50 hover:bg-emerald-100/80 transition cursor-pointer"
+                      className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold text-[#0A4D40] bg-rose-50 hover:bg-rose-100/80 transition cursor-pointer"
                     >
                       <span>Track Details</span>
                       <ChevronRight className="w-3.5 h-3.5 ml-1" />

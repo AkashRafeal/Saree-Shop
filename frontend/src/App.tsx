@@ -21,6 +21,7 @@ import { OrderDetailPage } from '@/pages/customer/OrderDetailPage';
 // Admin Portal Pages
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage';
 import { AdminProductsPage } from '@/pages/admin/AdminProductsPage';
+import { AdminInventoryPage } from '@/pages/admin/AdminInventoryPage';
 import { AdminOrdersPage } from '@/pages/admin/AdminOrdersPage';
 import { AdminCustomersPage } from '@/pages/admin/AdminCustomersPage';
 import { AdminCategoriesPage } from '@/pages/admin/AdminCategoriesPage';
@@ -68,7 +69,7 @@ export const App: React.FC = () => {
             <Route path="orders" element={<AdminOrdersPage />} />
             <Route path="customers" element={<AdminCustomersPage />} />
             <Route path="categories" element={<AdminCategoriesPage />} />
-            <Route path="inventory" element={<AdminProductsPage />} />
+            <Route path="inventory" element={<AdminInventoryPage />} />
             <Route path="coupons" element={<AdminCouponsPage />} />
             <Route path="reviews" element={<AdminReviewsPage />} />
             <Route path="banners" element={<AdminBannersPage />} />

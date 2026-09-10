@@ -26,12 +26,12 @@ interface AtelierSettings {
 }
 
 const DEFAULT_SETTINGS: AtelierSettings = {
-  storeName: 'SareeAura Luxury Atelier',
-  tagline: 'Timeless Indian Handloom & Bridal Masterpieces',
-  supportEmail: 'concierge@sareeaura.com',
-  conciergePhone: '+91 98765 43210',
-  boutiqueAddress: '128 Kanchipuram High Road, Silk Heritage Quarter, Tamil Nadu, India',
-  currency: 'INR (₹)',
+  storeName: 'NiVi Couture Luxury Atelier',
+  tagline: 'Elegance Refined, Soul Defined',
+  supportEmail: 'concierge@nivicouture.com',
+  conciergePhone: '+971 4 345 6789',
+  boutiqueAddress: 'Fashion Avenue, The Dubai Mall, Downtown Dubai, United Arab Emirates',
+  currency: 'AED (د.إ) / INR (₹)',
   gstRate: 5,
   freeShippingThreshold: 2999,
   standardShippingFee: 150,
@@ -80,7 +80,7 @@ export const AdminSettingsPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#0A5C44]"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0A4D40]"></span>
             <span className="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold">
               Atelier Configuration
             </span>
@@ -96,7 +96,7 @@ export const AdminSettingsPage: React.FC = () => {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A5C44] to-[#064E3B] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A5C44]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer disabled:opacity-50"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A4D40] to-[#062E28] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A4D40]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
           <span>{saving ? 'Saving...' : 'Save Changes'}</span>
@@ -114,7 +114,7 @@ export const AdminSettingsPage: React.FC = () => {
         {/* Boutique Branding */}
         <div className="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-xs space-y-4">
           <div className="flex items-center gap-2 border-b border-stone-100 pb-3">
-            <Store className="w-5 h-5 text-[#0A5C44]" />
+            <Store className="w-5 h-5 text-[#0A4D40]" />
             <h2 className="font-serif text-base font-bold text-stone-900">
               Boutique Identity & Branding
             </h2>
@@ -129,7 +129,7 @@ export const AdminSettingsPage: React.FC = () => {
                 type="text"
                 value={settings.storeName}
                 onChange={(e) => handleChange('storeName', e.target.value)}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
             </div>
 
@@ -141,7 +141,7 @@ export const AdminSettingsPage: React.FC = () => {
                 type="text"
                 value={settings.tagline}
                 onChange={(e) => handleChange('tagline', e.target.value)}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
             </div>
           </div>
@@ -165,7 +165,7 @@ export const AdminSettingsPage: React.FC = () => {
                 type="email"
                 value={settings.supportEmail}
                 onChange={(e) => handleChange('supportEmail', e.target.value)}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
             </div>
 
@@ -177,7 +177,7 @@ export const AdminSettingsPage: React.FC = () => {
                 type="text"
                 value={settings.conciergePhone}
                 onChange={(e) => handleChange('conciergePhone', e.target.value)}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
             </div>
 
@@ -189,7 +189,7 @@ export const AdminSettingsPage: React.FC = () => {
                 type="text"
                 value={settings.boutiqueAddress}
                 onChange={(e) => handleChange('boutiqueAddress', e.target.value)}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
             </div>
           </div>
@@ -215,7 +215,7 @@ export const AdminSettingsPage: React.FC = () => {
                 max={28}
                 value={settings.gstRate}
                 onChange={(e) => handleChange('gstRate', Number(e.target.value))}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
             </div>
 
@@ -228,7 +228,7 @@ export const AdminSettingsPage: React.FC = () => {
                 min={0}
                 value={settings.freeShippingThreshold}
                 onChange={(e) => handleChange('freeShippingThreshold', Number(e.target.value))}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
             </div>
 
@@ -241,7 +241,7 @@ export const AdminSettingsPage: React.FC = () => {
                 min={0}
                 value={settings.standardShippingFee}
                 onChange={(e) => handleChange('standardShippingFee', Number(e.target.value))}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
             </div>
           </div>
@@ -252,7 +252,7 @@ export const AdminSettingsPage: React.FC = () => {
               id="allowCod"
               checked={settings.allowCod}
               onChange={(e) => handleChange('allowCod', e.target.checked)}
-              className="w-4 h-4 accent-[#0A5C44] rounded cursor-pointer"
+              className="w-4 h-4 accent-[#0A4D40] rounded cursor-pointer"
             />
             <label htmlFor="allowCod" className="text-xs font-medium text-stone-700 cursor-pointer">
               Enable Cash On Delivery (COD) for eligible domestic pin codes
@@ -280,7 +280,7 @@ export const AdminSettingsPage: React.FC = () => {
                 max={50}
                 value={settings.lowStockThreshold}
                 onChange={(e) => handleChange('lowStockThreshold', Number(e.target.value))}
-                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
               />
               <p className="text-[10px] text-stone-400 mt-1">Triggers amber warning badge in inventory</p>
             </div>
@@ -292,7 +292,7 @@ export const AdminSettingsPage: React.FC = () => {
                   id="emailOrderAlerts"
                   checked={settings.emailOrderAlerts}
                   onChange={(e) => handleChange('emailOrderAlerts', e.target.checked)}
-                  className="w-4 h-4 accent-[#0A5C44] rounded cursor-pointer"
+                  className="w-4 h-4 accent-[#0A4D40] rounded cursor-pointer"
                 />
                 <label htmlFor="emailOrderAlerts" className="text-xs font-medium text-stone-700 cursor-pointer">
                   Send immediate email alerts on new patron orders
@@ -305,7 +305,7 @@ export const AdminSettingsPage: React.FC = () => {
                   id="emailLowStockAlerts"
                   checked={settings.emailLowStockAlerts}
                   onChange={(e) => handleChange('emailLowStockAlerts', e.target.checked)}
-                  className="w-4 h-4 accent-[#0A5C44] rounded cursor-pointer"
+                  className="w-4 h-4 accent-[#0A4D40] rounded cursor-pointer"
                 />
                 <label htmlFor="emailLowStockAlerts" className="text-xs font-medium text-stone-700 cursor-pointer">
                   Send weekly low-stock digest to inventory team
@@ -320,7 +320,7 @@ export const AdminSettingsPage: React.FC = () => {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-[#0A5C44] to-[#064E3B] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A5C44]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-[#0A4D40] to-[#062E28] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A4D40]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? 'Saving...' : 'Save Atelier Settings'}</span>

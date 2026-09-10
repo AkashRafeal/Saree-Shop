@@ -143,13 +143,13 @@ export const CheckoutPage: React.FC = () => {
         <div className="flex justify-center gap-4 pt-4">
           <Link
             to={`/my-orders/${confirmedOrder.id}`}
-            className="bg-[#0A5C44] hover:bg-[#064E3B] text-white font-bold text-xs py-3.5 px-6 rounded-full uppercase tracking-wider transition shadow-md shadow-[#0A5C44]/20"
+            className="bg-brand-maroon hover:bg-brand-maroon-dark text-white font-bold text-xs py-3.5 px-6 rounded-xl uppercase tracking-wider transition"
           >
             Track Order Live
           </Link>
           <Link
             to="/shop"
-            className="bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs py-3.5 px-6 rounded-full uppercase tracking-wider transition"
+            className="bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs py-3.5 px-6 rounded-xl uppercase tracking-wider transition"
           >
             Continue Shopping
           </Link>
@@ -165,7 +165,7 @@ export const CheckoutPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       <div>
-        <span className="text-xs font-bold uppercase tracking-widest text-[#0A5C44]">
+        <span className="text-xs font-bold uppercase tracking-widest text-brand-maroon">
           Secure Checkout
         </span>
         <h1 className="font-serif text-3xl font-bold text-stone-900 mt-1">
@@ -180,12 +180,12 @@ export const CheckoutPage: React.FC = () => {
           <div className="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm space-y-4">
             <div className="flex items-center justify-between border-b border-stone-100 pb-3">
               <h3 className="font-serif text-lg font-bold text-stone-900 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-[#0A5C44]" />
+                <MapPin className="w-5 h-5 text-brand-maroon" />
                 <span>1. Select Delivery Address</span>
               </h3>
               <button
                 onClick={() => setShowNewAddressModal(true)}
-                className="text-xs font-semibold text-[#0A5C44] hover:underline flex items-center gap-1 cursor-pointer"
+                className="text-xs font-semibold text-brand-maroon hover:underline flex items-center gap-1"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add New Address</span>
@@ -199,12 +199,12 @@ export const CheckoutPage: React.FC = () => {
                   onClick={() => setSelectedAddressId(addr.id)}
                   className={`p-4 rounded-xl border-2 cursor-pointer transition text-xs space-y-1 relative ${
                     selectedAddressId === addr.id
-                      ? 'border-[#0A5C44] bg-[#0A5C44]/5 shadow-sm'
+                      ? 'border-brand-maroon bg-brand-maroon/5 shadow-sm'
                       : 'border-stone-200 hover:border-stone-300'
                   }`}
                 >
                   {selectedAddressId === addr.id && (
-                    <span className="absolute top-3 right-3 w-5 h-5 rounded-full bg-[#0A5C44] text-white flex items-center justify-center">
+                    <span className="absolute top-3 right-3 w-5 h-5 rounded-full bg-brand-maroon text-white flex items-center justify-center">
                       <Check className="w-3 h-3" />
                     </span>
                   )}
@@ -280,7 +280,7 @@ export const CheckoutPage: React.FC = () => {
                   </button>
                   <button
                     type="submit"
-                    className="bg-[#0A5C44] hover:bg-[#064E3B] text-white font-bold text-xs px-5 py-2 rounded-full transition shadow-md shadow-[#0A5C44]/20 cursor-pointer"
+                    className="bg-[#0A4D40] hover:bg-[#062E28] text-white font-bold text-xs px-5 py-2 rounded-full transition shadow-sm cursor-pointer"
                   >
                     Save Address
                   </button>
@@ -292,7 +292,7 @@ export const CheckoutPage: React.FC = () => {
           {/* Step 2: Payment Method */}
           <div className="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm space-y-4">
             <h3 className="font-serif text-lg font-bold text-stone-900 flex items-center gap-2 border-b border-stone-100 pb-3">
-              <CreditCard className="w-5 h-5 text-[#0A5C44]" />
+              <CreditCard className="w-5 h-5 text-brand-maroon" />
               <span>2. Payment Gateway</span>
             </h3>
 
@@ -300,12 +300,12 @@ export const CheckoutPage: React.FC = () => {
               <label
                 onClick={() => setPaymentMethod('RAZORPAY')}
                 className={`flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition ${
-                  paymentMethod === 'RAZORPAY' ? 'border-[#0A5C44] bg-[#0A5C44]/5' : 'border-stone-200'
+                  paymentMethod === 'RAZORPAY' ? 'border-brand-maroon bg-brand-maroon/5' : 'border-stone-200'
                 }`}
               >
                 <div className="flex items-center space-x-3">
-                  <div className="w-4 h-4 rounded-full border-2 border-[#0A5C44] flex items-center justify-center">
-                    {paymentMethod === 'RAZORPAY' && <span className="w-2 h-2 rounded-full bg-[#0A5C44]" />}
+                  <div className="w-4 h-4 rounded-full border-2 border-brand-maroon flex items-center justify-center">
+                    {paymentMethod === 'RAZORPAY' && <span className="w-2 h-2 rounded-full bg-brand-maroon" />}
                   </div>
                   <div>
                     <span className="font-bold text-xs text-stone-900 block">Razorpay Test Mode Gateway</span>
@@ -371,7 +371,7 @@ export const CheckoutPage: React.FC = () => {
             <button
               onClick={handlePlaceOrder}
               disabled={placingOrder || !selectedAddressId}
-              className="w-full bg-[#0A5C44] hover:bg-[#064E3B] disabled:bg-stone-300 text-white font-bold text-xs py-4 rounded-full shadow-lg shadow-[#0A5C44]/25 hover:shadow-xl hover:shadow-[#0A5C44]/35 transition uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+              className="w-full bg-[#0A4D40] hover:bg-[#062E28] disabled:bg-stone-300 text-white font-bold text-xs py-4 rounded-full shadow-lg shadow-[#0A4D40]/25 hover:shadow-xl hover:shadow-[#0A4D40]/35 transition uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
             >
               <Sparkles className="w-4 h-4" />
               <span>{placingOrder ? 'Confirming Order...' : `Pay ₹${grandTotal.toLocaleString('en-IN')} & Confirm`}</span>

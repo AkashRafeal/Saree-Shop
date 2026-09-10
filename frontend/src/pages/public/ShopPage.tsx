@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Sparkles, ChevronDown, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Sparkles, ChevronDown, Check, SlidersHorizontal } from 'lucide-react';
 import { Product, Category } from '@/types';
 import { ProductCard } from '@/components/product/ProductCard';
+import { MobileFilterSheet } from '@/components/shop/MobileFilterSheet';
 import api from '@/services/api';
 
 interface CategoryMetadata {
@@ -95,6 +96,7 @@ export const ShopPage: React.FC = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -276,7 +278,7 @@ export const ShopPage: React.FC = () => {
       {/* Title & Custom Theme Dropdown Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200 pb-6">
         <div>
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-[#D4AF37]">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-[#0A4D40]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{pageHeader.badge}</span>
           </span>
@@ -291,25 +293,37 @@ export const ShopPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Custom Brand-Themed Sort Dropdown */}
-        <div className="relative self-start sm:self-center" ref={dropdownRef}>
-          <div className="flex items-center space-x-2">
-            <span className="text-xs text-stone-500 font-medium hidden sm:inline">
-              Sort By:
-            </span>
-            <button
-              type="button"
-              onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-              className="inline-flex items-center justify-between gap-3 bg-white border border-stone-300 hover:border-[#0A5C44] focus:border-[#0A5C44] text-stone-800 text-xs font-semibold rounded-full px-5 py-2.5 shadow-sm transition-all focus:outline-none min-w-[170px] cursor-pointer"
-            >
-              <span>{currentSortLabel}</span>
-              <ChevronDown
-                className={`w-4 h-4 text-[#0A5C44] transition-transform duration-200 ${
-                  sortDropdownOpen ? 'rotate-180' : ''
-                }`}
-              />
-            </button>
-          </div>
+        {/* Actions bar: Mobile Filter Button + Desktop Sort Dropdown */}
+        <div className="flex items-center gap-2 self-start sm:self-center">
+          {/* Mobile Filter & Sort Button */}
+          <button
+            type="button"
+            onClick={() => setMobileFilterOpen(true)}
+            className="lg:hidden inline-flex items-center gap-1.5 bg-[#0A4D40] text-white text-xs font-bold rounded-full px-4 py-2.5 shadow-sm active:scale-95 transition"
+          >
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <span>Filter & Sort</span>
+          </button>
+
+          {/* Desktop Custom Brand-Themed Sort Dropdown (No Windows Blue) */}
+          <div className="relative hidden lg:block" ref={dropdownRef}>
+            <div className="flex items-center space-x-2">
+              <span className="text-xs text-stone-500 font-medium hidden sm:inline">
+                Sort By:
+              </span>
+              <button
+                type="button"
+                onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
+                className="inline-flex items-center justify-between gap-3 bg-white border border-stone-300 hover:border-[#0A4D40] focus:border-[#0A4D40] text-stone-800 text-xs font-semibold rounded-full px-5 py-2.5 shadow-sm transition-all focus:outline-none min-w-[170px]"
+              >
+                <span>{currentSortLabel}</span>
+                <ChevronDown
+                  className={`w-4 h-4 text-[#0A4D40] transition-transform duration-200 ${
+                    sortDropdownOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+            </div>
 
           {/* Theme-Matching Popup Menu */}
           {sortDropdownOpen && (
@@ -324,10 +338,10 @@ export const ShopPage: React.FC = () => {
                       updateParam('sort', opt.value);
                       setSortDropdownOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs text-left transition-colors cursor-pointer ${
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs text-left transition-colors ${
                       isSelected
-                        ? 'bg-[#0A5C44] text-white font-semibold'
-                        : 'text-stone-700 hover:bg-emerald-50 hover:text-[#0A5C44]'
+                        ? 'bg-[#0A4D40] text-white font-semibold'
+                        : 'text-stone-700 hover:bg-emerald-50 hover:text-[#0A4D40]'
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -339,11 +353,12 @@ export const ShopPage: React.FC = () => {
           )}
         </div>
       </div>
+    </div>
 
       {/* Full-Width Product Grid */}
       <main className="space-y-8">
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
               <div key={n} className="h-96 bg-stone-100 rounded-xl animate-pulse" />
             ))}
@@ -358,7 +373,7 @@ export const ShopPage: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -371,7 +386,7 @@ export const ShopPage: React.FC = () => {
             <button
               disabled={page === 0}
               onClick={() => updateParam('page', (page - 1).toString())}
-              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#0A5C44] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
+              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#0A4D40] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -381,13 +396,39 @@ export const ShopPage: React.FC = () => {
             <button
               disabled={page >= totalPages - 1}
               onClick={() => updateParam('page', (page + 1).toString())}
-              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#0A5C44] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
+              className="w-9 h-9 rounded-full border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 hover:border-[#0A4D40] disabled:opacity-40 transition-colors flex items-center justify-center shadow-xs cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         )}
       </main>
+
+      {/* Mobile Filter & Sort Drawer Sheet */}
+      <MobileFilterSheet
+        isOpen={mobileFilterOpen}
+        onClose={() => setMobileFilterOpen(false)}
+        selectedCategory={categorySlug}
+        onSelectCategory={(cat) => updateParam('category', cat)}
+        selectedSort={sort}
+        onSelectSort={(s) => updateParam('sort', s)}
+        sortOptions={SORT_OPTIONS}
+        categories={[
+          { slug: 'new-arrivals', name: 'New Arrivals' },
+          { slug: 'kanchipuram-silk', name: 'Kanchipuram Silks' },
+          { slug: 'banarasi-silk', name: 'Banarasi Brocades' },
+          { slug: 'bridal-sarees', name: 'Bridal Trousseau' },
+          { slug: 'chanderi-organza', name: 'Chanderi & Organza' },
+          { slug: 'tussar-silk', name: 'Tussar Wild Silk' },
+          { slug: 'cotton-linen', name: 'Cotton & Linen' },
+          { slug: 'suits-dresses', name: 'Suits & Designer Dresses' },
+          { slug: 'gowns', name: 'Gowns' },
+          { slug: 'kurti', name: 'Kurti Edit' },
+        ]}
+        onReset={() => {
+          setSearchParams(new URLSearchParams());
+        }}
+      />
     </div>
   );
 };

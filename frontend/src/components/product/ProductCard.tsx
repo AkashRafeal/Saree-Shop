@@ -80,7 +80,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Top Badges */}
         {product.discountPercentage > 0 && (
           <div className="absolute top-2 left-2 z-10">
-            <span className="bg-[#0A5C44] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm tracking-wider uppercase">
+            <span className="bg-[#0A4D40] text-[#D4AF37] text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm tracking-wider uppercase border border-[#D4AF37]/40">
               {product.discountPercentage}% OFF
             </span>
           </div>
@@ -90,11 +90,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <button
           onClick={handleWishlistClick}
           aria-label="Save to Wishlist"
-          className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-stone-600 hover:text-[#0A5C44] shadow transition-colors"
+          className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-stone-600 hover:text-[#0A4D40] shadow transition-colors"
         >
           <Heart
             className={`w-4 h-4 ${
-              wishlistActive ? 'fill-[#0A5C44] text-[#0A5C44]' : 'text-stone-600'
+              wishlistActive ? 'fill-[#0A4D40] text-[#0A4D40]' : 'text-stone-600'
             }`}
           />
         </button>
@@ -104,7 +104,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <button
             onClick={handleAddToCartClick}
             disabled={!product.inStock || adding}
-            className="w-full bg-white/95 hover:bg-[#0A5C44] text-stone-900 hover:text-white font-semibold text-xs py-2 px-3 rounded-full shadow-md flex items-center justify-center gap-1.5 transition-colors uppercase tracking-wider cursor-pointer"
+            className="w-full bg-white/95 hover:bg-[#0A4D40] text-stone-900 hover:text-[#D4AF37] font-semibold text-xs py-2 px-3 rounded-full shadow-md flex items-center justify-center gap-1.5 transition-colors uppercase tracking-wider"
           >
             <ShoppingBag className="w-3.5 h-3.5" />
             <span>{adding ? 'Added to Bag!' : product.inStock ? 'Quick Add' : 'Sold Out'}</span>
@@ -114,12 +114,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Details Container */}
       <div className="pt-3 pb-1 flex flex-col space-y-1">
-        <span className="text-[10px] uppercase tracking-widest text-[#D4AF37] font-bold">
+        <span className="text-[10px] uppercase tracking-widest text-[#0A4D40] font-semibold">
           NIVI COUTURE
         </span>
 
         <Link to={`/product/${product.id}`}>
-          <h3 className="text-xs sm:text-sm font-medium text-stone-800 line-clamp-1 group-hover:text-[#0A5C44] transition-colors">
+          <h3 className="text-xs sm:text-sm font-medium text-stone-800 line-clamp-1 group-hover:text-[#0A4D40] transition-colors">
             {product.name}
           </h3>
         </Link>
@@ -134,7 +134,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               <span className="text-xs font-medium text-stone-400 line-through tabular-nums">
                 ₹{product.mrp?.toLocaleString('en-IN')}
               </span>
-              <span className="text-[11px] font-bold text-[#0A5C44] tabular-nums">
+              <span className="text-[11px] font-bold text-[#0A4D40] tabular-nums">
                 ({product.discountPercentage}% OFF)
               </span>
             </>

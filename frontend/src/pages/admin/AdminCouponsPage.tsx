@@ -258,7 +258,7 @@ export const AdminCouponsPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#0A5C44]"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0A4D40]"></span>
             <span className="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold">
               Privilege & Promotions
             </span>
@@ -273,7 +273,7 @@ export const AdminCouponsPage: React.FC = () => {
 
         <button
           onClick={handleOpenAddModal}
-          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A5C44] to-[#064E3B] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A5C44]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A4D40] to-[#062E28] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A4D40]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Create New Coupon</span>
@@ -288,7 +288,7 @@ export const AdminCouponsPage: React.FC = () => {
             <p className="font-sans text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight tabular-nums mt-1">{activeCount}</p>
             <p className="text-[11px] text-emerald-600 font-medium mt-0.5">Live on storefront</p>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#0A5C44] flex items-center justify-center">
+          <div className="w-12 h-12 rounded-xl bg-rose-50 text-[#0A4D40] flex items-center justify-center">
             <TicketPercent className="w-6 h-6" />
           </div>
         </div>
@@ -337,7 +337,7 @@ export const AdminCouponsPage: React.FC = () => {
               placeholder="Search by code or description..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] transition"
+              className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40] transition"
             />
           </div>
           <span className="text-xs text-stone-500 font-medium">
@@ -365,7 +365,7 @@ export const AdminCouponsPage: React.FC = () => {
                   <tr key={c.id} className="hover:bg-[#FAF8F5]/70 transition-colors">
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-sm text-[#0A5C44] bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-lg tracking-wider">
+                        <span className="font-mono font-bold text-sm text-[#0A4D40] bg-rose-50 border border-rose-200/80 px-2.5 py-1 rounded-lg tracking-wider">
                           {c.code}
                         </span>
                         <button
@@ -411,7 +411,7 @@ export const AdminCouponsPage: React.FC = () => {
                         </div>
                         <div className="w-full bg-stone-100 rounded-full h-1.5 overflow-hidden">
                           <div
-                            className="bg-[#0A5C44] h-1.5 rounded-full"
+                            className="bg-[#0A4D40] h-1.5 rounded-full"
                             style={{ width: `${Math.min(percentUsed, 100)}%` }}
                           ></div>
                         </div>
@@ -436,7 +436,7 @@ export const AdminCouponsPage: React.FC = () => {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => handleOpenEditModal(c)}
-                          className="p-1.5 text-stone-400 hover:text-[#0A5C44] hover:bg-[#ECFDF5] rounded-lg transition cursor-pointer"
+                          className="p-1.5 text-stone-400 hover:text-[#0A4D40] hover:bg-[#FFF0F5] rounded-lg transition cursor-pointer"
                           title="Edit Coupon"
                         >
                           <Edit className="w-4 h-4" />
@@ -470,7 +470,7 @@ export const AdminCouponsPage: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-stone-200">
               <div className="p-5 border-b border-stone-200 flex items-center justify-between bg-stone-50">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#0A5C44] flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-rose-50 text-[#0A4D40] flex items-center justify-center">
                     <TicketPercent className="w-4 h-4" />
                   </div>
                   <h3 className="font-serif text-lg font-bold text-stone-900">
@@ -497,7 +497,7 @@ export const AdminCouponsPage: React.FC = () => {
                       placeholder="e.g. FESTIVE25"
                       value={code}
                       onChange={(e) => setCode(e.target.value.toUpperCase())}
-                      className="w-full px-3.5 py-2 text-xs font-mono font-bold uppercase rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs font-mono font-bold uppercase rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
                   </div>
                   <div>
@@ -507,7 +507,7 @@ export const AdminCouponsPage: React.FC = () => {
                     <select
                       value={discountType}
                       onChange={(e) => setDiscountType(e.target.value as 'PERCENTAGE' | 'FIXED')}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     >
                       <option value="PERCENTAGE">Percentage (%)</option>
                       <option value="FIXED">Flat Amount (₹)</option>
@@ -525,7 +525,7 @@ export const AdminCouponsPage: React.FC = () => {
                     placeholder="e.g. Exclusive Diwali perk on Handloom Pure Silks"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                   />
                 </div>
 
@@ -541,7 +541,7 @@ export const AdminCouponsPage: React.FC = () => {
                       max={discountType === 'PERCENTAGE' ? 90 : 50000}
                       value={discountValue}
                       onChange={(e) => setDiscountValue(Number(e.target.value))}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
                   </div>
                   <div>
@@ -553,7 +553,7 @@ export const AdminCouponsPage: React.FC = () => {
                       min={0}
                       value={minOrderAmount}
                       onChange={(e) => setMinOrderAmount(Number(e.target.value))}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
                   </div>
                 </div>
@@ -568,7 +568,7 @@ export const AdminCouponsPage: React.FC = () => {
                       placeholder="Optional limit"
                       value={maxDiscountAmount}
                       onChange={(e) => setMaxDiscountAmount(e.target.value)}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
                   </div>
                   <div>
@@ -580,7 +580,7 @@ export const AdminCouponsPage: React.FC = () => {
                       min={1}
                       value={usageLimit}
                       onChange={(e) => setUsageLimit(Number(e.target.value))}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
                   </div>
                 </div>
@@ -591,7 +591,7 @@ export const AdminCouponsPage: React.FC = () => {
                     id="couponActive"
                     checked={active}
                     onChange={(e) => setActive(e.target.checked)}
-                    className="w-4 h-4 accent-[#0A5C44] rounded cursor-pointer"
+                    className="w-4 h-4 accent-[#0A4D40] rounded cursor-pointer"
                   />
                   <label htmlFor="couponActive" className="text-xs font-medium text-stone-700 cursor-pointer">
                     Enable this coupon immediately on customer storefront
@@ -609,7 +609,7 @@ export const AdminCouponsPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A5C44] to-[#064E3B] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A5C44]/20 hover:scale-[1.02] cursor-pointer disabled:opacity-50 transition"
+                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A4D40] to-[#062E28] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A4D40]/20 hover:scale-[1.02] cursor-pointer disabled:opacity-50 transition"
                   >
                     {loading ? 'Saving...' : editingId ? 'Update Coupon' : 'Create Voucher'}
                   </button>

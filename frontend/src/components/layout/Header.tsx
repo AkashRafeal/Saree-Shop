@@ -11,10 +11,12 @@ import {
   LogOut, 
   ShieldCheck, 
   ShoppingCart,
-  PhoneCall
+  PhoneCall,
+  ChevronDown
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 import api from '@/services/api';
+import logoImg from '@/assets/logo.png';
 
 export const Header: React.FC = () => {
   const { user, isAuthenticated, logout } = useAuthStore();
@@ -22,6 +24,7 @@ export const Header: React.FC = () => {
   const location = useLocation();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -47,6 +50,8 @@ export const Header: React.FC = () => {
     if (searchQuery.trim()) {
       navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery('');
+      setMobileSearchOpen(false);
+      setMobileMenuOpen(false);
     }
   };
 
@@ -116,83 +121,108 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      {/* Top Announcement Bar in Silk Emerald & Gold Accent */}
-      <div className="bg-[#064E3B] text-[#F3E5AB] text-xs font-medium py-2 px-4 text-center tracking-wide flex items-center justify-center space-x-2 shadow-sm">
-        <PhoneCall className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
-        <span className="truncate">
-          For styling assistance & custom bridal orders, WhatsApp us at <strong className="text-white">+91 98765 43210</strong> • Insured Pan-India Express Delivery
+      {/* Top Announcement Bar in Emerald & Gold */}
+      <div className="bg-[#062E28] border-b border-[#0A4D40] text-[#D4AF37] text-[11px] sm:text-xs font-medium py-1.5 px-3 sm:px-4 text-center tracking-wide flex items-center justify-center space-x-2 overflow-hidden select-none">
+        <PhoneCall className="w-3 h-3 text-[#D4AF37] shrink-0" />
+        <span className="hidden sm:inline truncate">
+          For bespoke styling & bridal trousseau consultations, WhatsApp us at <strong>+971 50 123 4567</strong> • Express Delivery Across UAE & Worldwide
+        </span>
+        <span className="sm:hidden truncate text-[10.5px]">
+          WhatsApp: <strong>+971 50 123 4567</strong> • Express Worldwide Delivery
         </span>
       </div>
 
       {/* Main Luxury Header */}
-      <header className="sticky top-0 z-40 bg-white/98 backdrop-blur-md border-b border-stone-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 gap-4">
+      <header className="sticky top-0 z-40 bg-white/98 backdrop-blur-md border-b border-stone-200 shadow-xs">
+        <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20 gap-1.5 sm:gap-4">
             {/* Mobile Menu Trigger */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-stone-700 hover:text-[#0A5C44]"
+              onClick={() => {
+                setMobileMenuOpen(!mobileMenuOpen);
+                if (mobileSearchOpen) setMobileSearchOpen(false);
+              }}
+              className="lg:hidden p-1.5 text-stone-700 hover:text-[#0A4D40] hover:bg-stone-100 rounded-lg transition-colors shrink-0 focus:outline-none"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
 
-            {/* Brand Logo & Name */}
+            {/* Brand Logo - NiVi Couture */}
             <Link
               to="/"
               onClick={() => {
                 setMobileMenuOpen(false);
+                setMobileSearchOpen(false);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               aria-label="NiVi Couture Home"
-              className="flex items-center gap-3 shrink-0 cursor-pointer select-none no-underline hover:no-underline border-none bg-transparent outline-none focus:outline-none focus-visible:outline-none transition-opacity duration-200 hover:opacity-95 group"
+              className="flex items-center gap-2 sm:gap-3 shrink-0 cursor-pointer select-none no-underline hover:no-underline border-none bg-transparent outline-none focus:outline-none focus-visible:outline-none transition-opacity duration-200 hover:opacity-95 group min-w-0"
             >
-              <img 
-                src="/images/nivi_couture_logo.png" 
-                alt="NiVi Couture" 
-                className="w-12 h-12 rounded-full object-cover shadow-sm border border-[#D4AF37]/50 ring-2 ring-[#D4AF37]/20"
+              <img
+                src={logoImg}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src !== '/logo.png') {
+                    target.src = '/logo.png';
+                  }
+                }}
+                alt="NiVi Couture"
+                className="w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full object-cover shadow-sm md:shadow-md ring-1.5 sm:ring-2 ring-[#D4AF37]/50 shrink-0"
               />
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl sm:text-3xl tracking-widest font-extrabold text-stone-900 uppercase leading-tight select-none">
-                  NiVi <span className="text-[#0A5C44]">Couture</span>
+              <div className="flex flex-col min-w-0">
+                <span className="font-serif text-base sm:text-2xl md:text-3xl tracking-wide sm:tracking-widest font-extrabold text-[#062E28] uppercase leading-tight select-none whitespace-nowrap">
+                  NiVi <span className="text-[#D4AF37]">Couture</span>
                 </span>
-                <span className="text-[9px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans -mt-0.5 font-bold select-none">
+                <span className="hidden min-[400px]:block text-[7px] sm:text-[9px] tracking-[0.14em] sm:tracking-[0.25em] uppercase text-[#0A4D40] font-sans -mt-0.5 font-semibold select-none whitespace-nowrap">
                   Elegance Refined, Soul Defined
                 </span>
               </div>
             </Link>
 
-            {/* Center Pill Search Bar */}
-            <div className="hidden sm:flex flex-1 max-w-lg mx-4">
+            {/* Center Pill Search Bar (Desktop) */}
+            <div className="hidden md:flex flex-1 max-w-lg mx-4">
               <form onSubmit={handleSearchSubmit} className="w-full relative flex items-center">
                 <Search className="w-4 h-4 text-stone-400 absolute left-4 pointer-events-none" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search for embroidery, Banarasi, Kanchipuram and more..."
-                  className="w-full pl-10 pr-24 py-2.5 bg-stone-100 hover:bg-stone-100/80 focus:bg-white border border-transparent focus:border-[#0A5C44] rounded-full text-xs text-stone-800 placeholder-stone-400 focus:outline-none transition shadow-inner"
+                  placeholder="Search for pure silk, Banarasi, Kanchipuram, bridal drapes..."
+                  className="w-full pl-10 pr-20 py-2.5 bg-stone-100 hover:bg-stone-100/80 focus:bg-white border border-transparent focus:border-[#0A4D40] rounded-full text-xs text-stone-800 placeholder-stone-400 focus:outline-none transition shadow-inner"
                 />
                 <button
                   type="submit"
-                  className="absolute right-1.5 bg-[#0A5C44] hover:bg-[#064E3B] text-white text-[11px] font-semibold px-4 py-1.5 rounded-full transition shadow-sm"
+                  className="absolute right-1.5 bg-[#0A4D40] hover:bg-[#062E28] text-[#D4AF37] text-[11px] font-bold px-4 py-1.5 rounded-full transition shadow-sm"
                 >
                   Search
                 </button>
               </form>
             </div>
 
-            {/* Right Action Icons: Wishlist, User Account, Shopping Bag */}
-            <div className="flex items-center space-x-5 sm:space-x-6 shrink-0">
+            {/* Right Action Icons: Mobile Search Toggle, Wishlist, Cart, User Account */}
+            <div className="flex items-center space-x-1.5 sm:space-x-4 md:space-x-6 shrink-0">
+              {/* Mobile Search Toggle */}
+              <button
+                onClick={() => {
+                  setMobileSearchOpen(!mobileSearchOpen);
+                  if (mobileMenuOpen) setMobileMenuOpen(false);
+                }}
+                className="md:hidden p-1.5 text-stone-700 hover:text-[#0A4D40] hover:bg-stone-100 rounded-full transition-colors focus:outline-none"
+                aria-label="Search sarees"
+              >
+                <Search className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+
               {/* Wishlist */}
               <Link
                 to="/wishlist"
                 aria-label="Wishlist"
-                className="text-stone-700 hover:text-[#0A5C44] transition-colors relative"
+                className="p-1.5 text-stone-700 hover:text-[#0A4D40] hover:bg-stone-100 rounded-full transition-colors relative focus:outline-none"
               >
-                <Heart className="w-5 h-5" />
+                <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 bg-[#0A5C44] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-sm">
+                  <span className="absolute -top-1 -right-1 bg-[#0A4D40] text-[#D4AF37] text-[9px] sm:text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold ring-1 ring-[#D4AF37]/50">
                     {wishlistCount}
                   </span>
                 )}
@@ -202,11 +232,11 @@ export const Header: React.FC = () => {
               <Link
                 to="/cart"
                 aria-label="Cart"
-                className="text-stone-700 hover:text-[#0A5C44] transition-colors relative"
+                className="p-1.5 text-stone-700 hover:text-[#0A4D40] hover:bg-stone-100 rounded-full transition-colors relative focus:outline-none"
               >
-                <ShoppingBag className="w-5 h-5" />
+                <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 bg-[#0A5C44] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-sm">
+                  <span className="absolute -top-1 -right-1 bg-[#0A4D40] text-[#D4AF37] text-[9px] sm:text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold ring-1 ring-[#D4AF37]/50">
                     {cartCount}
                   </span>
                 )}
@@ -218,27 +248,38 @@ export const Header: React.FC = () => {
                   <div>
                     <button
                       onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                      className="flex items-center space-x-1.5 text-stone-700 hover:text-[#0A5C44] focus:outline-none"
+                      className="flex items-center space-x-1 sm:space-x-2 py-0.5 px-1 sm:py-1 sm:px-2.5 rounded-full border border-stone-200 hover:border-[#0A4D40] bg-stone-50 hover:bg-white transition-all shadow-xs group focus:outline-none"
+                      aria-label="User Account"
                     >
-                      <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 text-[#0A5C44] font-serif text-sm font-bold flex items-center justify-center shadow-sm">
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#0A4D40] text-[#D4AF37] font-serif text-[11px] sm:text-xs font-bold flex items-center justify-center shadow-xs ring-1 ring-[#D4AF37]/50 uppercase">
                         {user?.firstName?.charAt(0) || 'U'}
                       </div>
+                      <div className="hidden md:flex flex-col text-left">
+                        <span className="text-[9px] uppercase tracking-wider text-stone-400 font-semibold leading-none">Account</span>
+                        <span className="text-xs font-bold text-[#062E28] group-hover:text-[#0A4D40] leading-tight truncate max-w-[90px]">
+                          {user?.firstName || 'Customer'}
+                        </span>
+                      </div>
+                      <ChevronDown className={`w-3.5 h-3.5 text-stone-400 group-hover:text-[#0A4D40] transition-transform duration-200 hidden sm:block ${userDropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
 
                     {userDropdownOpen && (
-                      <div className="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-xl border border-stone-200 py-2 z-50 divide-y divide-stone-100">
-                        <div className="px-4 py-2.5">
-                          <p className="text-xs font-semibold text-stone-900 truncate">
+                      <div className="absolute right-0 mt-2 sm:mt-3 w-52 sm:w-56 bg-white rounded-xl shadow-xl border border-stone-200 py-2 z-50 divide-y divide-stone-100">
+                        <div className="px-4 py-2.5 bg-stone-50/60">
+                          <p className="text-xs font-bold text-[#062E28] truncate">
                             {user?.firstName} {user?.lastName}
                           </p>
                           <p className="text-[11px] text-stone-500 truncate">{user?.email}</p>
+                          <span className="inline-block mt-1 text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full bg-[#0A4D40]/10 text-[#0A4D40]">
+                            {isAdmin ? 'Administrator' : 'Valued Patron'}
+                          </span>
                         </div>
 
                         <div className="py-1 text-xs">
                           <Link
                             to="/my-orders"
                             onClick={() => setUserDropdownOpen(false)}
-                            className="flex items-center px-4 py-2 text-stone-700 hover:bg-stone-50 hover:text-[#0A5C44]"
+                            className="flex items-center px-4 py-2 text-stone-700 hover:bg-stone-50 hover:text-[#0A4D40]"
                           >
                             <ShoppingCart className="w-4 h-4 mr-2.5 text-stone-400" />
                             My Orders & Tracking
@@ -247,9 +288,9 @@ export const Header: React.FC = () => {
                             <Link
                               to="/admin"
                               onClick={() => setUserDropdownOpen(false)}
-                              className="flex items-center px-4 py-2 text-[#0A5C44] font-semibold hover:bg-emerald-50"
+                              className="flex items-center px-4 py-2 text-[#0A4D40] font-semibold hover:bg-stone-50"
                             >
-                              <ShieldCheck className="w-4 h-4 mr-2.5 text-[#0A5C44]" />
+                              <ShieldCheck className="w-4 h-4 mr-2.5 text-[#0A4D40]" />
                               Admin Portal
                             </Link>
                           )}
@@ -265,7 +306,7 @@ export const Header: React.FC = () => {
                             className="w-full flex items-center px-4 py-2 text-xs text-red-600 hover:bg-red-50 text-left"
                           >
                             <LogOut className="w-4 h-4 mr-2.5" />
-                            Logout
+                            Sign Out
                           </button>
                         </div>
                       </div>
@@ -274,17 +315,40 @@ export const Header: React.FC = () => {
                 ) : (
                   <Link
                     to="/login"
-                    className="text-stone-700 hover:text-[#0A5C44] transition-colors"
+                    className="p-1.5 text-stone-700 hover:text-[#0A4D40] hover:bg-stone-100 rounded-full transition-colors flex items-center justify-center focus:outline-none"
                     aria-label="Login"
                   >
-                    <User className="w-5 h-5" />
+                    <User className="w-4 h-4 sm:w-5 sm:h-5" />
                   </Link>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Sub Navigation Bar with Exact Category Tabs */}
+          {/* Expandable Mobile Search Bar */}
+          {mobileSearchOpen && (
+            <div className="md:hidden py-2 px-1 border-t border-stone-100 animate-fadeIn">
+              <form onSubmit={handleSearchSubmit} className="relative flex items-center">
+                <Search className="w-3.5 h-3.5 text-stone-400 absolute left-3.5 pointer-events-none" />
+                <input
+                  type="text"
+                  autoFocus
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search silk, Banarasi, Kanchipuram..."
+                  className="w-full pl-9 pr-16 py-1.5 bg-stone-100 border border-stone-200 focus:bg-white focus:border-[#0A4D40] rounded-full text-xs text-stone-800 placeholder-stone-400 focus:outline-none transition shadow-inner"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-1 bg-[#0A4D40] hover:bg-[#062E28] text-[#D4AF37] text-[10px] font-bold px-3 py-1 rounded-full transition shadow-xs"
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+          )}
+
+          {/* Sub Navigation Bar with Exact Category Tabs (Desktop) */}
           <nav className="hidden lg:flex items-center justify-center space-x-6 xl:space-x-7 py-2.5 border-t border-stone-100 text-[11px] font-semibold tracking-wider">
             {navLinks.map((item) => {
               const active = isLinkActive(item.href);
@@ -294,13 +358,13 @@ export const Header: React.FC = () => {
                   to={item.href}
                   className={`relative transition-all uppercase py-1.5 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 select-none ${
                     active
-                      ? 'text-[#0A5C44] font-bold'
-                      : 'text-stone-700 font-semibold hover:text-[#0A5C44]'
+                      ? 'text-[#0A4D40] font-bold'
+                      : 'text-stone-700 font-semibold hover:text-[#0A4D40]'
                   }`}
                 >
                   <span>{item.name}</span>
                   {active && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-[#0A5C44] rounded-full shadow-sm shadow-[#0A5C44]/30" />
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-[#D4AF37] rounded-full shadow-sm shadow-[#D4AF37]/40" />
                   )}
                 </Link>
               );
@@ -310,51 +374,97 @@ export const Header: React.FC = () => {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-stone-200 px-4 pt-4 pb-6 space-y-3 shadow-lg">
-            <form onSubmit={handleSearchSubmit} className="relative flex items-center mb-4">
+          <div className="lg:hidden bg-white border-t border-stone-200 px-4 pt-4 pb-6 space-y-3 shadow-lg max-h-[calc(100vh-4.5rem)] overflow-y-auto">
+            <form onSubmit={handleSearchSubmit} className="relative flex items-center mb-3">
               <Search className="w-4 h-4 text-stone-400 absolute left-3" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search sarees..."
-                className="w-full pl-9 pr-4 py-2 bg-stone-100 border border-transparent rounded-lg text-xs"
+                className="w-full pl-9 pr-4 py-2 bg-stone-100 border border-transparent rounded-lg text-xs focus:border-[#0A4D40]"
               />
             </form>
 
-            {navLinks.map((link) => {
-              const active = isLinkActive(link.href);
-              return (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className={`flex items-center justify-between py-2 px-3 rounded-lg text-xs font-semibold tracking-wider transition outline-none focus:outline-none focus-visible:outline-none focus:ring-0 select-none ${
-                    active
-                      ? 'bg-emerald-50 text-[#0A5C44] font-bold border-l-4 border-[#0A5C44]'
-                      : 'text-stone-800 hover:bg-stone-50 hover:text-[#0A5C44]'
-                  }`}
-                >
-                  <div className="flex items-center gap-2">
-                    {link.name === 'HOME' && <Home className={`w-4 h-4 ${active ? 'text-[#0A5C44]' : 'text-stone-400'}`} />}
-                    <span>{link.name}</span>
-                  </div>
-                  {active && <span className="w-1.5 h-1.5 rounded-full bg-[#0A5C44]" />}
-                </Link>
-              );
-            })}
+            <div className="space-y-1">
+              {navLinks.map((link) => {
+                const active = isLinkActive(link.href);
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className={`flex items-center justify-between py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wider transition outline-none focus:outline-none focus-visible:outline-none focus:ring-0 select-none ${
+                      active
+                        ? 'bg-emerald-50 text-[#0A4D40] font-bold border-l-4 border-[#0A4D40]'
+                        : 'text-stone-800 hover:bg-stone-50 hover:text-[#0A4D40]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      {link.name === 'HOME' && <Home className={`w-4 h-4 ${active ? 'text-[#0A4D40]' : 'text-stone-400'}`} />}
+                      <span>{link.name}</span>
+                    </div>
+                    {active && <span className="w-1.5 h-1.5 rounded-full bg-[#0A4D40]" />}
+                  </Link>
+                );
+              })}
+            </div>
 
-            {isAdmin && (
+            {/* Quick Customer Links on Mobile */}
+            <div className="pt-3 border-t border-stone-100 space-y-1">
               <Link
-                to="/admin"
+                to="/my-orders"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 text-xs font-bold text-[#0A5C44]"
+                className="flex items-center justify-between py-2 px-3 rounded-lg text-xs font-medium text-stone-700 hover:bg-stone-50"
               >
-                Admin Portal
+                <div className="flex items-center gap-2">
+                  <ShoppingCart className="w-4 h-4 text-stone-400" />
+                  <span>My Orders & Tracking</span>
+                </div>
               </Link>
+              <Link
+                to="/wishlist"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between py-2 px-3 rounded-lg text-xs font-medium text-stone-700 hover:bg-stone-50"
+              >
+                <div className="flex items-center gap-2">
+                  <Heart className="w-4 h-4 text-stone-400" />
+                  <span>Saved Wishlist ({wishlistCount})</span>
+                </div>
+              </Link>
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2 py-2 px-3 rounded-lg text-xs font-bold text-[#0A4D40] bg-[#0A4D40]/5"
+                >
+                  <ShieldCheck className="w-4 h-4 text-[#0A4D40]" />
+                  <span>Admin Portal</span>
+                </Link>
+              )}
+            </div>
+
+            {/* Login / Profile CTA in Mobile Menu */}
+            {!isAuthenticated && (
+              <div className="pt-2 border-t border-stone-100 flex gap-2">
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex-1 py-2 text-center text-xs font-bold bg-[#0A4D40] text-[#D4AF37] rounded-lg shadow-xs"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex-1 py-2 text-center text-xs font-bold border border-stone-300 text-stone-800 rounded-lg hover:bg-stone-50"
+                >
+                  Register
+                </Link>
+              </div>
             )}
           </div>
         )}

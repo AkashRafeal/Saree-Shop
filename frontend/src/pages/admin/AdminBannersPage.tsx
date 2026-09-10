@@ -242,7 +242,7 @@ export const AdminBannersPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#0A5C44]"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0A4D40]"></span>
             <span className="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold">
               Visual Merchandising
             </span>
@@ -257,7 +257,7 @@ export const AdminBannersPage: React.FC = () => {
 
         <button
           onClick={handleOpenAddModal}
-          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A5C44] to-[#064E3B] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A5C44]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A4D40] to-[#062E28] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A4D40]/20 hover:scale-[1.02] active:scale-[0.98] transition cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Add Hero Banner</span>
@@ -341,7 +341,7 @@ export const AdminBannersPage: React.FC = () => {
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => handleOpenEditModal(b)}
-                    className="p-1.5 text-stone-400 hover:text-[#0A5C44] hover:bg-[#ECFDF5] rounded-lg transition cursor-pointer"
+                    className="p-1.5 text-stone-400 hover:text-[#0A4D40] hover:bg-[#FFF0F5] rounded-lg transition cursor-pointer"
                     title="Edit Banner"
                   >
                     <Edit className="w-4 h-4" />
@@ -372,7 +372,7 @@ export const AdminBannersPage: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-stone-200">
               <div className="p-5 border-b border-stone-200 flex items-center justify-between bg-stone-50">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-[#0A5C44] flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-rose-50 text-[#0A4D40] flex items-center justify-center">
                     <ImageIcon className="w-4 h-4" />
                   </div>
                   <h3 className="font-serif text-lg font-bold text-stone-900">
@@ -398,7 +398,7 @@ export const AdminBannersPage: React.FC = () => {
                     placeholder="e.g. Royal Kanchipuram Silks"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                   />
                 </div>
 
@@ -411,7 +411,7 @@ export const AdminBannersPage: React.FC = () => {
                     placeholder="e.g. Handwoven pure mulberry silk with gold zari motifs"
                     value={subtitle}
                     onChange={(e) => setSubtitle(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                    className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                   />
                 </div>
 
@@ -426,7 +426,7 @@ export const AdminBannersPage: React.FC = () => {
                       placeholder="https://images.unsplash.com/..."
                       value={imageUrl}
                       onChange={(e) => setImageUrl(e.target.value)}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
 
                     <div className="flex items-center gap-2">
@@ -466,7 +466,7 @@ export const AdminBannersPage: React.FC = () => {
                       placeholder="e.g. Explore Collection"
                       value={ctaText}
                       onChange={(e) => setCtaText(e.target.value)}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
                   </div>
 
@@ -479,7 +479,7 @@ export const AdminBannersPage: React.FC = () => {
                       placeholder="e.g. /shop"
                       value={targetUrl}
                       onChange={(e) => setTargetUrl(e.target.value)}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
                   </div>
                 </div>
@@ -495,7 +495,7 @@ export const AdminBannersPage: React.FC = () => {
                       max={20}
                       value={displayOrder}
                       onChange={(e) => setDisplayOrder(Number(e.target.value))}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44]"
+                      className="w-full px-3.5 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40]"
                     />
                   </div>
 
@@ -505,7 +505,7 @@ export const AdminBannersPage: React.FC = () => {
                       id="bannerActive"
                       checked={active}
                       onChange={(e) => setActive(e.target.checked)}
-                      className="w-4 h-4 accent-[#0A5C44] rounded cursor-pointer"
+                      className="w-4 h-4 accent-[#0A4D40] rounded cursor-pointer"
                     />
                     <label htmlFor="bannerActive" className="text-xs font-medium text-stone-700 cursor-pointer">
                       Publish immediately
@@ -524,7 +524,7 @@ export const AdminBannersPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={loading || uploading}
-                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A5C44] to-[#064E3B] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A5C44]/20 hover:scale-[1.02] cursor-pointer disabled:opacity-50 transition"
+                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0A4D40] to-[#062E28] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#0A4D40]/20 hover:scale-[1.02] cursor-pointer disabled:opacity-50 transition"
                   >
                     {loading ? 'Saving...' : editingId ? 'Update Banner' : 'Create Banner'}
                   </button>

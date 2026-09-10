@@ -8,12 +8,11 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class CorsConfig {
 
-    @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173}")
+    @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,capacitor://localhost,ionic://localhost,http://localhost,http://10.0.2.2:8080}")
     private String allowedOrigins;
 
     @Bean
@@ -21,10 +20,14 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
 
-        List<String> origins = Arrays.stream(allowedOrigins.split(","))
-                .map(String::trim)
-                .toList();
-        config.setAllowedOrigins(origins);
+        config.addAllowedOriginPattern("*");
+        config.addAllowedOriginPattern("https://*.trycloudflare.com");
+        config.addAllowedOriginPattern("https://*.loca.lt");
+        config.addAllowedOriginPattern("http://localhost:*");
+        config.addAllowedOriginPattern("http://127.0.0.1:*");
+        config.addAllowedOriginPattern("http://192.168.*:*");
+        config.addAllowedOriginPattern("http://10.*:*");
+        config.addAllowedOriginPattern("http://172.*:*");
 
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setExposedHeaders(Arrays.asList(

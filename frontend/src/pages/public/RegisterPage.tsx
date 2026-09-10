@@ -4,6 +4,7 @@ import { Mail, Lock, User, Phone, ArrowRight, AlertCircle, AlertTriangle, CheckC
 import { useAuthStore } from '@/store/authStore';
 import api from '@/services/api';
 import { validateGmail, validatePhone10 } from '@/utils/validation';
+import logoImg from '@/assets/logo.png';
 
 export const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
@@ -84,24 +85,24 @@ export const RegisterPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link to="/" className="inline-flex flex-col items-center mb-4 group">
-          <img 
-            src="/images/nivi_couture_logo.png" 
-            alt="NiVi Couture" 
-            className="w-16 h-16 rounded-full object-cover shadow-md border border-[#D4AF37]/50 ring-2 ring-[#D4AF37]/30 group-hover:scale-105 transition-transform"
+      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center flex flex-col items-center">
+        <Link to="/" className="inline-flex items-center gap-2.5 mb-3 group">
+          <img
+            src={logoImg}
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (target.src !== '/logo.png') {
+                target.src = '/logo.png';
+              }
+            }}
+            alt="NiVi Couture"
+            className="w-16 h-16 rounded-full object-cover shadow-md border-2 border-[#D4AF37]"
           />
-          <span className="font-serif text-2xl font-bold tracking-widest text-stone-900 uppercase mt-2">
-            NiVi <span className="text-[#0A5C44]">Couture</span>
-          </span>
-          <span className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-bold">
-            Elegance Refined, Soul Defined
-          </span>
         </Link>
-        <h2 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 tracking-tight">
-          Create Your Member Account
+        <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#062E28] tracking-tight">
+          Join NiVi Couture Atelier
         </h2>
-        <p className="mt-1 text-xs sm:text-sm text-stone-500 font-sans">
+        <p className="mt-2 text-xs sm:text-sm text-stone-500 font-sans">
           Join our bespoke connoisseur club and enjoy exclusive bridal previews
         </p>
       </div>
@@ -132,7 +133,7 @@ export const RegisterPage: React.FC = () => {
                     value={formData.firstName}
                     onChange={handleChange}
                     placeholder="Priya"
-                    className="w-full pl-9 pr-3 py-2 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white transition"
+                    className="w-full pl-9 pr-3 py-2 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40] focus:bg-white transition"
                   />
                 </div>
               </div>
@@ -148,7 +149,7 @@ export const RegisterPage: React.FC = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   placeholder="Sharma"
-                  className="w-full px-3 py-2 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white transition"
+                  className="w-full px-3 py-2 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -177,8 +178,8 @@ export const RegisterPage: React.FC = () => {
                       : emailValidation?.isValid
                       ? 'border-emerald-400 bg-emerald-50/30 text-emerald-900 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500'
                       : formData.email && !emailValidation?.isValid
-                      ? 'border-red-300 bg-red-50/30 text-red-900 focus:ring-2 focus:ring-red-500/20 focus:border-red-500'
-                      : 'border-stone-300 focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white'
+                      ? 'border-rose-300 bg-rose-50/30 text-rose-900 focus:ring-2 focus:ring-rose-500/20 focus:border-[#0A4D40]'
+                      : 'border-stone-300 focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40] focus:bg-white'
                   }`}
                 />
               </div>
@@ -190,7 +191,7 @@ export const RegisterPage: React.FC = () => {
                 </div>
               )}
               {!emailValidation?.isTypo && formData.email && !emailValidation?.isValid && (
-                <p className="mt-1 text-xs text-red-600 flex items-center gap-1.5">
+                <p className="mt-1 text-xs text-rose-600 flex items-center gap-1.5">
                   <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                   <span>Email must end with @gmail.com (e.g. yourname@gmail.com)</span>
                 </p>
@@ -235,7 +236,7 @@ export const RegisterPage: React.FC = () => {
                       ? 'border-emerald-400 bg-emerald-50/30 text-emerald-900 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500'
                       : formData.phone.length > 0
                       ? 'border-amber-300 bg-amber-50/30 text-amber-900 focus:ring-2 focus:ring-amber-500/20 focus:border-amber-400'
-                      : 'border-stone-300 focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white'
+                      : 'border-stone-300 focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40] focus:bg-white'
                   }`}
                 />
               </div>
@@ -269,7 +270,7 @@ export const RegisterPage: React.FC = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="At least 6 characters"
-                  className="w-full pl-9 pr-3 py-2 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white transition"
+                  className="w-full pl-9 pr-3 py-2 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -285,14 +286,14 @@ export const RegisterPage: React.FC = () => {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="Repeat password"
-                className="w-full px-3 py-2 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A5C44]/20 focus:border-[#0A5C44] focus:bg-white transition"
+                className="w-full px-3 py-2 bg-[#FAF8F5] border border-stone-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0A4D40]/20 focus:border-[#0A4D40] focus:bg-white transition"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 flex items-center justify-center py-3.5 px-6 rounded-full shadow-lg shadow-[#0A5C44]/25 text-xs sm:text-sm font-bold uppercase tracking-widest text-white bg-[#0A5C44] hover:bg-[#064E3B] hover:shadow-xl active:scale-[0.99] disabled:opacity-50 transition-all duration-200 cursor-pointer"
+              className="w-full mt-2 flex items-center justify-center py-3.5 px-6 rounded-full shadow-lg shadow-[#062E28]/25 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#D4AF37] bg-gradient-to-r from-[#062E28] to-[#0A4D40] hover:from-[#0A4D40] hover:to-[#062E28] hover:shadow-xl active:scale-[0.99] disabled:opacity-50 transition-all duration-200 cursor-pointer"
             >
               {loading ? 'Creating Account...' : 'Complete Registration'}
               {!loading && <ArrowRight className="ml-2 w-4 h-4" />}
@@ -302,7 +303,7 @@ export const RegisterPage: React.FC = () => {
           <div className="mt-8 pt-6 border-t border-stone-100 text-center">
             <p className="text-xs text-stone-500">
               Already have an account?{' '}
-              <Link to="/login" className="font-semibold text-[#0A5C44] hover:underline ml-1">
+              <Link to="/login" className="font-semibold text-[#0A4D40] hover:underline ml-1">
                 Sign In
               </Link>
             </p>
