@@ -51,22 +51,10 @@ public class DataInitializer implements CommandLineRunner {
     private final CouponRepository couponRepository;
     private final BannerRepository bannerRepository;
     private final PasswordEncoder passwordEncoder;
-    private final org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
 
     @Override
-    @Transactional
     public void run(String... args) {
         log.info("Initializing SareeAura production seed data...");
-
-        try {
-            jdbcTemplate.update("UPDATE product_images SET image_url = 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80' WHERE image_url LIKE '%photo-1610030469830%'");
-            jdbcTemplate.update("UPDATE categories SET image_url = 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80' WHERE image_url LIKE '%photo-1610030469830%'");
-            jdbcTemplate.update("UPDATE product_images SET image_url = 'http://localhost:8080/uploads/teal_ethnic_suit_embroidered.jpg' WHERE image_url LIKE '%1605369572399%'");
-            jdbcTemplate.update("UPDATE categories SET image_url = 'http://localhost:8080/uploads/teal_ethnic_suit_embroidered.jpg' WHERE image_url LIKE '%1605369572399%'");
-            jdbcTemplate.update("UPDATE banners SET image_url = 'http://localhost:8080/uploads/teal_ethnic_suit_embroidered.jpg' WHERE image_url LIKE '%1605369572399%'");
-        } catch (Exception e) {
-            log.warn("Image update note: {}", e.getMessage());
-        }
 
         // 1. Roles
         Role adminRole = roleRepository.findByName(RoleType.ROLE_ADMIN)
@@ -76,21 +64,10 @@ public class DataInitializer implements CommandLineRunner {
 
         // Remove legacy admin@sareeaura.com user if present
         try {
-            Long legacyAdminId = jdbcTemplate.queryForObject(
-                "SELECT id FROM users WHERE email = 'admin@sareeaura.com'", Long.class
-            );
-            if (legacyAdminId != null) {
-                jdbcTemplate.update("DELETE FROM user_roles WHERE user_id = ?", legacyAdminId);
-                jdbcTemplate.update("DELETE FROM cart_items WHERE cart_id IN (SELECT id FROM carts WHERE user_id = ?)", legacyAdminId);
-                jdbcTemplate.update("DELETE FROM carts WHERE user_id = ?", legacyAdminId);
-                jdbcTemplate.update("DELETE FROM wishlist_items WHERE wishlist_id IN (SELECT id FROM wishlists WHERE user_id = ?)", legacyAdminId);
-                jdbcTemplate.update("DELETE FROM wishlists WHERE user_id = ?", legacyAdminId);
-                jdbcTemplate.update("DELETE FROM addresses WHERE user_id = ?", legacyAdminId);
-                jdbcTemplate.update("DELETE FROM users WHERE id = ?", legacyAdminId);
+            userRepository.findByEmail("admin@sareeaura.com").ifPresent(legacyAdmin -> {
+                userRepository.delete(legacyAdmin);
                 log.info("Successfully removed legacy admin user: admin@sareeaura.com");
-            }
-        } catch (org.springframework.dao.EmptyResultDataAccessException ignored) {
-            // Not present, already removed
+            });
         } catch (Exception e) {
             log.warn("Note during legacy admin removal: {}", e.getMessage());
         }
@@ -166,7 +143,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Category cotton = getOrCreateCategory("Cotton & Linen Weaves", "cotton-linen",
                 "Breathable fine count handloom cottons and artisanal linen sarees for effortless grace.",
-                "http://localhost:8080/uploads/teal_ethnic_suit_embroidered.jpg");
+                "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80");
 
         // 5. Products (if count < 20)
         if (productRepository.count() < 20) {
