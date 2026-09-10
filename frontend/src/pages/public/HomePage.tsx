@@ -266,25 +266,27 @@ export const HomePage: React.FC = () => {
         </h2>
 
         {/* Circular Avatars Carousel / Grid */}
-        <div className="mt-8 flex items-center justify-center space-x-6 sm:space-x-10 overflow-x-auto py-2 px-4 no-scrollbar">
-          {circularCategories.map((cat) => (
-            <Link
-              key={cat.name}
-              to={cat.href}
-              className="flex flex-col items-center group shrink-0 focus:outline-none"
-            >
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden p-0.5 border-2 border-transparent group-hover:border-[#0A4D40] transition-all duration-300 shadow-sm">
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <span className="mt-3 text-[10px] sm:text-xs font-bold tracking-wider text-stone-800 uppercase group-hover:text-[#0A4D40] transition-colors">
-                {cat.name}
-              </span>
-            </Link>
-          ))}
+        <div className="mt-6 sm:mt-8 overflow-x-auto py-2 px-3 sm:px-4 no-scrollbar scroll-smooth">
+          <div className="flex items-center justify-start md:justify-center space-x-4 sm:space-x-8 min-w-max mx-auto px-2">
+            {circularCategories.map((cat) => (
+              <Link
+                key={cat.name}
+                to={cat.href}
+                className="flex flex-col items-center group shrink-0 focus:outline-none"
+              >
+                <div className="w-[72px] h-[72px] sm:w-24 sm:h-24 rounded-full overflow-hidden p-0.5 border-2 border-stone-200/80 group-hover:border-[#0A4D40] transition-all duration-300 shadow-sm group-hover:shadow-md">
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <span className="mt-2.5 text-[10px] sm:text-xs font-bold tracking-wider text-stone-800 uppercase group-hover:text-[#0A4D40] transition-colors">
+                  {cat.name}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
