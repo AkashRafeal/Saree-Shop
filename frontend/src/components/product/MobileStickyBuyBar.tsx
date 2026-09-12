@@ -63,40 +63,44 @@ export const MobileStickyBuyBar: React.FC<MobileStickyBuyBarProps> = ({
 
   return (
     <div
-      className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200 px-4 py-2.5 shadow-[0_-6px_25px_rgba(0,0,0,0.08)] flex items-center justify-between gap-3 animate-fadeIn"
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/98 backdrop-blur-lg border-t border-stone-200/90 px-3.5 pt-2 shadow-[0_-8px_30px_rgba(0,0,0,0.1)] flex flex-col gap-2 animate-fadeIn"
       style={{
         paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom, 0.75rem))',
       }}
     >
-      {/* Price Summary */}
-      <div className="flex flex-col shrink-0">
-        <div className="flex items-baseline gap-1.5">
-          <span className="text-base font-extrabold text-stone-900 font-sans tabular-nums">
+      {/* Top Row: Price Summary & Discount Info */}
+      <div className="flex items-center justify-between px-0.5">
+        <div className="flex items-baseline gap-2">
+          <span className="text-base sm:text-lg font-extrabold text-stone-900 font-sans tabular-nums">
             ₹{product.sellingPrice.toLocaleString('en-IN')}
           </span>
           {product.mrp > product.sellingPrice && (
-            <span className="text-[11px] text-stone-400 line-through tabular-nums">
+            <span className="text-xs text-stone-400 line-through tabular-nums">
               ₹{product.mrp.toLocaleString('en-IN')}
             </span>
           )}
+          {product.discountPercentage > 0 && (
+            <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded-md uppercase">
+              {product.discountPercentage}% OFF
+            </span>
+          )}
         </div>
-        <span className="text-[9.5px] text-[#0A4D40] font-bold uppercase tracking-wider">
-          {product.discountPercentage > 0
-            ? `${product.discountPercentage}% OFF • Free Delivery`
-            : 'Authentic Pure Silk'}
+        <span className="text-[10.5px] font-semibold text-[#0A4D40] uppercase tracking-wide">
+          Free Express Delivery
         </span>
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex items-center gap-2 flex-1 justify-end">
+      {/* Bottom Row: Full Action Buttons (Wishlist + Add to Bag + Buy Now) */}
+      <div className="flex items-center gap-2">
         {/* Wishlist Button */}
         <button
           onClick={handleWishlistToggle}
+          type="button"
           aria-label="Wishlist"
-          className="w-10 h-10 rounded-full border border-stone-200 bg-stone-50 flex items-center justify-center text-stone-700 hover:text-[#0A4D40] active:scale-95 transition-all"
+          className="w-11 h-11 shrink-0 rounded-full border border-stone-200 bg-stone-50 flex items-center justify-center text-stone-700 hover:text-[#0A4D40] active:scale-95 transition-all shadow-2xs cursor-pointer"
         >
           <Heart
-            className={`w-4 h-4 ${
+            className={`w-4.5 h-4.5 ${
               wishlisted ? 'fill-[#0A4D40] text-[#0A4D40]' : 'text-stone-700'
             }`}
           />
@@ -105,17 +109,18 @@ export const MobileStickyBuyBar: React.FC<MobileStickyBuyBarProps> = ({
         {/* Add to Bag Button */}
         <button
           onClick={() => handleAddToCart(false)}
+          type="button"
           disabled={adding || product.stock <= 0}
-          className="flex-1 py-2.5 px-3 bg-stone-900 hover:bg-stone-800 text-white rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all active:scale-98 shadow-sm disabled:opacity-50"
+          className="flex-1 h-11 px-3 bg-stone-900 hover:bg-stone-800 text-white rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all active:scale-98 shadow-sm whitespace-nowrap disabled:opacity-50 cursor-pointer"
         >
           {added ? (
             <>
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
+              <Check className="w-4 h-4 text-emerald-400" />
               <span>Added!</span>
             </>
           ) : (
             <>
-              <ShoppingBag className="w-3.5 h-3.5" />
+              <ShoppingBag className="w-4 h-4" />
               <span>{adding ? 'Adding...' : 'Add to Bag'}</span>
             </>
           )}
@@ -124,10 +129,11 @@ export const MobileStickyBuyBar: React.FC<MobileStickyBuyBarProps> = ({
         {/* Buy Now Instant Checkout Button */}
         <button
           onClick={() => handleAddToCart(true)}
+          type="button"
           disabled={adding || product.stock <= 0}
-          className="flex-1 py-2.5 px-3 bg-[#0A4D40] hover:bg-[#062E28] text-[#D4AF37] rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 transition-all active:scale-98 shadow-md shadow-[#0A4D40]/30 disabled:opacity-50"
+          className="flex-1 h-11 px-3 bg-[#0A4D40] hover:bg-[#062E28] text-[#D4AF37] rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all active:scale-98 shadow-md shadow-[#0A4D40]/25 whitespace-nowrap disabled:opacity-50 cursor-pointer"
         >
-          <Zap className="w-3.5 h-3.5 fill-[#D4AF37]" />
+          <Zap className="w-4 h-4 fill-[#D4AF37]" />
           <span>Buy Now</span>
         </button>
       </div>

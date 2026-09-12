@@ -32,12 +32,13 @@ public class ProductController {
             @RequestParam(required = false) BigDecimal minPrice,
             @RequestParam(required = false) BigDecimal maxPrice,
             @RequestParam(required = false) Boolean isNewArrival,
+            @RequestParam(required = false) Boolean onSale,
             @RequestParam(defaultValue = "newest") String sort,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "12") int size
     ) {
         Page<ProductResponse> products = productService.getProductsWithFilters(
-                search, categoryId, fabric, color, occasion, minPrice, maxPrice, isNewArrival, sort, page, size
+                search, categoryId, fabric, color, occasion, minPrice, maxPrice, isNewArrival, onSale, sort, page, size
         );
         return ResponseEntity.ok(ApiResponse.success("Products retrieved", products));
     }

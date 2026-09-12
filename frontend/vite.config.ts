@@ -21,6 +21,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/uploads': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
   preview: {
@@ -30,6 +35,11 @@ export default defineConfig({
     allowedHosts: ['online-typical-aging-lived.trycloudflare.com', 'outlined-divorce-such-appendix.trycloudflare.com', '.trycloudflare.com', '.loca.lt', 'localhost', '127.0.0.1'],
     proxy: {
       '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/uploads': {
         target: 'http://localhost:8080',
         changeOrigin: true,
         secure: false,

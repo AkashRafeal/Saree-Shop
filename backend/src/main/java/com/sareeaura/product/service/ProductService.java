@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -47,7 +48,7 @@ public class ProductService {
             int page,
             int size
     ) {
-        return getProductsWithFilters(query, categoryId, fabric, color, occasion, minPrice, maxPrice, null, sortBy, page, size);
+        return getProductsWithFilters(query, categoryId, fabric, color, occasion, minPrice, maxPrice, null, null, sortBy, page, size);
     }
 
     public Page<ProductResponse> getProductsWithFilters(
@@ -59,6 +60,23 @@ public class ProductService {
             BigDecimal minPrice,
             BigDecimal maxPrice,
             Boolean isNewArrival,
+            String sortBy,
+            int page,
+            int size
+    ) {
+        return getProductsWithFilters(query, categoryId, fabric, color, occasion, minPrice, maxPrice, isNewArrival, null, sortBy, page, size);
+    }
+
+    public Page<ProductResponse> getProductsWithFilters(
+            String query,
+            Long categoryId,
+            String fabric,
+            String color,
+            String occasion,
+            BigDecimal minPrice,
+            BigDecimal maxPrice,
+            Boolean isNewArrival,
+            Boolean onSale,
             String sortBy,
             int page,
             int size
@@ -76,7 +94,7 @@ public class ProductService {
 
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<Product> productPage = productRepository.findWithFilters(
-                query, categoryId, fabric, color, occasion, minPrice, maxPrice, isNewArrival, pageable
+                query, categoryId, fabric, color, occasion, minPrice, maxPrice, isNewArrival, onSale, pageable
         );
 
         return productPage.map(this::mapToResponse);
@@ -184,23 +202,34 @@ public class ProductService {
         product.setBlouseDetails(request.getBlouseDetails());
         product.setMrp(request.getMrp());
         product.setSellingPrice(request.getSellingPrice());
+
+        int discount = 0;
+        if (request.getMrp() != null && request.getSellingPrice() != null
+                && request.getMrp().compareTo(BigDecimal.ZERO) > 0
+                && request.getSellingPrice().compareTo(request.getMrp()) < 0) {
+            BigDecimal diff = request.getMrp().subtract(request.getSellingPrice());
+            discount = diff.multiply(BigDecimal.valueOf(100)).divide(request.getMrp(), 0, RoundingMode.HALF_UP).intValue();
+        }
+        product.setDiscountPercentage(discount);
+
         product.setFeatured(request.isFeatured());
         product.setBestSeller(request.isBestSeller());
         product.setNewArrival(request.isNewArrival());
 
         if (request.getImageUrls() != null && !request.getImageUrls().isEmpty()) {
-            productImageRepository.deleteByProductId(product.getId());
-            List<ProductImage> images = new ArrayList<>();
+            if (product.getImages() == null) {
+                product.setImages(new ArrayList<>());
+            } else {
+                product.getImages().clear();
+            }
             for (int i = 0; i < request.getImageUrls().size(); i++) {
-                images.add(ProductImage.builder()
+                product.getImages().add(ProductImage.builder()
                         .product(product)
                         .imageUrl(request.getImageUrls().get(i))
                         .isPrimary(i == 0)
                         .displayOrder(i)
                         .build());
             }
-            productImageRepository.saveAll(images);
-            product.setImages(images);
         }
 
         Optional<Inventory> inventoryOpt = inventoryRepository.findByProductId(product.getId());

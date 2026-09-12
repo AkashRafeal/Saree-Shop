@@ -66,12 +66,12 @@ public class SecurityConfig {
                         ).permitAll()
                         // Public auth & public browse endpoints
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/uploads/**").permitAll()
+                        .requestMatchers("/uploads/**", "/api/uploads/**").permitAll()
                         .requestMatchers("/api/upload/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**", "/api/banners/**", "/api/reviews", "/api/reviews/**", "/api/admin/customers", "/api/admin/categories", "/api/admin/categories/**", "/api/admin/coupons", "/api/admin/coupons/**", "/api/admin/banners", "/api/admin/banners/**", "/api/admin/reviews", "/api/admin/reviews/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/admin/categories", "/api/admin/categories/**", "/api/admin/coupons", "/api/admin/coupons/**", "/api/admin/banners", "/api/admin/banners/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/admin/categories/**", "/api/admin/coupons/**", "/api/admin/banners/**", "/api/admin/reviews/**").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/api/admin/customers/**", "/api/admin/categories/**", "/api/admin/coupons/**", "/api/admin/banners/**", "/api/admin/reviews/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**", "/api/banners/**", "/api/reviews", "/api/reviews/**", "/api/admin/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/admin/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/admin/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/admin/**").permitAll()
                         // Admin endpoints require ROLE_ADMIN
                         .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
                         // Other requests require authentication by default

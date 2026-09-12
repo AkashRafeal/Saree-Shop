@@ -84,8 +84,8 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center flex flex-col items-center">
+    <div className="min-h-[calc(100vh-80px)] bg-[#FAF8F5] flex flex-col justify-start sm:justify-center pt-4 pb-12 sm:py-12 px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center flex flex-col items-center mt-2 sm:mt-0">
         <Link to="/" className="inline-flex items-center gap-2.5 mb-3 group">
           <img
             src={logoImg}

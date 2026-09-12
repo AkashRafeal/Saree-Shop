@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Check, SlidersHorizontal, ArrowUpDown } from 'lucide-react';
+import { PriceRangeSlider } from './PriceRangeSlider';
 
 interface MobileFilterSheetProps {
   isOpen: boolean;
@@ -10,6 +11,9 @@ interface MobileFilterSheetProps {
   onSelectSort: (sort: string) => void;
   sortOptions: { value: string; label: string }[];
   categories: { slug: string; name: string }[];
+  minPrice?: number;
+  maxPrice?: number;
+  onPriceChange?: (min: number, max: number) => void;
   onReset: () => void;
 }
 
@@ -22,6 +26,9 @@ export const MobileFilterSheet: React.FC<MobileFilterSheetProps> = ({
   onSelectSort,
   sortOptions,
   categories,
+  minPrice,
+  maxPrice,
+  onPriceChange,
   onReset,
 }) => {
   if (!isOpen) return null;
@@ -89,7 +96,24 @@ export const MobileFilterSheet: React.FC<MobileFilterSheetProps> = ({
             </div>
           </div>
 
-          {/* 2. Categories Section */}
+          {/* 2. Animated Price Range Slider Section */}
+          <div className="bg-stone-50/70 p-4 rounded-2xl border border-stone-200/70">
+            <PriceRangeSlider
+              initialMin={minPrice}
+              initialMax={maxPrice}
+              showTitle={true}
+              showPresets={true}
+              showApplyButton={false}
+              onChange={(min, max) => {
+                if (onPriceChange) onPriceChange(min, max);
+              }}
+              onReset={() => {
+                if (onPriceChange) onPriceChange(400, 50000);
+              }}
+            />
+          </div>
+
+          {/* 3. Categories Section */}
           <div className="space-y-3">
             <span className="text-xs font-bold text-stone-900 uppercase tracking-wider block">
               Categories & Weaves

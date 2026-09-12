@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from '@/services/api';
 import { 
   ImageIcon, 
   Plus, 
@@ -122,16 +123,12 @@ export const AdminBannersPage: React.FC = () => {
     formData.append('file', file);
 
     try {
-      const res = await fetch('http://localhost:8080/api/upload/image', {
-        method: 'POST',
-        body: formData,
+      const res = await api.post('/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
-      if (res.ok) {
-        const data = await res.json();
-        const uploadedUrl = data.url || data.data?.url || (data.data && typeof data.data === 'string' ? data.data : null);
-        if (uploadedUrl) {
-          setImageUrl(uploadedUrl.startsWith('http') ? uploadedUrl : `http://localhost:8080${uploadedUrl}`);
-        }
+      if (res.data?.data) {
+        const uploadedUrl = res.data.data;
+        setImageUrl(uploadedUrl);
       }
     } catch {
       // Fallback preview

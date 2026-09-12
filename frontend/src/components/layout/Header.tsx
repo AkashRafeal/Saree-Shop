@@ -349,7 +349,7 @@ export const Header: React.FC = () => {
           )}
 
           {/* Sub Navigation Bar with Exact Category Tabs (Desktop) */}
-          <nav className="hidden lg:flex items-center justify-center space-x-6 xl:space-x-7 py-2.5 border-t border-stone-100 text-[11px] font-semibold tracking-wider">
+          <nav className="hidden lg:flex items-center justify-center space-x-6 xl:space-x-7 py-1.5 border-t border-stone-100 text-[11px] font-semibold tracking-wider">
             {navLinks.map((item) => {
               const active = isLinkActive(item.href);
               return (

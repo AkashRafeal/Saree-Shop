@@ -74,7 +74,7 @@ export const MyOrdersPage: React.FC = () => {
     <div className="min-h-screen bg-stone-50/50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Page Header */}
-        <div className="border-b border-stone-200 pb-5 mb-8">
+        <div className="mb-6">
           <h1 className="font-serif text-3xl font-bold text-stone-900">
             My Orders & Tracking
           </h1>

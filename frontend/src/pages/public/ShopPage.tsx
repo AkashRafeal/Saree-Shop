@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Sparkles, ChevronDown, Check, SlidersHorizon
 import { Product, Category } from '@/types';
 import { ProductCard } from '@/components/product/ProductCard';
 import { MobileFilterSheet } from '@/components/shop/MobileFilterSheet';
+import { PriceRangeSlider } from '@/components/shop/PriceRangeSlider';
 import api from '@/services/api';
 
 interface CategoryMetadata {
@@ -100,11 +101,14 @@ export const ShopPage: React.FC = () => {
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  // Search & category params
+  // Search, category, sort, sale & price params
   const search = searchParams.get('search') || '';
   const categorySlug = searchParams.get('category') || '';
+  const isSale = searchParams.get('sale') === 'true';
   const sort = searchParams.get('sort') || 'newest';
   const page = parseInt(searchParams.get('page') || '0', 10);
+  const minPrice = searchParams.get('minPrice') ? Number(searchParams.get('minPrice')) : undefined;
+  const maxPrice = searchParams.get('maxPrice') ? Number(searchParams.get('maxPrice')) : undefined;
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -126,6 +130,13 @@ export const ShopPage: React.FC = () => {
 
   // Compute Active Heading Details
   const pageHeader = useMemo(() => {
+    if (isSale) {
+      return {
+        badge: 'EXCLUSIVE OFFERS & FESTIVE SALE',
+        title: 'Special Offers & Festive Sale',
+        subtitle: 'Shop handpicked heritage silks and designer drapes at exclusive celebratory discounts',
+      };
+    }
     if (search) {
       return {
         badge: 'SEARCH RESULTS',
@@ -156,7 +167,7 @@ export const ShopPage: React.FC = () => {
       title: 'All Handcrafted Sarees',
       subtitle: 'Explore our complete heritage collection of pure silks, handlooms & designer drapes',
     };
-  }, [search, categorySlug, categories]);
+  }, [search, categorySlug, categories, isSale]);
 
   // Fetch Products based on route category
   useEffect(() => {
@@ -191,11 +202,27 @@ export const ShopPage: React.FC = () => {
     if (isNewArrivalCategory) {
       params.isNewArrival = true;
     }
+    if (isSale) {
+      params.onSale = true;
+    }
+    const minPriceParam = searchParams.get('minPrice');
+    const maxPriceParam = searchParams.get('maxPrice');
+    if (minPriceParam) params.minPrice = minPriceParam;
+    if (maxPriceParam) params.maxPrice = maxPriceParam;
 
     api.get('/products', { params })
       .then((res) => {
         const data = res.data?.data;
         let prods = data?.content || [];
+
+        // When on SALE / OFFERS, strictly show ONLY offered products
+        if (isSale) {
+          const onlyOffered = prods.filter((p: any) => (p.discountPercentage && p.discountPercentage > 0) || (p.mrp && p.sellingPrice && p.mrp > p.sellingPrice));
+          setProducts(onlyOffered);
+          setTotalElements(onlyOffered.length);
+          setTotalPages(Math.max(1, Math.ceil(onlyOffered.length / 12)));
+          return;
+        }
 
         // When on NEW ARRIVALS, strictly show ONLY newly arrived sarees
         if (isNewArrivalCategory) {
@@ -206,8 +233,9 @@ export const ShopPage: React.FC = () => {
           return;
         }
 
-        // If specific niche filter returned 0, fallback gracefully to full catalog
-        if (prods.length === 0) {
+        // Only fallback to full catalog if there were NO filters applied at all
+        const hasAnyFilter = Boolean(search || selectedCatId || selectedFabric || selectedOccasion || minPriceParam || maxPriceParam || isNewArrivalCategory || isSale);
+        if (prods.length === 0 && !hasAnyFilter) {
           api.get('/products', { params: { page: 0, size: 12, sort } })
             .then((fallbackRes) => {
               const fbData = fallbackRes.data?.data;
@@ -228,6 +256,22 @@ export const ShopPage: React.FC = () => {
       })
       .catch((err) => {
         console.error('Products fetch error, attempting fallback:', err);
+        if (isSale) {
+          api.get('/products', { params: { page: 0, size: 50 } })
+            .then((saleRes) => {
+              const allProds = saleRes.data?.data?.content || saleRes.data?.data || [];
+              const onlyOffered = allProds.filter((p: any) => (p.discountPercentage && p.discountPercentage > 0) || (p.mrp && p.sellingPrice && p.mrp > p.sellingPrice));
+              setProducts(onlyOffered);
+              setTotalElements(onlyOffered.length);
+              setTotalPages(Math.max(1, Math.ceil(onlyOffered.length / 12)));
+            })
+            .catch(() => {
+              setProducts([]);
+            })
+            .finally(() => setLoading(false));
+          return;
+        }
+
         if (isNewArrivalCategory) {
           api.get('/products/new-arrivals')
             .then((naRes) => {
@@ -258,7 +302,7 @@ export const ShopPage: React.FC = () => {
           .finally(() => setLoading(false));
       })
       .finally(() => setLoading(false));
-  }, [categories, search, categorySlug, sort, page, searchParams]);
+  }, [categories, search, categorySlug, sort, page, isSale, searchParams]);
 
   const updateParam = (key: string, value: string) => {
     const newParams = new URLSearchParams(searchParams);
@@ -271,12 +315,38 @@ export const ShopPage: React.FC = () => {
     setSearchParams(newParams);
   };
 
+  const handlePriceApply = (newMin: number, newMax: number) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (newMin > 400) {
+      newParams.set('minPrice', newMin.toString());
+    } else {
+      newParams.delete('minPrice');
+    }
+    if (newMax < 50000) {
+      newParams.set('maxPrice', newMax.toString());
+    } else {
+      newParams.delete('maxPrice');
+    }
+    newParams.set('page', '0');
+    setSearchParams(newParams);
+    setSortDropdownOpen(false);
+  };
+
+  const handlePriceReset = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete('minPrice');
+    newParams.delete('maxPrice');
+    newParams.set('page', '0');
+    setSearchParams(newParams);
+    setSortDropdownOpen(false);
+  };
+
   const currentSortLabel = SORT_OPTIONS.find((s) => s.value === sort)?.label || 'Newest First';
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-10 space-y-6 sm:space-y-8">
       {/* Title & Custom Theme Dropdown Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200 pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
           <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.25em] text-[#0A4D40]">
             <Sparkles className="w-3.5 h-3.5" />
@@ -289,12 +359,12 @@ export const ShopPage: React.FC = () => {
             {pageHeader.subtitle}
           </p>
           <p className="text-[11px] font-semibold text-stone-400 mt-2">
-            Showing {totalElements} authentic handloom creations
+            Showing {totalElements} {isSale ? 'festive offer creations' : 'authentic handloom creations'}
           </p>
         </div>
 
-        {/* Actions bar: Mobile Filter Button + Desktop Sort Dropdown */}
-        <div className="flex items-center gap-2 self-start sm:self-center">
+        {/* Actions bar: Mobile Filter Button + Desktop Sort By Dropdown with Embedded Price Range */}
+        <div className="flex items-center gap-2.5 self-start sm:self-center flex-wrap">
           {/* Mobile Filter & Sort Button */}
           <button
             type="button"
@@ -303,20 +373,32 @@ export const ShopPage: React.FC = () => {
           >
             <SlidersHorizontal className="w-3.5 h-3.5" />
             <span>Filter & Sort</span>
+            {(minPrice !== undefined || maxPrice !== undefined) && (
+              <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+            )}
           </button>
 
-          {/* Desktop Custom Brand-Themed Sort Dropdown (No Windows Blue) */}
+          {/* Desktop Sort By Dropdown with Embedded Select Price Range */}
           <div className="relative hidden lg:block" ref={dropdownRef}>
             <div className="flex items-center space-x-2">
               <span className="text-xs text-stone-500 font-medium hidden sm:inline">
-                Sort By:
+                Filters:
               </span>
               <button
                 type="button"
                 onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-                className="inline-flex items-center justify-between gap-3 bg-white border border-stone-300 hover:border-[#0A4D40] focus:border-[#0A4D40] text-stone-800 text-xs font-semibold rounded-full px-5 py-2.5 shadow-sm transition-all focus:outline-none min-w-[170px]"
+                className={`inline-flex items-center justify-between gap-3 border text-xs font-semibold rounded-full px-5 py-2.5 shadow-sm transition-all focus:outline-none min-w-[170px] ${
+                  minPrice !== undefined || maxPrice !== undefined
+                    ? 'bg-emerald-50 border-[#0A4D40] text-[#0A4D40] font-bold'
+                    : 'bg-white border-stone-300 hover:border-[#0A4D40] text-stone-800'
+                }`}
               >
-                <span>{currentSortLabel}</span>
+                <div className="flex items-center gap-1.5">
+                  <span>{currentSortLabel}</span>
+                  {(minPrice !== undefined || maxPrice !== undefined) && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" />
+                  )}
+                </div>
                 <ChevronDown
                   className={`w-4 h-4 text-[#0A4D40] transition-transform duration-200 ${
                     sortDropdownOpen ? 'rotate-180' : ''
@@ -325,35 +407,58 @@ export const ShopPage: React.FC = () => {
               </button>
             </div>
 
-          {/* Theme-Matching Popup Menu */}
-          {sortDropdownOpen && (
-            <div className="absolute right-0 mt-1.5 w-48 bg-white border border-stone-200 rounded-xl shadow-xl z-50 py-1 overflow-hidden animate-fadeIn">
-              {SORT_OPTIONS.map((opt) => {
-                const isSelected = opt.value === sort;
-                return (
-                  <button
-                    key={opt.value}
-                    type="button"
-                    onClick={() => {
-                      updateParam('sort', opt.value);
-                      setSortDropdownOpen(false);
+            {/* Sort Menu Popup with Embedded Select Price Range Slider */}
+            {sortDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-64 sm:w-68 bg-white border border-stone-200 rounded-2xl shadow-xl z-30 overflow-hidden animate-fadeIn">
+                {/* Sort Order Options */}
+                <div className="py-1.5">
+                  <div className="px-3.5 py-1 text-[10px] uppercase font-bold text-stone-400 tracking-wider">
+                    Filters
+                  </div>
+                  {SORT_OPTIONS.map((opt) => {
+                    const isSelected = opt.value === sort;
+                    return (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onClick={() => {
+                          updateParam('sort', opt.value);
+                          setSortDropdownOpen(false);
+                        }}
+                        className={`w-full flex items-center justify-between px-3.5 py-2 text-xs text-left transition-colors cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#0A4D40] text-white font-semibold'
+                            : 'text-stone-700 hover:bg-emerald-50 hover:text-[#0A4D40]'
+                        }`}
+                      >
+                        <span>{opt.label}</span>
+                        {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Embedded Select Price Range Slider */}
+                <div className="border-t border-stone-100 p-3 bg-stone-50/70">
+                  <PriceRangeSlider
+                    initialMin={minPrice ?? 400}
+                    initialMax={maxPrice ?? 50000}
+                    showTitle={true}
+                    showPresets={true}
+                    showApplyButton={true}
+                    onApply={(min, max) => {
+                      handlePriceApply(min, max);
                     }}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs text-left transition-colors ${
-                      isSelected
-                        ? 'bg-[#0A4D40] text-white font-semibold'
-                        : 'text-stone-700 hover:bg-emerald-50 hover:text-[#0A4D40]'
-                    }`}
-                  >
-                    <span>{opt.label}</span>
-                    {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
-                  </button>
-                );
-              })}
-            </div>
-          )}
+                    onReset={() => {
+                      handlePriceReset();
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
 
       {/* Full-Width Product Grid */}
       <main className="space-y-8">
@@ -366,10 +471,12 @@ export const ShopPage: React.FC = () => {
         ) : products.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-2xl border border-stone-200 p-8 space-y-4">
             <p className="font-serif text-2xl font-bold text-stone-800">
-              No Items Found in this Collection
+              {isSale ? 'No Festive Offers Available Right Now' : 'No Items Found in this Collection'}
             </p>
             <p className="text-xs text-stone-500 max-w-md mx-auto">
-              Please check back soon or explore our other signature handloom collections.
+              {isSale
+                ? 'Check back soon for upcoming holiday promotions and seasonal festive sales.'
+                : 'Please check back soon or explore our other signature handloom collections.'}
             </p>
           </div>
         ) : (
@@ -425,6 +532,9 @@ export const ShopPage: React.FC = () => {
           { slug: 'gowns', name: 'Gowns' },
           { slug: 'kurti', name: 'Kurti Edit' },
         ]}
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+        onPriceChange={(min, max) => handlePriceApply(min, max)}
         onReset={() => {
           setSearchParams(new URLSearchParams());
         }}

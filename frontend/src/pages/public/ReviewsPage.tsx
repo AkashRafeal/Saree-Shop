@@ -528,7 +528,7 @@ export const ReviewsPage: React.FC = () => {
 
             {/* NiVi Couture Theme Menu */}
             {sortDropdownOpen && (
-              <div className="absolute right-0 mt-1.5 w-44 bg-white border border-stone-200 rounded-xl shadow-xl z-50 py-1 overflow-hidden animate-fadeIn">
+              <div className="absolute right-0 mt-1.5 w-44 bg-white border border-stone-200 rounded-xl shadow-xl z-30 py-1 overflow-hidden animate-fadeIn">
                 {SORT_OPTIONS.map((opt) => {
                   const isSelected = opt.value === sortBy;
                   return (

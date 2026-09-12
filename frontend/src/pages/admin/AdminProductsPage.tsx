@@ -305,7 +305,7 @@ export const AdminProductsPage: React.FC = () => {
       fabric: formData.fabric,
       zariType: formData.zariType,
       occasion: formData.occasion,
-      description: formData.description,
+      description: formData.description?.trim() || 'Authentic handcrafted luxury saree woven with pure silk and artisanal craftsmanship.',
       stock: Number(formData.stockQuantity),
       imageUrls: finalImageUrls,
     };
@@ -846,8 +846,11 @@ export const AdminProductsPage: React.FC = () => {
                               src={imgUrl}
                               alt={`Product image ${idx + 1}`}
                               onError={(e) => {
-                                (e.currentTarget as HTMLImageElement).src =
-                                  'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=300&q=80';
+                                const target = e.currentTarget as HTMLImageElement;
+                                if (!target.src.includes('photo-1617627143750')) {
+                                  target.src =
+                                    'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=300&q=80';
+                                }
                               }}
                               className="w-full h-full object-cover"
                             />

@@ -197,10 +197,10 @@ export const HomePage: React.FC = () => {
       {/* 1. HERO 3D DEPTH CAROUSEL BANNER */}
       <section className="relative bg-[#F7F3EE] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 min-h-[500px] sm:min-h-[540px] items-center py-6 md:py-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 min-h-[400px] sm:min-h-[440px] items-center pt-2 pb-5 md:pt-3 md:pb-6">
             {/* Left Content */}
-            <div key={`text-${heroSlide}`} className="md:col-span-6 py-6 md:py-12 pr-0 md:pr-8 z-10 flex flex-col justify-center items-center md:items-start text-center md:text-left animate-fadeIn">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-stone-500 font-semibold mb-3 flex items-center justify-center md:justify-start gap-1.5">
+            <div key={`text-${heroSlide}`} className="md:col-span-6 py-1 md:py-2 pr-0 md:pr-8 z-10 flex flex-col justify-center items-center md:items-start text-center md:text-left animate-fadeIn">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-stone-500 font-semibold mb-2 flex items-center justify-center md:justify-start gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-[#0A4D40]" />
                 {heroSlides[heroSlide].badge}
               </span>
@@ -292,7 +292,7 @@ export const HomePage: React.FC = () => {
 
       {/* 3. SHOP BY OCCASION (Mosaic Bento Grid Matching Reference Image) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-200">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="font-serif text-xl sm:text-2xl text-stone-900">
             Shop By <span className="text-[#0A4D40] font-bold">Occasion</span>
           </h2>
@@ -310,7 +310,7 @@ export const HomePage: React.FC = () => {
           {/* Left Tall Card - The Wedding Edit */}
           <Link
             to="/shop?category=bridal-sarees"
-            className="group relative md:col-span-1 md:row-span-2 h-96 md:h-auto rounded-xl overflow-hidden bg-stone-100 shadow-sm"
+            className="group relative md:col-span-1 md:row-span-2 h-96 md:h-auto rounded-xl overflow-hidden bg-stone-100 shadow-sm transition-all duration-500 hover:shadow-[0_16px_36px_-6px_rgba(212,175,55,0.45),0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1"
           >
             <img
               src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80"
@@ -318,10 +318,10 @@ export const HomePage: React.FC = () => {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
-              <h3 className="font-serif text-lg font-bold text-white">The Wedding Edit</h3>
+              <h3 className="font-serif text-lg font-bold text-white group-hover:text-[#F3E5AB] transition-colors">The Wedding Edit</h3>
               <span className="text-[11px] font-semibold text-rose-200 mt-1 flex items-center group-hover:text-white transition-colors uppercase tracking-wider">
                 <span>SHOP BRIDAL</span>
-                <ArrowRight className="w-3 h-3 ml-1" />
+                <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
           </Link>
@@ -329,7 +329,7 @@ export const HomePage: React.FC = () => {
           {/* Middle Top Card - Haldi & Mehendi */}
           <Link
             to="/shop?occasion=Haldi"
-            className="group relative md:col-span-2 h-44 sm:h-52 rounded-xl overflow-hidden bg-stone-100 shadow-sm"
+            className="group relative md:col-span-2 h-44 sm:h-52 rounded-xl overflow-hidden bg-stone-100 shadow-sm transition-all duration-500 hover:shadow-[0_16px_36px_-6px_rgba(212,175,55,0.45),0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1"
           >
             <img
               src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
@@ -337,10 +337,10 @@ export const HomePage: React.FC = () => {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
-              <h3 className="font-serif text-base font-bold text-white">Haldi & Mehendi</h3>
+              <h3 className="font-serif text-base font-bold text-white group-hover:text-[#F3E5AB] transition-colors">Haldi & Mehendi</h3>
               <span className="text-[11px] font-semibold text-yellow-200 mt-0.5 flex items-center group-hover:text-white transition-colors uppercase tracking-wider">
                 <span>SHOP YELLOWS & GREENS</span>
-                <ArrowRight className="w-3 h-3 ml-1" />
+                <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
           </Link>
@@ -348,7 +348,7 @@ export const HomePage: React.FC = () => {
           {/* Right Top Card - Cocktail Night */}
           <Link
             to="/shop?occasion=Party"
-            className="group relative md:col-span-1 h-44 sm:h-52 rounded-xl overflow-hidden bg-stone-100 shadow-sm"
+            className="group relative md:col-span-1 h-44 sm:h-52 rounded-xl overflow-hidden bg-stone-100 shadow-sm transition-all duration-500 hover:shadow-[0_16px_36px_-6px_rgba(212,175,55,0.45),0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1"
           >
             <img
               src="https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=600&q=80"
@@ -356,10 +356,10 @@ export const HomePage: React.FC = () => {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
-              <h3 className="font-serif text-base font-bold text-white">Cocktail Night</h3>
+              <h3 className="font-serif text-base font-bold text-white group-hover:text-[#F3E5AB] transition-colors">Cocktail Night</h3>
               <span className="text-[11px] font-semibold text-rose-200 mt-0.5 flex items-center group-hover:text-white transition-colors uppercase tracking-wider">
                 <span>SHOP DRAPES</span>
-                <ArrowRight className="w-3 h-3 ml-1" />
+                <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
           </Link>
@@ -367,7 +367,7 @@ export const HomePage: React.FC = () => {
           {/* Middle Bottom Card - Festive Ready */}
           <Link
             to="/shop?occasion=Festive"
-            className="group relative md:col-span-1 h-44 sm:h-52 rounded-xl overflow-hidden bg-stone-100 shadow-sm"
+            className="group relative md:col-span-1 h-44 sm:h-52 rounded-xl overflow-hidden bg-stone-100 shadow-sm transition-all duration-500 hover:shadow-[0_16px_36px_-6px_rgba(212,175,55,0.45),0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1"
           >
             <img
               src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=600&q=80"
@@ -375,10 +375,10 @@ export const HomePage: React.FC = () => {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
-              <h3 className="font-serif text-base font-bold text-white">Festive Ready</h3>
+              <h3 className="font-serif text-base font-bold text-white group-hover:text-[#F3E5AB] transition-colors">Festive Ready</h3>
               <span className="text-[11px] font-semibold text-rose-200 mt-0.5 flex items-center group-hover:text-white transition-colors uppercase tracking-wider">
                 <span>SHOP SILKS</span>
-                <ArrowRight className="w-3 h-3 ml-1" />
+                <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
           </Link>
@@ -386,7 +386,7 @@ export const HomePage: React.FC = () => {
           {/* Right Bottom Card - Casual Ethnic */}
           <Link
             to="/shop?category=cotton-linen"
-            className="group relative md:col-span-2 h-44 sm:h-52 rounded-xl overflow-hidden bg-stone-100 shadow-sm"
+            className="group relative md:col-span-2 h-44 sm:h-52 rounded-xl overflow-hidden bg-stone-100 shadow-sm transition-all duration-500 hover:shadow-[0_16px_36px_-6px_rgba(212,175,55,0.45),0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1"
           >
             <img
               src="/images/teal_ethnic_suit_embroidered.jpg"
@@ -394,10 +394,10 @@ export const HomePage: React.FC = () => {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
-              <h3 className="font-serif text-base font-bold text-white">Casual Ethnic</h3>
+              <h3 className="font-serif text-base font-bold text-white group-hover:text-[#F3E5AB] transition-colors">Casual Ethnic</h3>
               <span className="text-[11px] font-semibold text-emerald-200 mt-0.5 flex items-center group-hover:text-white transition-colors uppercase tracking-wider">
                 <span>SHOP EVERYDAY WEAR</span>
-                <ArrowRight className="w-3 h-3 ml-1" />
+                <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
           </Link>
@@ -406,7 +406,7 @@ export const HomePage: React.FC = () => {
 
       {/* 4. NEW ARRIVALS (4-Card Product Row) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-200">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="font-serif text-xl sm:text-2xl text-stone-900">
             New <span className="text-[#0A4D40] font-bold">Arrivals</span>
           </h2>
@@ -436,7 +436,7 @@ export const HomePage: React.FC = () => {
 
       {/* 5. OUR FEATURED COLLECTION (4-Card Product Row) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-200">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="font-serif text-xl sm:text-2xl text-stone-900">
             Our Featured <span className="text-[#0A4D40] font-bold">Collection</span>
           </h2>
@@ -466,7 +466,7 @@ export const HomePage: React.FC = () => {
 
       {/* 6. REVIEWS & RATINGS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-200">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="font-serif text-xl sm:text-2xl text-stone-900">
             Reviews & <span className="text-[#0A4D40] font-bold">Ratings</span>
           </h2>

@@ -29,6 +29,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p WHERE p.active = true AND " +
            "(:isNewArrival IS NULL OR p.isNewArrival = :isNewArrival) AND " +
+           "(:onSale IS NULL OR (:onSale = true AND (p.discountPercentage > 0 OR p.sellingPrice < p.mrp)) OR (:onSale = false AND (p.discountPercentage = 0 OR p.discountPercentage IS NULL))) AND " +
            "(:query IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
            " LOWER(p.description) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
            " LOWER(p.fabric) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
@@ -50,6 +51,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             @Param("minPrice") BigDecimal minPrice,
             @Param("maxPrice") BigDecimal maxPrice,
             @Param("isNewArrival") Boolean isNewArrival,
+            @Param("onSale") Boolean onSale,
             Pageable pageable
     );
 }

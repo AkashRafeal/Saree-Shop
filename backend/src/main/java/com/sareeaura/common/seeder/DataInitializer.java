@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -145,11 +144,9 @@ public class DataInitializer implements CommandLineRunner {
                 "Breathable fine count handloom cottons and artisanal linen sarees for effortless grace.",
                 "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80");
 
-        // 5. Products (if count < 20)
-        if (productRepository.count() < 20) {
-            log.info("Seeding 20+ luxury Sarees...");
-            seedSarees(kanchi, banarasi, bridal, organza, tussar, cotton);
-        }
+        // 5. Products & Offer Discount Synchronization
+        log.info("Synchronizing luxury Sarees and offer discounts...");
+        seedSarees(kanchi, banarasi, bridal, organza, tussar, cotton);
 
         // 6. Coupons
         if (couponRepository.count() == 0) {
@@ -241,7 +238,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(banarasi, "Royal Shahi Banarasi Katan Silk Brocade Saree", "SA-BAN-002",
                 "Masterfully crafted in Varanasi using pure Katan silk with intricate floral kadwa motifs and lustrous gold brocade.",
                 "Pure Katan Silk", "Emerald Green", "Floral Jaal & Kadwa", "Festive / Reception",
-                new BigDecimal("21000.00"), new BigDecimal("16800.00"), 20, 15, true, true, false,
+                new BigDecimal("21000.00"), new BigDecimal("21000.00"), 0, 15, true, true, false,
                 List.of(
                         "https://images.unsplash.com/photo-1588647895254-8e3d0d828230?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -249,7 +246,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(bridal, "Imperial Scarlet Wedding Trousseau Silk Saree", "SA-BRI-003",
                 "An heirloom bridal masterpiece featuring heavy zari buttis, temple borders, and an elaborately woven royal pallu.",
                 "Pure Kanchipuram Silk", "Deep Scarlet", "Mayil & Rudraksha", "Bridal",
-                new BigDecimal("32000.00"), new BigDecimal("25600.00"), 20, 8, true, true, true,
+                new BigDecimal("32000.00"), new BigDecimal("24000.00"), 25, 8, true, true, true,
                 List.of(
                         "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80",
                         "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
@@ -258,7 +255,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(organza, "Pastel Blush Embroidered Sheer Organza Saree", "SA-ORG-004",
                 "Delicate organza saree in blush pink adorned with hand-cut scalloped borders and glistening pearl sequin highlights.",
                 "Pure Silk Organza", "Blush Pink", "Scallop Floral Embroidery", "Cocktail / Party",
-                new BigDecimal("9500.00"), new BigDecimal("7600.00"), 20, 14, false, false, true,
+                new BigDecimal("9500.00"), new BigDecimal("9500.00"), 0, 14, false, false, true,
                 List.of(
                         "https://images.unsplash.com/photo-1608465682855-6b3a04291fd0?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -274,7 +271,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(cotton, "Indigo Ajrakh Block Printed Chanderi Cotton Saree", "SA-COT-006",
                 "Fine count cotton-silk blend hand-blocked with natural vegetable dyes and highlighted with subtle zari patti.",
                 "Chanderi Cotton-Silk", "Royal Indigo", "Geometric Ajrakh", "Work / Daily Festive",
-                new BigDecimal("4500.00"), new BigDecimal("3600.00"), 20, 25, false, false, true,
+                new BigDecimal("4500.00"), new BigDecimal("4500.00"), 0, 25, false, false, true,
                 List.of(
                         "https://images.unsplash.com/photo-1598928636135-d146006fffde?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -282,7 +279,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(kanchi, "Aura Sunset Mustard & Magenta Kanchipuram Silk Saree", "SA-KAN-007",
                 "A breathtaking mustard yellow silk saree with contrasting royal magenta pallu and pure gold zari borders.",
                 "Pure Mulberry Silk", "Mustard Yellow", "Ganga Jamuna Borders", "Pooja / Engagement",
-                new BigDecimal("16500.00"), new BigDecimal("13200.00"), 20, 10, true, true, true,
+                new BigDecimal("16500.00"), new BigDecimal("11550.00"), 30, 10, true, true, true,
                 List.of(
                         "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -290,7 +287,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(banarasi, "Midnight Blue Meenakari Banarasi Silk Saree", "SA-BAN-008",
                 "Stately midnight blue Katan silk saree highlighted with vibrant multi-colored Meenakari floral craftsmanship.",
                 "Pure Katan Silk", "Midnight Blue", "Meenakari Floral Jaal", "Reception / Gala",
-                new BigDecimal("24000.00"), new BigDecimal("19200.00"), 20, 7, true, true, false,
+                new BigDecimal("24000.00"), new BigDecimal("24000.00"), 0, 7, true, true, false,
                 List.of(
                         "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -298,7 +295,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(bridal, "Rani Pink Royal Bridal Silk Saree", "SA-BRI-009",
                 "Traditional Rani pink bridal saree with heavy zari pallu, coin buttis, and intricate floral border weaving.",
                 "Pure Kanchipuram Silk", "Rani Pink", "Coin Butti & Mayil", "Wedding Ceremony",
-                new BigDecimal("29000.00"), new BigDecimal("23200.00"), 20, 6, true, true, false,
+                new BigDecimal("29000.00"), new BigDecimal("21750.00"), 25, 6, true, true, false,
                 List.of(
                         "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -306,7 +303,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(organza, "Mint Sage Floral Organza Silk Saree", "SA-ORG-010",
                 "Graceful mint green translucent organza saree detailed with metallic thread borders and floral prints.",
                 "Silk Organza", "Mint Sage", "Floral Prints & Zari Border", "Day Wedding / Sangeet",
-                new BigDecimal("8200.00"), new BigDecimal("6500.00"), 20, 18, false, false, true,
+                new BigDecimal("8200.00"), new BigDecimal("8200.00"), 0, 18, false, false, true,
                 List.of(
                         "https://images.unsplash.com/photo-1610030469830-580a5814be95?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -314,7 +311,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(cotton, "Handwoven Jamdani Muslin Cotton Saree", "SA-COT-011",
                 "Featherlight Bengal muslin cotton woven with legendary Jamdani geometric motifs and airy drape.",
                 "Fine Muslin Cotton", "Ivory White", "Geometric Jamdani", "Summer Celebrations",
-                new BigDecimal("6800.00"), new BigDecimal("5400.00"), 20, 20, false, true, false,
+                new BigDecimal("6800.00"), new BigDecimal("5100.00"), 25, 20, false, true, false,
                 List.of(
                         "http://localhost:8080/uploads/teal_ethnic_suit_embroidered.jpg"
                 ));
@@ -322,7 +319,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(kanchi, "Peacock Teal Dual-Tone Kanchipuram Silk Saree", "SA-KAN-012",
                 "Dazzling shot silk weave shimmering between peacock green and deep blue with antique gold zari border.",
                 "Pure Mulberry Silk", "Peacock Teal", "Antique Zari Waves", "Festive",
-                new BigDecimal("19500.00"), new BigDecimal("15600.00"), 20, 11, true, false, true,
+                new BigDecimal("19500.00"), new BigDecimal("19500.00"), 0, 11, true, false, true,
                 List.of(
                         "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -338,7 +335,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(tussar, "Gheo Tussar Silk Saree with Kantha Stitch Work", "SA-TUS-014",
                 "Organic raw tussar silk enriched with exquisite artisan hand Kantha stitch threadwork along the border.",
                 "Handloom Tussar", "Beige & Multicolored", "Kantha Thread Work", "Artistic Gathering",
-                new BigDecimal("11200.00"), new BigDecimal("8900.00"), 20, 9, false, false, true,
+                new BigDecimal("11200.00"), new BigDecimal("11200.00"), 0, 9, false, false, true,
                 List.of(
                         "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -346,7 +343,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(cotton, "Chanderi Gold Tissue Silk Saree", "SA-COT-015",
                 "Luminous tissue saree woven with golden warp and fine cotton weft for a lightweight celestial shine.",
                 "Tissue Chanderi Silk", "Champagne Gold", "Fine Ribbed Tissue", "Festive Evening",
-                new BigDecimal("7800.00"), new BigDecimal("6200.00"), 20, 16, true, false, false,
+                new BigDecimal("7800.00"), new BigDecimal("5460.00"), 30, 16, true, false, false,
                 List.of(
                         "http://localhost:8080/uploads/teal_ethnic_suit_embroidered.jpg"
                 ));
@@ -354,7 +351,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(kanchi, "Traditional Korvai Purple Kanchipuram Silk Saree", "SA-KAN-016",
                 "Authentic interlocking Korvai technique with deep violet body and fiery orange gold zari border.",
                 "Pure Mulberry Silk", "Deep Violet", "Korvai Temple Border", "Traditional Weddings",
-                new BigDecimal("22500.00"), new BigDecimal("18000.00"), 20, 8, true, true, false,
+                new BigDecimal("22500.00"), new BigDecimal("22500.00"), 0, 8, true, true, false,
                 List.of(
                         "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -362,7 +359,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(bridal, "Golden Ochre Heritage Bridal Brocade Saree", "SA-BRI-017",
                 "A showstopping golden ochre bridal drape fully embellished with pure zari Shikargah hunting motifs.",
                 "Heavy Katan Silk", "Golden Ochre", "Shikargah Motifs", "Grand Wedding",
-                new BigDecimal("36000.00"), new BigDecimal("28800.00"), 20, 5, true, true, false,
+                new BigDecimal("36000.00"), new BigDecimal("27000.00"), 25, 5, true, true, false,
                 List.of(
                         "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -370,7 +367,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(organza, "Lavender Lilac Zardozi Sheer Organza Saree", "SA-ORG-018",
                 "Ethereal lilac organza draped with subtle silver zardozi embroidery and light pearl borders.",
                 "Pure Organza", "Lilac Lavender", "Zardozi & Pearl Patti", "Cocktail Evening",
-                new BigDecimal("10500.00"), new BigDecimal("8400.00"), 20, 12, false, true, true,
+                new BigDecimal("10500.00"), new BigDecimal("10500.00"), 0, 12, false, true, true,
                 List.of(
                         "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -378,7 +375,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(tussar, "Forest Green Ghicha Tussar Silk Saree", "SA-TUS-019",
                 "Substantial textured Ghicha silk in deep forest green with bronze zari stripes across the pallu.",
                 "Ghicha Tussar Silk", "Forest Green", "Bronze Zari Striped Pallu", "Formal Occasion",
-                new BigDecimal("13500.00"), new BigDecimal("10800.00"), 20, 14, false, false, true,
+                new BigDecimal("13500.00"), new BigDecimal("9450.00"), 30, 14, false, false, true,
                 List.of(
                         "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80"
                 ));
@@ -386,7 +383,7 @@ public class DataInitializer implements CommandLineRunner {
         createSaree(cotton, "Kalamkari Hand-Painted Cotton Saree", "SA-COT-020",
                 "Eco-friendly organic cotton saree featuring handcrafted Srikalahasti mythological tree of life paintings.",
                 "Pure Organic Cotton", "Earthy Ochre & Rust", "Kalamkari Tree of Life", "Casual / Festive",
-                new BigDecimal("5200.00"), new BigDecimal("4160.00"), 20, 22, false, true, false,
+                new BigDecimal("5200.00"), new BigDecimal("5200.00"), 0, 22, false, true, false,
                 List.of(
                         "http://localhost:8080/uploads/teal_ethnic_suit_embroidered.jpg"
                 ));
@@ -402,6 +399,9 @@ public class DataInitializer implements CommandLineRunner {
         java.util.Optional<Product> existingOpt = productRepository.findBySku(sku);
         if (existingOpt.isPresent()) {
             Product existing = existingOpt.get();
+            existing.setMrp(mrp);
+            existing.setSellingPrice(sellingPrice);
+            existing.setDiscountPercentage(discount);
             if (existing.getImages() != null) {
                 for (ProductImage img : existing.getImages()) {
                     if (img.getImageUrl() != null && img.getImageUrl().contains("photo-1610030469830")) {
@@ -410,6 +410,7 @@ public class DataInitializer implements CommandLineRunner {
                     }
                 }
             }
+            productRepository.save(existing);
             return;
         }
 

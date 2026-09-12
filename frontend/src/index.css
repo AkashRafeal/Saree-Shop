@@ -99,8 +99,11 @@
 /* Remove unwanted default browser focus boxes/rectangles on interactive elements */
 a,
 button,
-[role="button"] {
-  -webkit-tap-highlight-color: transparent;
+[role="button"],
+input,
+select {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
 }
 
 a:focus,
@@ -108,8 +111,14 @@ a:focus-visible,
 button:focus,
 button:focus-visible,
 [role="button"]:focus,
-[role="button"]:focus-visible {
+[role="button"]:focus-visible,
+nav a:focus,
+nav a:focus-visible,
+nav button:focus,
+nav button:focus-visible {
   outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
 }
 
 /* Mobile App Safe Area Utilities & Touch Smoothness */
@@ -135,5 +144,38 @@ html, body {
   }
 }
 
+/* Luxury Dual Range Slider - Compact Theme Hollow Bubble Thumbs */
+.glass-bubble-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  border: 2px solid #0A4D40;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.12s ease;
+  z-index: 20;
+}
 
+.glass-bubble-thumb::before,
+.glass-bubble-thumb::after {
+  display: none !important;
+}
+
+.glass-bubble-thumb:hover {
+  transform: translate(-50%, -50%) scale(1.18) !important;
+  box-shadow: 0 2px 6px rgba(10, 77, 64, 0.22) !important;
+}
+
+.glass-bubble-thumb:active {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.22) !important;
+  box-shadow: 0 0 0 4px rgba(10, 77, 64, 0.16), 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+}
 
